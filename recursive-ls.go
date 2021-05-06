@@ -7,33 +7,16 @@ import (
 	"regexp"
 )
 
-func pathMatchRegExp(config Config, path string) bool {
-	ignore := config.Ignore
-	rules := config.Rules
+func pathMatchRegExps(res []string, path string) bool {
+	for _, re := range res {
+		compiledRe := regexp.MustCompile(re)
 
-	isMatched := false
-
-	for _, rule := range rules {
-		re := regexp.MustCompile(rule)
-
-		if re.Match([]byte(path)) {
-			isMatched = true
-
-			break
+		if compiledRe.Match([]byte(path)) {
+			return true
 		}
 	}
 
-	for _, ignoreRule := range ignore {
-		re := regexp.MustCompile(ignoreRule)
-
-		if re.Match([]byte(path)) {
-			isMatched = true
-
-			break
-		}
-	}
-
-	return isMatched
+	return false
 }
 
 func printPathResult(finalPath string, isMatched bool) {
@@ -56,11 +39,14 @@ func recursiveLs(computedPath string, config Config) {
 	for _, file := range files {
 		if file.IsDir() {
 			currentDirPath := computedPath + file.Name() + "/"
-			recursiveLs(currentDirPath, config)
+
+			if !pathMatchRegExps(config.Ignore, currentDirPath) {
+				recursiveLs(currentDirPath, config)
+			}
 		} else {
 			finalPath := computedPath + file.Name()
 
-			isMatched := pathMatchRegExp(config, finalPath)
+			isMatched := pathMatchRegExps(config.Rules, finalPath)
 
 			printPathResult(finalPath, isMatched)
 		}
