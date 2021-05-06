@@ -1,0 +1,5 @@
+rules:
+  - "Sasha"
+
+ignores:
+  - "Dasha"
