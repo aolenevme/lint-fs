@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
-	"log"
 
 	"gopkg.in/yaml.v2"
 )
@@ -13,18 +12,16 @@ type Config struct {
 	Rules  []string `yaml:"rules"`
 }
 
-func readConfig() {
+func readConfig() (config Config, err error) {
 	configFile, err := ioutil.ReadFile("./lint-fs.yaml")
 	if err != nil {
-		log.Fatal(err)
+		return Config{}, fmt.Errorf("failed to read lint-fs.yaml config file: %w", err)
 	}
-
-	var config Config
 
 	err = yaml.Unmarshal(configFile, &config)
 	if err != nil {
-		log.Fatalf("error: %v", err)
+		return Config{}, fmt.Errorf("failed to unmarshal lint-fs.yaml config file: %w", err)
 	}
-	//nolint
-	fmt.Printf("%+v\n\n", config)
+
+	return config, nil
 }
