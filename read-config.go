@@ -4,7 +4,17 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+
+	"gopkg.in/yaml.v2"
 )
+
+type T struct {
+	A string
+	B struct {
+		RenamedC int   `yaml:"c"`
+		D        []int `yaml:",flow"`
+	}
+}
 
 func readConfig() {
 	content, err := ioutil.ReadFile("./fs-regex.yaml")
@@ -12,6 +22,12 @@ func readConfig() {
 		log.Fatal(err)
 	}
 
+	var t T
+
+	err = yaml.Unmarshal(content, &t)
+	if err != nil {
+		log.Fatalf("error: %v", err)
+	}
 	//nolint
-	fmt.Printf("%s", content)
+	fmt.Printf("%+v\n\n", t)
 }
