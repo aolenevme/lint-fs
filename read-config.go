@@ -8,26 +8,23 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
-type T struct {
-	A string
-	B struct {
-		RenamedC int   `yaml:"c"`
-		D        []int `yaml:",flow"`
-	}
+type Config struct {
+	Ignore []string `yaml:"ignore"`
+	Rules  []string `yaml:"rules"`
 }
 
 func readConfig() {
-	content, err := ioutil.ReadFile("./fs-regex.yaml")
+	configFile, err := ioutil.ReadFile("./fs-regex.yaml")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	var t T
+	var config Config
 
-	err = yaml.Unmarshal(content, &t)
+	err = yaml.Unmarshal(configFile, &config)
 	if err != nil {
 		log.Fatalf("error: %v", err)
 	}
 	//nolint
-	fmt.Printf("%+v\n\n", t)
+	fmt.Printf("%+v\n\n", config)
 }
