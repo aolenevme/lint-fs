@@ -1,0 +1,7 @@
+ignore:
+  - Hey
+  - You!
+
+rules:
+  - Hi
+  - There!
