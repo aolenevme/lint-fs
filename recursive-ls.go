@@ -4,7 +4,14 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"regexp"
 )
+
+func pathMatchRegExp(reTemplate string, path string) bool {
+	re := regexp.MustCompile(reTemplate)
+
+	return re.Match([]byte(path))
+}
 
 func recursiveLs(computedPath string, config Config) {
 	files, err := ioutil.ReadDir(computedPath)
@@ -17,12 +24,10 @@ func recursiveLs(computedPath string, config Config) {
 			currentDirPath := computedPath + file.Name() + "/"
 			recursiveLs(currentDirPath, config)
 		} else {
-			//nolint
-			fmt.Println(config)
-
 			finalPath := computedPath + file.Name()
+
 			//nolint
-			fmt.Println(finalPath)
+			fmt.Println(finalPath, pathMatchRegExp(config.Rules[0], finalPath))
 		}
 	}
 }
