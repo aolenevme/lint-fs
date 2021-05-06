@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -e
+echo "
+=================
+  Quality check
+=================
+"
+
+echo "=== golangci-lint ==="
+golangci-lint run --enable-all
+
+echo "=== go vet ==="
+go vet ./...
+
+echo "=== go fmt ==="
+go fmt ./...
+
+echo "=== git add ==="
+git add .
