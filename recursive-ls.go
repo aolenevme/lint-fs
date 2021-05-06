@@ -6,14 +6,20 @@ import (
 	"log"
 )
 
-func ls() {
-	files, err := ioutil.ReadDir("./")
+func ls(computedPath string) {
+	files, err := ioutil.ReadDir(computedPath)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	for _, f := range files {
-		//nolint
-		fmt.Println(f.Name())
+	for _, file := range files {
+		if file.IsDir() {
+			currentDirPath := computedPath + file.Name() + "/"
+			ls(currentDirPath)
+		} else {
+			finalPath := computedPath + file.Name()
+			//nolint
+			fmt.Println(finalPath)
+		}
 	}
 }
