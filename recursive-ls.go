@@ -7,29 +7,6 @@ import (
 	"regexp"
 )
 
-func pathMatchRegExps(res []string, path string) bool {
-	for _, re := range res {
-		compiledRe := regexp.MustCompile(re)
-
-		if compiledRe.Match([]byte(path)) {
-			return true
-		}
-	}
-
-	return false
-}
-
-func printPathResult(finalPath string, isMatched bool) {
-	emoji := "\u2705"
-
-	if !isMatched {
-		emoji = "\u274C"
-	}
-
-	//nolint
-	fmt.Printf("%s %s\n", finalPath, emoji)
-}
-
 func recursiveLs(computedPath string, config Config) {
 	files, err := ioutil.ReadDir(computedPath)
 	if err != nil {
@@ -51,4 +28,27 @@ func recursiveLs(computedPath string, config Config) {
 			printPathResult(finalPath, isMatched)
 		}
 	}
+}
+
+func pathMatchRegExps(res []string, path string) bool {
+	for _, re := range res {
+		compiledRe := regexp.MustCompile(re)
+
+		if compiledRe.Match([]byte(path)) {
+			return true
+		}
+	}
+
+	return false
+}
+
+func printPathResult(finalPath string, isMatched bool) {
+	emoji := "\u2705"
+
+	if !isMatched {
+		emoji = "\u274C"
+	}
+
+	//nolint
+	fmt.Printf("%s %s\n", finalPath, emoji)
 }
