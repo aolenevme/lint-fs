@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 )
 
@@ -11,8 +10,5 @@ func main() {
 		log.Fatal(err)
 	}
 
-	//nolint
-	fmt.Printf("%+v %s", config, err)
-
-	ls("./")
+	recursiveLs("./", config)
 }
