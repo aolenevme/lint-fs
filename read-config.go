@@ -14,7 +14,7 @@ type Config struct {
 }
 
 func readConfig() {
-	configFile, err := ioutil.ReadFile("./fs-regex.yaml")
+	configFile, err := ioutil.ReadFile("./lint-fs.yaml")
 	if err != nil {
 		log.Fatal(err)
 	}
