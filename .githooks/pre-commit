@@ -1,18 +1,20 @@
 #!/bin/bash
 
-echo "Quality check"
+set -e
+echo "
+=================
+  Quality check
+=================
+"
 
+echo "=== golangci-lint ==="
 golangci-lint run --enable-all
 
-STAGED_GO_FILES=$(git diff --cached --name-only -- '*.go')
+echo "=== go vet ==="
+# go vet ./...
 
-if [[ $STAGED_GO_FILES == "" ]]; then
-    echo "No Go Files to Update"
+echo "=== go fmt ==="
+# go fmt ./...
 
-else
-    for file in $STAGED_GO_FILES; do
-        go fmt $file
-				
-        git add $file
-    done
-fi
+echo "=== git add ==="
+# git add .

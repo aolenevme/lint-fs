@@ -13,6 +13,7 @@ func main() {
 	}
 
 	for _, f := range files {
+		//nolint
 		fmt.Println(f.Name())
 	}
 }
