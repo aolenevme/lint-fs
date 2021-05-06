@@ -7,14 +7,14 @@ echo "
 =================
 "
 
-echo "=== golangci-lint ===\n"
+echo "=== golangci-lint ==="
 golangci-lint run --enable-all
 
-echo "=== go vet ===\n"
+echo "=== go vet ==="
 go vet ./...
 
-echo "=== go fmt ===\n"
+echo "=== go fmt ==="
 go fmt ./...
 
-echo "=== git add ===\n"
+echo "=== git add ==="
 git add .
