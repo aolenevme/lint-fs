@@ -3,3 +3,4 @@ ignore:
 
 rules:
   - go\.sum$
+  - main\.go$

@@ -7,10 +7,27 @@ import (
 	"regexp"
 )
 
-func pathMatchRegExp(reTemplate string, path string) bool {
-	re := regexp.MustCompile(reTemplate)
+func pathMatchRegExp(rules []string, path string) bool {
+	for _, rule := range rules {
+		re := regexp.MustCompile(rule)
 
-	return re.Match([]byte(path))
+		if re.Match([]byte(path)) {
+			return true
+		}
+	}
+
+	return false
+}
+
+func printPathResult(finalPath string, isMatched bool) {
+	emoji := "\u2705"
+
+	if !isMatched {
+		emoji = "\u274C"
+	}
+
+	//nolint
+	fmt.Printf("%s %s\n", finalPath, emoji)
 }
 
 func recursiveLs(computedPath string, config Config) {
@@ -26,8 +43,9 @@ func recursiveLs(computedPath string, config Config) {
 		} else {
 			finalPath := computedPath + file.Name()
 
-			//nolint
-			fmt.Println(finalPath, pathMatchRegExp(config.Rules[0], finalPath))
+			isMatched := pathMatchRegExp(config.Rules, finalPath)
+
+			printPathResult(finalPath, isMatched)
 		}
 	}
 }
