@@ -1,7 +1,5 @@
 ignore:
-  - Hey
-  - You!
+  - \.git
 
 rules:
-  - Hi
-  - There!
+  - go\.sum$
