@@ -23,9 +23,10 @@ func recursiveLs(computedPath string, config Config) {
 		} else {
 			finalPath := computedPath + file.Name()
 
-			isMatched := pathMatchRegExps(config.Rules, finalPath)
-
-			printPathResult(finalPath, isMatched)
+			if !pathMatchRegExps(config.Ignore, finalPath) {
+				isMatched := pathMatchRegExps(config.Rules, finalPath)
+				printPathResult(finalPath, isMatched)
+			}
 		}
 	}
 }

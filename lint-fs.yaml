@@ -1,5 +1,6 @@
 ignore:
   - \.git
+  - README\.md
 
 rules:
   - go\.sum$
