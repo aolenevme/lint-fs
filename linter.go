@@ -7,31 +7,30 @@ import (
 	"regexp"
 )
 
-func lintFs(computedPath string, config *Config) {
-	files, err := ioutil.ReadDir(computedPath)
+func lintFs(prevPath string, config *Config) {
+	files, err := ioutil.ReadDir(prevPath)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	for _, file := range files {
-		if file.IsDir() {
-			currentDirPath := computedPath + file.Name() + "/"
+		curFilePath := prevPath + file.Name()
+		curDirPath := curFilePath + "/"
 
-			if !pathMatchRegExps(config.Ignore, currentDirPath) {
-				lintFs(currentDirPath, config)
-			}
-		} else {
-			finalPath := computedPath + file.Name()
+		isCurFileIgnored := isMatched(config.Ignores, curFilePath)
+		isCurDirIgnored := isMatched(config.Ignores, curDirPath)
 
-			if !pathMatchRegExps(config.Ignore, finalPath) {
-				isMatched := pathMatchRegExps(config.Rules, finalPath)
-				printPathResult(finalPath, isMatched)
-			}
+		if file.IsDir() && !isCurDirIgnored {
+			lintFs(curDirPath, config)
+		} else if !isCurFileIgnored {
+			isCurFileMatched := isMatched(config.Rules, curFilePath)
+
+			printMatchResult(curFilePath, isCurFileMatched)
 		}
 	}
 }
 
-func pathMatchRegExps(res []string, path string) bool {
+func isMatched(res []string, path string) bool {
 	for _, re := range res {
 		compiledRe := regexp.MustCompile(re)
 
@@ -43,7 +42,7 @@ func pathMatchRegExps(res []string, path string) bool {
 	return false
 }
 
-func printPathResult(finalPath string, isMatched bool) {
+func printMatchResult(finalPath string, isMatched bool) {
 	emoji := "\u2705"
 
 	if !isMatched {

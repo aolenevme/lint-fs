@@ -8,8 +8,8 @@ import (
 )
 
 type Config struct {
-	Ignore []string `yaml:"ignore"`
-	Rules  []string `yaml:"rules"`
+	Ignores []string `yaml:"ignores"`
+	Rules   []string `yaml:"rules"`
 }
 
 func (c *Config) Init() {
