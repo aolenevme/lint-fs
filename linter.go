@@ -7,7 +7,7 @@ import (
 	"regexp"
 )
 
-func recursiveLs(computedPath string, config Config) {
+func lintFs(computedPath string, config *Config) {
 	files, err := ioutil.ReadDir(computedPath)
 	if err != nil {
 		log.Fatal(err)
@@ -18,7 +18,7 @@ func recursiveLs(computedPath string, config Config) {
 			currentDirPath := computedPath + file.Name() + "/"
 
 			if !pathMatchRegExps(config.Ignore, currentDirPath) {
-				recursiveLs(currentDirPath, config)
+				lintFs(currentDirPath, config)
 			}
 		} else {
 			finalPath := computedPath + file.Name()

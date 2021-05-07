@@ -1,14 +1,8 @@
 package main
 
-import (
-	"log"
-)
-
 func main() {
-	config, err := readConfig()
-	if err != nil {
-		log.Fatal(err)
-	}
+	c := new(Config)
+	c.Init()
 
-	recursiveLs("./", config)
+	lintFs("./", c)
 }
