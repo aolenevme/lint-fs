@@ -7,7 +7,19 @@ import (
 	"regexp"
 )
 
-func lintFs(prevPath string, config *Config) {
+func lintFs(c *Config) {
+	//nolint
+	fmt.Print("\n====================\n  Filesystem lint  \n====================\n\n")
+
+	isFsCorrect := true
+	recursiveLintFs("./", c, &isFsCorrect)
+
+	if !isFsCorrect {
+		log.Fatal("\n\nFilesystem structure is not correct!\n\n")
+	}
+}
+
+func recursiveLintFs(prevPath string, c *Config, isFsCorrect *bool) {
 	files, err := ioutil.ReadDir(prevPath)
 	if err != nil {
 		log.Fatal(err)
@@ -17,13 +29,15 @@ func lintFs(prevPath string, config *Config) {
 		curFilePath := prevPath + file.Name()
 		curDirPath := curFilePath + "/"
 
-		isCurFileIgnored := isMatched(config.Ignores, curFilePath)
-		isCurDirIgnored := isMatched(config.Ignores, curDirPath)
+		isCurFileIgnored := isMatched(c.Ignores, curFilePath)
+		isCurDirIgnored := isMatched(c.Ignores, curDirPath)
 
 		if file.IsDir() && !isCurDirIgnored {
-			lintFs(curDirPath, config)
+			recursiveLintFs(curDirPath, c, isFsCorrect)
 		} else if !isCurFileIgnored {
-			isCurFileMatched := isMatched(config.Rules, curFilePath)
+			isCurFileMatched := isMatched(c.Rules, curFilePath)
+
+			*isFsCorrect = *isFsCorrect && isCurFileMatched
 
 			printMatchResult(curFilePath, isCurFileMatched)
 		}
