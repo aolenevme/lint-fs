@@ -1,7 +1,6 @@
 #!/usr/bin/env sh 
 
-rm -rf bin
-mkdir bin
+rm -rf release
 
 package=$1
 if [[ -z "$package" ]]; then
@@ -18,16 +17,22 @@ do
     GOARCH=${platform_split[1]}
 
     directory_name=$GOOS'-'$GOARCH
-    output_name=$directory_name
+    output_name='lint-fs'
 
     if [ $GOOS = "windows" ]; then
         output_name+='.exe'
     fi
 
-    mkdir bin/$directory_name
+    mkdir -p bin/$directory_name
     env GOOS=$GOOS GOARCH=$GOARCH go build -o bin/$directory_name/$output_name $package
+
+    mkdir release
+    tar -C bin -czvf release/$directory_name.tar.gz $directory_name/
+
     if [ $? -ne 0 ]; then
         echo 'An error has occurred! Aborting the script execution...'
         exit 1
     fi
 done
+
+rm -rf bin
