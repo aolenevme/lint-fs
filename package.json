@@ -5,6 +5,9 @@
   "bin": {
     "lint-fs": "./npm/run.js"
   },
+  "files": [
+    "npm/**/*"
+  ],
   "scripts": {
     "postinstall": "node ./npm/install.js",
     "preinstall": "node ./npm/uninstall.js"
