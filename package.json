@@ -1,0 +1,16 @@
+{
+  "name": "lint-fs",
+  "version": "1.0.0",
+  "description": "Lint your file system with regexps",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eshekak/lint-fs.git"
+  },
+  "author": "Alexander Olenev <hello@aolenev.me>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eshekak/lint-fs/issues"
+  },
+  "homepage": "https://github.com/eshekak/lint-fs#readme"
+}
