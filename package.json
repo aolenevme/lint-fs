@@ -12,5 +12,8 @@
   "bugs": {
     "url": "https://github.com/eshekak/lint-fs/issues"
   },
-  "homepage": "https://github.com/eshekak/lint-fs#readme"
+  "homepage": "https://github.com/eshekak/lint-fs#readme",
+  "dependencies": {
+    "binary-install": "^0.1.1"
+  }
 }
