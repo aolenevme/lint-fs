@@ -1,7 +1,0 @@
-ignores:
-  - \.git
-  - README\.md
-
-rules:
-  - go\.sum$
-  - main\.go$
