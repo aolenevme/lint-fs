@@ -20,7 +20,7 @@ function getBinary() {
     const url = `https://github.com/eshekak/lint-fs/releases/download/v${version}/${platform}.tar.gz`;
     const name = 'lint-fs';
 
-    return new Binary(url, { name });
+    return new Binary(name, url);
 }
 
 module.exports = getBinary;
