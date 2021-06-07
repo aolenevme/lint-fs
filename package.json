@@ -1,8 +1,14 @@
 {
   "name": "lint-fs",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Lint your file system with regexps",
-  "main": "index.js",
+  "bin": {
+    "lint-fs": "./npm/run.js"
+  },
+  "scripts": {
+    "postinstall": "node ./npm/install.js",
+    "preinstall": "node ./npm/uninstall.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/eshekak/lint-fs.git"
