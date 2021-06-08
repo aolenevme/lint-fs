@@ -1,2 +1,2 @@
 # lint-fs
-Lint your filesystem by regexps
+Lint your filesystem with regexps
