@@ -1,0 +1,28 @@
+{
+  "name": "lint-fs",
+  "version": "0.1.2",
+  "description": "Lint your file system with regexps",
+  "bin": {
+    "lint-fs": "./npm/run.js"
+  },
+  "files": [
+    "npm/**/*"
+  ],
+  "scripts": {
+    "postinstall": "node ./npm/install.js",
+    "preinstall": "node ./npm/uninstall.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eshekak/lint-fs.git"
+  },
+  "author": "Alexander Olenev <hello@aolenev.me>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eshekak/lint-fs/issues"
+  },
+  "homepage": "https://github.com/eshekak/lint-fs#readme",
+  "dependencies": {
+    "binary-install": "^0.1.1"
+  }
+}
