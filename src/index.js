@@ -1,32 +1,32 @@
 const fs = require('fs');
-const util = require('util');
 const yaml = require('js-yaml');
-
-const readDir = util.promisify(fs.readdir);
-const readFile = util.promisify(fs.readFile);
-
-async function readConfig() {
-  const readYamlFile = await readFile('./lint-fs.yaml', 'utf8');
-
-  return yaml.load(readYamlFile);
-}
-
-async function lintFs(config) {
-  let isFsCorrect = true;
-
-  console.log('\n====================\n  Filesystem lint  \n====================\n\n');
-
-  await recursiveLintFs('./', config, isFsCorrect)
-
-  if (!isFsCorrect) {
-    console.error('\n\nFilesystem structure is not correct!\n\n');
-  }
-}
 
 let isFsCorrect = true;
 
-async function recursiveLintFs(prevPath, config) {
-  const files = await readDir(prevPath);
+(() => {
+  const config = readConfig();
+
+  lintFs(config);
+})();
+
+function readConfig() {
+  const configFile = fs.readFileSync('./lint-fs.yaml', 'utf8');
+
+  return yaml.load(configFile);
+}
+
+function lintFs(config) {
+  console.log('====================\n  Filesystem lint  \n====================\n');
+
+  recursiveLintFs('./', config, isFsCorrect)
+
+  if (!isFsCorrect) {
+    console.error('\nFilesystem structure is not correct!\n');
+  }
+}
+
+function recursiveLintFs(prevPath, config) {
+  const files = fs.readdirSync(prevPath);
 
   for (let file of files) {
     const curFilePath = prevPath + file;
@@ -38,7 +38,7 @@ async function recursiveLintFs(prevPath, config) {
     const isDir = fs.statSync(curFilePath).isDirectory();
 
     if (isDir && !isCurDirIgnored) {
-      await recursiveLintFs(curDirPath, config);
+      recursiveLintFs(curDirPath, config);
     } else if (!isCurFileIgnored) {
       const isCurFileMatched = isMatched(config.rules, curFilePath);
 
@@ -71,8 +71,3 @@ function printMatchResult(finalPath, isMatched) {
   console.log(`${finalPath} ${emoji}`);
 }
 
-(async () => {
-  const config  = await readConfig();
-
-  lintFs(config);
-})();
