@@ -1,0 +1,34 @@
+ignores:
+  - \.docker
+  - \.DS_Store
+  - \.git
+  - \.idea
+  - build
+  - coverage
+  - node_modules
+  - README\.md
+  - \.\/src\/features\/registration\-page\(draft\)
+  - \.\/src\/core
+  - \.\/src\/setupProxy.js
+  - \.\/src\/components\/sidebar
+  - \.\/src\/components\/theme-config-provide
+  - \.\/src\/components\/version-check
+  - \.\/src\/features\/order\-new\-modal\/components\/popup\/data.ts
+  - \.\/src\/features\/settings\-page
+  - \.\/src\/features\/clients\-page\/store
+  - \.\/src\/components\/balance\-header\/components\/helpers
+
+rules:
+  - ^\.\/\.?[a-z0-9]*(-[a-z0-9]+)*(\.[a-z]+)*$
+  - ^\.\/(\.docker|public|src|tools)\/([a-z0-9]*)(-[a-z0-9]+)*(\.[a-z]+)*$
+  - ^\.\/public\/files\/([a-z0-9]*)(-[a-z0-9]+)*(\.[a-z]+)*$
+  - ^\.\/src\/(features\/([a-z0-9]*)(-[a-z0-9]+)*\/)?assets\/([a-z0-9]*)(-[a-z0-9]+)*\.(svg|png)$
+  - ^\.\/src\/(features\/([a-z0-9]*)(-[a-z0-9]+)*\/)?components(\/([a-z0-9]*)(-[a-z0-9]+)*)*(([a-z0-9]*)(-[a-z0-9]+)*\.tsx|(styled|types)\.ts)$
+  - ^\.\/src\/features\/([a-z0-9]*)(-[a-z0-9]+)*\/(([a-z0-9]*)(-[a-z0-9]+)*\.tsx|(styled|types)\.ts)$
+  - ^\.\/src\/(([a-z0-9]*)(-[a-z0-9]+)*\/)*index\.ts$
+  - ^\.\/src(\/([a-z0-9]*)(-[a-z0-9]+)*)*\/__tests__(\/__snapshots__)?\/([a-z0-9]*)(-[a-z0-9]+)*\.test\.tsx?(\.snap)?$
+  - ^\.\/src\/features\/([a-z0-9]*)(-[a-z0-9]+)*\/components(\/([a-z0-9]*)(-[a-z0-9]+)*)*\/helpers\/([a-z0-9]*)(-[a-z0-9]+)*\.ts$
+  - ^\.\/src\/features\/([a-z0-9]*)(-[a-z0-9]+)*\/(services|stores|types|helpers)\/([a-z0-9]*)(-[a-z0-9]+)*\.ts$
+  - ^\.\/src\/fonts\/sb-sans-text\/sb-sans-text-medium.otf$
+  - ^\.\/src\/utils\/config\.ts$
+  - ^\.\/src\/data\/routes\.ts$
