@@ -23,21 +23,56 @@ async function lintFs(config) {
   }
 }
 
-async function recursiveLintFs(prevPath, config, isFsCorrect) {
+let isFsCorrect = true;
+
+async function recursiveLintFs(prevPath, config) {
   const files = await readDir(prevPath);
 
   for (let file of files) {
-    curFilePath = prevPath + file;
-    curDirPath = curFilePath + '/';
+    const curFilePath = prevPath + file;
+    const curDirPath = curFilePath + '/';
 
-    /**
-      isCurFileIgnored = isMatched(config.ignores, curFilePath);
-      isCurDirIgnored = isMatched(config.ignores, curDirPath);
-    **/
+    const isCurFileIgnored = isMatched(config.ignores, curFilePath);
+    const isCurDirIgnored = isMatched(config.ignores, curDirPath);
+
+    const isDir = fs.statSync(curFilePath).isDirectory();
+
+    if (isDir && !isCurDirIgnored) {
+      await recursiveLintFs(curDirPath, config);
+    } else if (!isCurFileIgnored) {
+      const isCurFileMatched = isMatched(config.rules, curFilePath);
+
+      isFsCorrect = isFsCorrect && isCurFileMatched;
+
+      printMatchResult(curFilePath, isCurFileMatched);
+    }
   }
+}
+
+function isMatched(regExpTemplates, path) {
+  for (let reTemplate of regExpTemplates) {
+    const regExp = new RegExp(reTemplate);
+
+    if (regExp.test(path)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function printMatchResult(finalPath, isMatched) {
+  let emoji = "\u2705";
+
+  if (!isMatched) {
+    emoji = "\u274C";
+  }
+
+  console.log(`${finalPath} ${emoji}`);
 }
 
 (async () => {
   const config  = await readConfig();
+
   lintFs(config);
 })();
