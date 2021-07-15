@@ -9,6 +9,7 @@
     "npm/**/*"
   ],
   "scripts": {
+    "lint": "eslint './src/*.js'",
     "postinstall": "node ./npm/install.js",
     "preinstall": "node ./npm/uninstall.js"
   },
@@ -27,6 +28,9 @@
     "js-yaml": "^4.1.0"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.14.7",
+    "eslint": "^7.30.0",
+    "eslint-config-hardcore": "^19.15.1",
     "pkg": "^5.3.0"
   }
 }

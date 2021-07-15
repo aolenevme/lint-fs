@@ -1,0 +1,20 @@
+{
+  "extends": ["hardcore", "hardcore/fp", "hardcore/node"],
+  "overrides": [
+    {
+      "files": ["*.js"],
+      "extends": ["hardcore/ts-for-js"],
+      "parserOptions": { "project": "./tsconfig.json" }
+    }
+  ],
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "esmodules": true
+        }
+      }
+    ]
+  ]
+}
