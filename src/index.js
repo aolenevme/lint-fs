@@ -1,5 +1,5 @@
-const fs = require('fs');
-const yaml = require('js-yaml');
+import fs from "node:fs";
+import yaml from "js-yaml";
 
 let isFsCorrect = true;
 
@@ -10,47 +10,45 @@ let isFsCorrect = true;
 })();
 
 function readConfig() {
-  const configFile = fs.readFileSync('./lint-fs.yaml', 'utf8');
+  const configFile = fs.readFileSync("./lint-fs.yaml", "utf8");
 
   return yaml.load(configFile);
 }
 
 function lintFs(config) {
-  console.log('====================\n  Filesystem lint  \n====================\n');
-
-  recursiveLintFs('./', config, isFsCorrect)
+  console.log(
+    "====================\n  Filesystem lint  \n====================\n"
+  );
+  recursiveLintFs("./", config);
 
   if (!isFsCorrect) {
-    console.error('\nFilesystem structure is not correct!\n');
+    console.error("\nFilesystem structure is not correct!\n");
   }
 }
 
-function recursiveLintFs(prevPath, config) {
-  const files = fs.readdirSync(prevPath);
+function recursiveLintFs(previousPath, config) {
+  const files = fs.readdirSync(previousPath);
 
-  for (let file of files) {
-    const curFilePath = prevPath + file;
-    const curDirPath = curFilePath + '/';
-
-    const isCurFileIgnored = isMatched(config.ignores, curFilePath);
+  for (const file of files) {
+    const currentFilePath = previousPath + file;
+    const curDirPath = `${currentFilePath}/`;
+    const isCurrentFileIgnored = isMatched(config.ignores, currentFilePath);
     const isCurDirIgnored = isMatched(config.ignores, curDirPath);
-
-    const isDir = fs.statSync(curFilePath).isDirectory();
+    const isDir = fs.statSync(currentFilePath).isDirectory();
 
     if (isDir && !isCurDirIgnored) {
       recursiveLintFs(curDirPath, config);
-    } else if (!isCurFileIgnored) {
-      const isCurFileMatched = isMatched(config.rules, curFilePath);
+    } else if (!isCurrentFileIgnored) {
+      const isCurrentFileMatched = isMatched(config.rules, currentFilePath);
 
-      isFsCorrect = isFsCorrect && isCurFileMatched;
-
-      printMatchResult(curFilePath, isCurFileMatched);
+      isFsCorrect = isFsCorrect && isCurrentFileMatched;
+      printMatchResult(currentFilePath, isCurrentFileMatched);
     }
   }
 }
 
 function isMatched(regExpTemplates, path) {
-  for (let reTemplate of regExpTemplates) {
+  for (const reTemplate of regExpTemplates) {
     const regExp = new RegExp(reTemplate);
 
     if (regExp.test(path)) {
@@ -62,12 +60,11 @@ function isMatched(regExpTemplates, path) {
 }
 
 function printMatchResult(finalPath, isMatched) {
-  let emoji = "\u2705";
+  let emoji = "✅";
 
   if (!isMatched) {
-    emoji = "\u274C";
+    emoji = "❌";
   }
 
   console.log(`${finalPath} ${emoji}`);
 }
-

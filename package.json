@@ -9,7 +9,7 @@
     "npm/**/*"
   ],
   "scripts": {
-    "lint": "eslint './src/*.js'",
+    "lint": "eslint './src/**/*.js'",
     "postinstall": "node ./npm/install.js",
     "preinstall": "node ./npm/uninstall.js"
   },
@@ -23,11 +23,14 @@
     "url": "https://github.com/eshekak/lint-fs/issues"
   },
   "homepage": "https://github.com/eshekak/lint-fs#readme",
+  "type": "module",
   "dependencies": {
     "binary-install": "^0.1.1",
     "js-yaml": "^4.1.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/eslint-parser": "^7.14.7",
     "@babel/preset-env": "^7.14.7",
     "eslint": "^7.30.0",
     "eslint-config-hardcore": "^19.15.1",
