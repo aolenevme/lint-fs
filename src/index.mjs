@@ -20,13 +20,16 @@ function recursiveLintFs(previousPath, config) {
 
   files.forEach((file) => {
     const currentFilePath = previousPath + file;
-    const curDirPath = `${currentFilePath}/`;
+    const currentDirectoryPath = `${currentFilePath}/`;
     const isCurrentFileIgnored = isMatched(config.ignores, currentFilePath);
-    const isCurDirIgnored = isMatched(config.ignores, curDirPath);
-    const isDir = fs.statSync(currentFilePath).isDirectory();
+    const isCurrentDirectoryIgnored = isMatched(
+      config.ignores,
+      currentDirectoryPath
+    );
+    const isDirectory = fs.statSync(currentFilePath).isDirectory();
 
-    if (isDir && !isCurDirIgnored) {
-      recursiveLintFs(curDirPath, config);
+    if (isDirectory && !isCurrentDirectoryIgnored) {
+      recursiveLintFs(currentDirectoryPath, config);
     } else if (!isCurrentFileIgnored) {
       const isCurrentFileMatched = isMatched(config.rules, currentFilePath);
 
