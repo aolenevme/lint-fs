@@ -2,8 +2,8 @@ import fs from "node:fs/promises";
 import yaml from "js-yaml";
 
 function isMatched(regExpTemplates, path) {
-  return regExpTemplates.reduce((accumulator, returnValue) => {
-    const regExp = new RegExp(returnValue);
+  return regExpTemplates?.reduce((accumulator, returnValue) => {
+    const regExp = new RegExp(returnValue, "u");
 
     return regExp.test(path) || accumulator;
   }, false);
