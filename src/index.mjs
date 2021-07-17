@@ -1,9 +1,5 @@
-import { readdir, readFile } from "node:fs/promises";
-import fs from "node:fs";
-import util from "node:util";
+import { readdir, readFile, stat } from "node:fs/promises";
 import yaml from "js-yaml";
-
-const asyncStat = util.promisify(fs.stat);
 
 let isFsCorrect = true;
 
@@ -30,7 +26,7 @@ async function recursiveLintFs(previousPath, config) {
       config.ignores,
       currentDirectoryPath
     );
-    const isDirectory = (await asyncStat(currentFilePath)).isDirectory();
+    const isDirectory = (await stat(currentFilePath)).isDirectory();
 
     if (isDirectory && !isCurrentDirectoryIgnored) {
       await recursiveLintFs(currentDirectoryPath, config);
