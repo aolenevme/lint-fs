@@ -7,7 +7,8 @@ module.exports = {
   parser: "@babel/eslint-parser",
   rules: {
     "import/no-unresolved": "off",
-    "no-console": "off",
-    "node/no-missing-import": "off"
+    "node/no-missing-import": "off",
+    "no-console": "warn",
+    "security/detect-non-literal-regexp": "warn"
   }
 };

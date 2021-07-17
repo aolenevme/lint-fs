@@ -13,7 +13,7 @@ function getMatchEmoji(im) {
   return im ? "✅" : "❌";
 }
 
-async function recursiveLintFs(previousPath, config) {
+async function lintFs(previousPath, config) {
   const files = await fs.readdir(previousPath);
 
   files.forEach(async (file) => {
@@ -27,21 +27,15 @@ async function recursiveLintFs(previousPath, config) {
     const isDirectory = (await fs.stat(currentFilePath)).isDirectory();
 
     if (isDirectory && !isCurrentDirectoryIgnored) {
-      await recursiveLintFs(currentDirectoryPath, config);
-    } else if (!isCurrentFileIgnored) {
+      await lintFs(currentDirectoryPath, config);
+    }
+
+    if (!isDirectory && !isCurrentFileIgnored) {
       const isCurrentFileMatched = isMatched(config.rules, currentFilePath);
 
       console.log(`${currentFilePath} ${getMatchEmoji(isCurrentFileMatched)}`);
     }
   });
-}
-
-async function lintFs(config) {
-  console.log(
-    "====================\n  Filesystem lint  \n====================\n"
-  );
-
-  await recursiveLintFs("./", config);
 }
 
 async function readConfig() {
@@ -51,7 +45,11 @@ async function readConfig() {
 }
 
 (async () => {
+  console.log(
+    "====================\n  Filesystem lint  \n====================\n"
+  );
+
   const config = await readConfig();
 
-  await lintFs(config);
+  await lintFs("./", config);
 })();
