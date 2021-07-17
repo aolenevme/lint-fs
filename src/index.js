@@ -1,5 +1,5 @@
-import fs from "node:fs";
-import yaml from "js-yaml";
+const fs = require("fs");
+const yaml = require("js-yaml");
 
 let isFsCorrect = true;
 
