@@ -1,5 +1,9 @@
+import { readdir, readFile } from "node:fs/promises";
 import fs from "node:fs";
+import util from "node:util";
 import yaml from "js-yaml";
+
+const asyncStat = util.promisify(fs.stat);
 
 let isFsCorrect = true;
 
@@ -15,10 +19,10 @@ function getMatchEmoji(im) {
   return im ? "✅" : "❌";
 }
 
-function recursiveLintFs(previousPath, config) {
-  const files = fs.readdirSync(previousPath);
+async function recursiveLintFs(previousPath, config) {
+  const files = await readdir(previousPath);
 
-  files.forEach((file) => {
+  files.forEach(async (file) => {
     const currentFilePath = previousPath + file;
     const currentDirectoryPath = `${currentFilePath}/`;
     const isCurrentFileIgnored = isMatched(config.ignores, currentFilePath);
@@ -26,39 +30,38 @@ function recursiveLintFs(previousPath, config) {
       config.ignores,
       currentDirectoryPath
     );
-    const isDirectory = fs.statSync(currentFilePath).isDirectory();
+    const isDirectory = (await asyncStat(currentFilePath)).isDirectory();
 
     if (isDirectory && !isCurrentDirectoryIgnored) {
-      recursiveLintFs(currentDirectoryPath, config);
+      await recursiveLintFs(currentDirectoryPath, config);
     } else if (!isCurrentFileIgnored) {
       const isCurrentFileMatched = isMatched(config.rules, currentFilePath);
 
       isFsCorrect = isFsCorrect && isCurrentFileMatched;
-
       console.log(`${currentFilePath} ${getMatchEmoji(isCurrentFileMatched)}`);
     }
   });
 }
 
-function lintFs(config) {
+async function lintFs(config) {
   console.log(
     "====================\n  Filesystem lint  \n====================\n"
   );
-  recursiveLintFs("./", config);
+  await recursiveLintFs("./", config);
 
   if (!isFsCorrect) {
     console.error("\nFilesystem structure is not correct!\n");
   }
 }
 
-function readConfig() {
-  const configFile = fs.readFileSync("./lint-fs.yaml", "utf8");
+async function readConfig() {
+  const configFile = await readFile("./lint-fs.yaml", "utf8");
 
   return yaml.load(configFile);
 }
 
-(() => {
-  const config = readConfig();
+(async () => {
+  const config = await readConfig();
 
-  lintFs(config);
+  await lintFs(config);
 })();
