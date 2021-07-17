@@ -6,6 +6,8 @@ module.exports = {
   extends: ["hardcore", "hardcore/fp", "hardcore/node"],
   parser: "@babel/eslint-parser",
   rules: {
-        "no-console": "off"
+    "import/no-unresolved": "off",
+    "no-console": "off",
+    "node/no-missing-import": "off"
   }
 };

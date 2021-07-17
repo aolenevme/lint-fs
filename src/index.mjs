@@ -1,4 +1,4 @@
-import { readdir, readFile, stat } from "node:fs/promises";
+import fs from "node:fs/promises";
 import yaml from "js-yaml";
 
 function isMatched(regExpTemplates, path) {
@@ -14,7 +14,7 @@ function getMatchEmoji(im) {
 }
 
 async function recursiveLintFs(previousPath, config) {
-  const files = await readdir(previousPath);
+  const files = await fs.readdir(previousPath);
 
   files.forEach(async (file) => {
     const currentFilePath = previousPath + file;
@@ -24,7 +24,7 @@ async function recursiveLintFs(previousPath, config) {
       config.ignores,
       currentDirectoryPath
     );
-    const isDirectory = (await stat(currentFilePath)).isDirectory();
+    const isDirectory = (await fs.stat(currentFilePath)).isDirectory();
 
     if (isDirectory && !isCurrentDirectoryIgnored) {
       await recursiveLintFs(currentDirectoryPath, config);
@@ -45,7 +45,7 @@ async function lintFs(config) {
 }
 
 async function readConfig() {
-  const configFile = await readFile("./lint-fs.yaml", "utf8");
+  const configFile = await fs.readFile("./lint-fs.yaml", "utf8");
 
   return yaml.load(configFile);
 }
