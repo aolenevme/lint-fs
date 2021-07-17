@@ -1,8 +1,6 @@
 import { readdir, readFile, stat } from "node:fs/promises";
 import yaml from "js-yaml";
 
-let isFsCorrect = true;
-
 function isMatched(regExpTemplates, path) {
   return regExpTemplates.reduce((accumulator, returnValue) => {
     const regExp = new RegExp(returnValue);
@@ -33,7 +31,6 @@ async function recursiveLintFs(previousPath, config) {
     } else if (!isCurrentFileIgnored) {
       const isCurrentFileMatched = isMatched(config.rules, currentFilePath);
 
-      isFsCorrect = isFsCorrect && isCurrentFileMatched;
       console.log(`${currentFilePath} ${getMatchEmoji(isCurrentFileMatched)}`);
     }
   });
@@ -43,11 +40,8 @@ async function lintFs(config) {
   console.log(
     "====================\n  Filesystem lint  \n====================\n"
   );
-  await recursiveLintFs("./", config);
 
-  if (!isFsCorrect) {
-    console.error("\nFilesystem structure is not correct!\n");
-  }
+  await recursiveLintFs("./", config);
 }
 
 async function readConfig() {

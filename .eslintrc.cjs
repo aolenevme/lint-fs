@@ -4,5 +4,8 @@ module.exports = {
     node: true
   },
   extends: ["hardcore", "hardcore/fp", "hardcore/node"],
-  parser: "@babel/eslint-parser"
+  parser: "@babel/eslint-parser",
+  rules: {
+        "no-console": "off"
+  }
 };
