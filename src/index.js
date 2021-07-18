@@ -1,5 +1,6 @@
-import fs from "node:fs/promises";
-import yaml from "js-yaml";
+const fs = require("fs/promises");
+
+const yaml = require("js-yaml");
 
 function isMatched(regExpTemplates, path) {
   return regExpTemplates?.reduce((accumulator, returnValue) => {

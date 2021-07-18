@@ -9,7 +9,7 @@
     "npm/**/*"
   ],
   "scripts": {
-    "lint": "eslint './src/**/*.mjs'",
+    "lint": "eslint './src/**/*.js'",
     "postinstall": "node ./npm/install.js",
     "preinstall": "node ./npm/uninstall.js"
   },

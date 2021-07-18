@@ -6,8 +6,9 @@ module.exports = {
   extends: ["hardcore", "hardcore/fp", "hardcore/node"],
   parser: "@babel/eslint-parser",
   rules: {
-    "import/no-unresolved": "off",
-    "node/no-missing-import": "off",
+    "putout/putout": "off",
+    "unicorn/prefer-module": "off",
+    "strict": "off",
     "no-console": "warn",
     "security/detect-non-literal-regexp": "warn"
   }
