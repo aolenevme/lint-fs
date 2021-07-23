@@ -7,3 +7,5 @@ ignores:
   - coverage
   - node_modules
   - README\.md
+rules:
+  - ^\.\/([a-z0-9]*)(-[a-z0-9]+)*\/\1.ts$
