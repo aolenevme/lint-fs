@@ -9,6 +9,7 @@
     "npm/**/*"
   ],
   "scripts": {
+    "build": "./cross-build.sh",
     "lint": "eslint './src/**/*.js'",
     "postinstall": "node ./npm/install.js",
     "preinstall": "node ./npm/uninstall.js"
