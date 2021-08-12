@@ -13,9 +13,9 @@ do
     npx pkg ../../src/index.js --targets $platform
 
     if [ $platform = "win" ]; then
-        mv index.exe "$platform.exe"
+        mv index.exe "lint-fs.exe"
     else
-        mv index $platform
+        mv index "lint-fs"
     fi
 
     cd ../../
