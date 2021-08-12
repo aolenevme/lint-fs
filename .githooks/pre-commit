@@ -7,14 +7,5 @@ echo "
 =================
 "
 
-echo "=== golangci-lint ==="
-golangci-lint run --enable-all
-
-echo "=== go vet ==="
-go vet ./...
-
-echo "=== go fumpt ==="
-gofumpt -l -w .
-
-echo "=== git add ==="
-git add .
+echo "=== eslint ==="
+npm run lint
