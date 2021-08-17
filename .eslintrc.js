@@ -10,6 +10,7 @@ module.exports = {
     "unicorn/prefer-module": "off",
     "strict": "off",
     "no-console": "warn",
-    "security/detect-non-literal-regexp": "warn"
+    "security/detect-non-literal-regexp": "warn",
+    "max-statements": "warn"
   }
 };
