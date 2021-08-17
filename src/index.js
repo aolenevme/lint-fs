@@ -5,7 +5,7 @@ const yaml = require("js-yaml");
 function abortOnError(error) {
   console.error(`${error}\n\n`);
 
-  process.abort();
+  process.exit(1);
 }
 
 function isMatched(regExpTemplates, path) {
