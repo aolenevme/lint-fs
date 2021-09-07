@@ -45,7 +45,9 @@ async function lintFs(previousPath, config) {
           `${currentFilePath} ${getMatchEmoji(isCurrentFileMatched)}`
         );
 
-        abortOnError(`Incorrect ${currentFilePath}`);
+        if (!isCurrentFileMatched) {
+          abortOnError(`Incorrect ${currentFilePath}`);
+        }
       }
     } catch (error) {
       abortOnError(error);
