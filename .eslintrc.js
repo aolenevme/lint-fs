@@ -11,6 +11,8 @@ module.exports = {
     "strict": "off",
     "no-console": "warn",
     "security/detect-non-literal-regexp": "warn",
-    "max-statements": "warn"
+    "max-statements": "warn",
+    "node/no-process-exit": "warn",
+    "no-process-exit": "warn",
   }
 };

@@ -3,7 +3,7 @@ const fs = require("fs/promises");
 const yaml = require("js-yaml");
 
 function abortOnError(error) {
-  console.error(`${error}\n\n`);
+  console.error(`\n${error}\n\n`);
 
   process.exit(1);
 }
@@ -44,6 +44,10 @@ async function lintFs(previousPath, config) {
         console.log(
           `${currentFilePath} ${getMatchEmoji(isCurrentFileMatched)}`
         );
+
+        if (!isCurrentFileMatched) {
+          abortOnError(`Incorrect ${currentFilePath}`);
+        }
       }
     } catch (error) {
       abortOnError(error);
