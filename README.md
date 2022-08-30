@@ -1,4 +1,4 @@
-# Lint-fs 😋
+# Lint-fs 📐
 Lint your filesystem with regular expressions!
 
 ## Why?
@@ -11,7 +11,7 @@ We have got linters and static analyzers. But stated structure of your project p
 npm install --save-dev lint-fs
 ```
 
-### Raw binary
+### Raw Binary
 You can download binary specifically for your platform (Debian, Ubuntu or Windows) on the [Releases page](https://github.com/eshekak/lint-fs/releases).
 
 ## How?
