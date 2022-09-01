@@ -1,13 +1,13 @@
-function getBinary() {
-    try {
-        const getBinary = require('./getBinary');
+function getBinary () {
+  try {
+    const getBinary = require('./getBinary');
 
-        return getBinary();
-    } catch (err) { }
+    return getBinary();
+  } catch {}
 }
 
 const binary = getBinary();
 
 if (binary && binary.uninstall) {
-    binary.uninstall();
+  binary.uninstall();
 }

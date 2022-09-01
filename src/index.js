@@ -1,26 +1,25 @@
-const fs = require("fs/promises");
+const fs = require('node:fs/promises');
+const yaml = require('js-yaml');
 
-const yaml = require("js-yaml");
-
-function abortOnError(error) {
+function abortOnError (error) {
   console.error(`\n${error}\n\n`);
 
   process.exit(1);
 }
 
-function isMatched(regExpTemplates, path) {
+function isMatched (regExpTemplates, path) {
   return regExpTemplates?.reduce((accumulator, returnValue) => {
-    const regExp = new RegExp(returnValue, "u");
+    const regExp = new RegExp(returnValue, 'u');
 
     return regExp.test(path) || accumulator;
   }, false);
 }
 
-function getMatchEmoji(im) {
-  return im ? "✅" : "❌";
+function getMatchEmoji (im) {
+  return im ? '✅' : '❌';
 }
 
-async function lintFs(previousPath, config) {
+async function lintFs (previousPath, config) {
   const files = await fs.readdir(previousPath);
 
   files.forEach(async (file) => {
@@ -30,7 +29,7 @@ async function lintFs(previousPath, config) {
       const isCurrentFileIgnored = isMatched(config.ignores, currentFilePath);
       const isCurrentDirectoryIgnored = isMatched(
         config.ignores,
-        currentDirectoryPath
+        currentDirectoryPath,
       );
       const isDirectory = (await fs.stat(currentFilePath)).isDirectory();
 
@@ -42,7 +41,7 @@ async function lintFs(previousPath, config) {
         const isCurrentFileMatched = isMatched(config.rules, currentFilePath);
 
         console.log(
-          `${currentFilePath} ${getMatchEmoji(isCurrentFileMatched)}`
+          `${currentFilePath} ${getMatchEmoji(isCurrentFileMatched)}`,
         );
 
         if (!isCurrentFileMatched) {
@@ -55,21 +54,21 @@ async function lintFs(previousPath, config) {
   });
 }
 
-async function readConfig() {
-  const configFile = await fs.readFile("./lint-fs.yaml", "utf8");
+async function readConfig () {
+  const configFile = await fs.readFile('./lint-fs.yaml', 'utf8');
 
   return yaml.load(configFile);
 }
 
 (async () => {
   console.log(
-    "====================\n  Filesystem lint  \n====================\n"
+    '====================\n  Filesystem lint  \n====================\n',
   );
 
   try {
     const config = await readConfig();
 
-    await lintFs("./", config);
+    await lintFs('./', config);
   } catch (error) {
     abortOnError(error);
   }
