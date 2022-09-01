@@ -1,10 +1,10 @@
-const os = require('node:os');
+import os from 'node:os';
 // Do it natively
-const {
+import {
   Binary,
-} = require('binary-install');
+} from 'binary-install';
 
-function getPlatform () {
+const getPlatform = () => {
   const type = os.type();
   const arch = os.arch();
 
@@ -21,15 +21,15 @@ function getPlatform () {
   }
 
   throw new Error(`Unsupported platform: ${type} ${arch}`);
-}
+};
 
-function getBinary () {
+const getBinary = () => {
   const version = require('../package.json').version;
   const platform = getPlatform();
   const url = `https://github.com/eshekak/lint-fs/releases/download/v${version}/${platform}.tar.gz`;
   const name = 'lint-fs';
 
   return new Binary(name, url);
-}
+};
 
-module.exports = getBinary;
+export default getBinary;

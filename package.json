@@ -11,9 +11,6 @@
   },
   "description": "Lint Your File System with Regular Expressions! 📐",
   "devDependencies": {
-    "@babel/core": "^7.18.13",
-    "@babel/eslint-parser": "^7.18.9",
-    "@babel/preset-env": "^7.18.10",
     "eslint": "^8.23.0",
     "eslint-config-canonical": "37.0.3",
     "pkg": "^5.8.0"
@@ -33,7 +30,7 @@
     "url": "git+https://github.com/aolenevme/lint-fs.git"
   },
   "version": "0.1.4",
-    "scripts": {
+  "scripts": {
     "build": "./cross-build.sh",
     "lint:all": "eslint './**/*.js' --fix"
   }
