@@ -1,4 +1,5 @@
 const os = require('os');
+// Do it natively
 const { Binary } = require('binary-install');
 
 function getPlatform() {
