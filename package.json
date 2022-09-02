@@ -12,8 +12,7 @@
   "description": "Lint Your File System with Regular Expressions! 📐",
   "devDependencies": {
     "eslint": "^8.23.0",
-    "eslint-config-canonical": "37.0.3",
-    "pkg": "^5.8.0"
+    "eslint-config-canonical": "37.0.3"
   },
   "engines": {
     "node": "16.17.0",
