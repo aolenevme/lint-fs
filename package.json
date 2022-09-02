@@ -1,7 +1,7 @@
 {
   "author": "Alexander Olenev <hello@aolenev.me>",
   "bin": {
-    "lint-fs": "./npm/run.js"
+    "lint-fs": "./source/source.js"
   },
   "bugs": {
     "url": "https://github.com/aolenevme/lint-fs/issues"
@@ -20,7 +20,7 @@
     "npm": "8.15.0"
   },
   "files": [
-    "npm/**/*"
+    "source/**/*"
   ],
   "homepage": "https://github.com/aolenevme/lint-fs#readme",
   "license": "ISC",
@@ -31,7 +31,6 @@
   },
   "version": "0.1.4",
   "scripts": {
-    "build": "./cross-build.sh",
     "lint:all": "eslint './**/*.js' --fix"
   }
 }
