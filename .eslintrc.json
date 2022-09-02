@@ -8,6 +8,12 @@
     "canonical/node"
   ],
   "rules": {
+    "no-console": [
+      "error",
+      {
+        "allow": ["log"]
+      }
+    ],
     "no-unused-vars": [
       "error",
       {
