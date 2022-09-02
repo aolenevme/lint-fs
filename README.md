@@ -24,3 +24,4 @@ You can download binary specifically for your platform (Debian, Ubuntu or Window
 ## Feedback
 To share your feedback, please, create an [issue](https://github.com/eshekak/lint-fs/issues).
 
+## [Code Style](./CODESTYLE.md)
