@@ -9,10 +9,10 @@ const lintFs = ({
 
     for (const path of paths) {
       const [
-        matcherError,
+        error,
       ] = matcher.isCorrect(path);
 
-      if (matcherError) {
+      if (error) {
         incorrect.push(path);
 
         continue;
@@ -27,7 +27,7 @@ const lintFs = ({
           correct,
           incorrect,
         },
-        'matcherError',
+        'matcher',
       ];
     }
 

@@ -17,44 +17,54 @@ const tests = [
   {
     matcher: {
       isCorrect (path) {
-        assert.deepEqual(path, '/test-path.js');
+        const ok = path === '/correctPath.js';
 
-        return [];
+        if (ok) {
+          return [];
+        }
+
+        return [
+          'testError',
+        ];
       },
     },
     paths: [
-      '/test-path.js',
+      '/correctPath.js',
+      '/incorrectPath.js',
     ],
     result: [
       {
         correct: [
-          '/test-path.js',
+          '/correctPath.js',
         ],
-        incorrect: [],
+        incorrect: [
+          '/incorrectPath.js',
+        ],
       },
+      'matcher',
     ],
   },
   {
     matcher: {
       isCorrect () {
-        return [
-          'matcherError',
-        ];
+        return [];
       },
     },
     paths: [
-      '/test-path.js',
+      '/correctPath1.js',
+      '/correctPath2.js',
     ],
     result: [
       {
-        correct: [],
-        incorrect: [
-          '/test-path.js',
+        correct: [
+          '/correctPath1.js',
+          '/correctPath2.js',
         ],
+        incorrect: [],
       },
-      'matcherError',
     ],
   },
+
 ];
 
 for (const test of tests) {
