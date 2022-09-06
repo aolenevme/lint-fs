@@ -1,15 +1,26 @@
-const lintFs = ({ matcher }) => {
-  return ({ paths }) => {
+const lintFs = ({
+  matcher,
+}) => {
+  return ({
+    paths,
+  }) => {
     for (const path of paths) {
-      const [matcherError] = matcher.isCorrect(path);
+      const [
+        matcherError,
+      ] = matcher.isCorrect(path);
 
       if (matcherError) {
-        return [path, `matcher: ${matcherError}`];
+        return [
+          path,
+          `matcher: ${matcherError}`,
+        ];
       }
     }
 
-    return [paths];
-  }
+    return [
+      paths,
+    ];
+  };
 };
 
 export default lintFs;
