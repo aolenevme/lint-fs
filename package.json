@@ -11,6 +11,7 @@
   },
   "description": "Lint Your File System with Regular Expressions! 📐",
   "devDependencies": {
+    "c8": "^7.12.0",
     "eslint": "^8.23.0",
     "eslint-config-canonical": "37.0.3"
   },
@@ -29,7 +30,9 @@
     "url": "git+https://github.com/aolenevme/lint-fs.git"
   },
   "version": "0.1.4",
+  "type": "module",
   "scripts": {
-    "lint:all": "eslint './**/*.js' --fix"
+    "lint:all": "eslint './**/*.js' --fix",
+    "test:unit": "npx c8 node ./run-tests.js; rm -rf ./coverage"
   }
 }
