@@ -18,7 +18,7 @@ const isOk = (path, regExps) => {
   return [];
 };
 
-const matcher = async ({
+const matcher = ({
   config,
 }) => {
   return {
