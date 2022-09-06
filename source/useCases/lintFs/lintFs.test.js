@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import lintFs from './lintFs.js';
 
-const testLintFs = async ({
+const testLintFs = ({
   matcher,
   paths,
   result,
