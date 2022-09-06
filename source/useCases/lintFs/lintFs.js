@@ -4,17 +4,23 @@ const lintFs = ({
   return ({
     paths,
   }) => {
+    const incorrectPaths = [];
+
     for (const path of paths) {
       const [
         matcherError,
       ] = matcher.isCorrect(path);
 
       if (matcherError) {
-        return [
-          path,
-          `matcher: ${matcherError}`,
-        ];
+        incorrectPaths.push(path);
       }
+    }
+
+    if (incorrectPaths.length > 0) {
+      return [
+        incorrectPaths,
+        'matcherError',
+      ];
     }
 
     return [

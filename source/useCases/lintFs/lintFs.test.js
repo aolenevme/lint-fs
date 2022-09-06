@@ -15,13 +15,6 @@ const testLintFs = async ({
 
 const tests = [
   {
-    matcher: {},
-    paths: [],
-    result: [
-      [],
-    ],
-  },
-  {
     matcher: {
       isCorrect (path) {
         assert.deepEqual(path, '/test-path.js');
@@ -36,6 +29,24 @@ const tests = [
       [
         '/test-path.js',
       ],
+    ],
+  },
+  {
+    matcher: {
+      isCorrect () {
+        return [
+          'matcherError',
+        ];
+      },
+    },
+    paths: [
+      '/test-path.js',
+    ],
+    result: [
+      [
+        '/test-path.js',
+      ],
+      'matcherError',
     ],
   },
 ];
