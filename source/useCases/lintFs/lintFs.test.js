@@ -26,9 +26,12 @@ const tests = [
       '/test-path.js',
     ],
     result: [
-      [
-        '/test-path.js',
-      ],
+      {
+        correct: [
+          '/test-path.js',
+        ],
+        incorrect: [],
+      },
     ],
   },
   {
@@ -43,9 +46,12 @@ const tests = [
       '/test-path.js',
     ],
     result: [
-      [
-        '/test-path.js',
-      ],
+      {
+        correct: [],
+        incorrect: [
+          '/test-path.js',
+        ],
+      },
       'matcherError',
     ],
   },

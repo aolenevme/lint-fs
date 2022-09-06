@@ -4,7 +4,8 @@ const lintFs = ({
   return ({
     paths,
   }) => {
-    const incorrectPaths = [];
+    const correct = [];
+    const incorrect = [];
 
     for (const path of paths) {
       const [
@@ -12,19 +13,29 @@ const lintFs = ({
       ] = matcher.isCorrect(path);
 
       if (matcherError) {
-        incorrectPaths.push(path);
+        incorrect.push(path);
+
+        continue;
       }
+
+      correct.push(path);
     }
 
-    if (incorrectPaths.length > 0) {
+    if (incorrect.length > 0) {
       return [
-        incorrectPaths,
+        {
+          correct,
+          incorrect,
+        },
         'matcherError',
       ];
     }
 
     return [
-      paths,
+      {
+        correct: paths,
+        incorrect,
+      },
     ];
   };
 };
