@@ -45,54 +45,52 @@ const config = ({
   fs,
   yaml,
 }) => {
-  return () => {
-    return {
-      async read (options) {
-        const [
-          loadedConfig,
-          loadError,
-        ] = await load({
-          fs,
-          yaml,
-        }, options);
+  return {
+    read: async (options) => {
+      const [
+        loadedConfig,
+        loadError,
+      ] = await load({
+        fs,
+        yaml,
+      }, options);
 
-        if (loadError) {
-          return [
-            undefined,
-            `load: ${loadError}`,
-          ];
-        }
-
-        const [
-          ignores,
-          ignoresRegExpError,
-        ] = createRegExps(loadedConfig.ignores);
-        if (ignoresRegExpError) {
-          return [
-            undefined,
-            `parse: ${ignoresRegExpError}`,
-          ];
-        }
-
-        const [
-          rules,
-          rulesRegExpError,
-        ] = createRegExps(loadedConfig.rules);
-        if (rulesRegExpError) {
-          return [
-            undefined,
-            `parse: ${rulesRegExpError}`,
-          ];
-        }
-
+      if (loadError) {
         return [
-          {
-            ignores,
-            rules,
-          },
+          undefined,
+          `load: ${loadError}`,
         ];
-      },
-    };
+      }
+
+      const [
+        ignores,
+        ignoresRegExpError,
+      ] = createRegExps(loadedConfig.ignores);
+      if (ignoresRegExpError) {
+        return [
+          undefined,
+          `parse: ${ignoresRegExpError}`,
+        ];
+      }
+
+      const [
+        rules,
+        rulesRegExpError,
+      ] = createRegExps(loadedConfig.rules);
+      if (rulesRegExpError) {
+        return [
+          undefined,
+          `parse: ${rulesRegExpError}`,
+        ];
+      }
+
+      return [
+        {
+          ignores,
+          rules,
+        },
+      ];
+    },
   };
 };
 
