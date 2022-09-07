@@ -32,7 +32,7 @@ const matcher = ({
         isIgnored,
       ] = isOk(path, ignores);
 
-      if (isIgnored) {
+      if (!isIgnored) {
         return [];
       }
 
