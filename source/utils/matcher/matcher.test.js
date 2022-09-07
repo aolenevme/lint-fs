@@ -32,6 +32,18 @@ const tests = [
     path: 'node_modules/browserslist',
     result: [],
   },
+  {
+    config: {
+      ignores: [],
+      rules: [
+        /^node_moduless/u,
+      ],
+    },
+    path: 'wrong_node_modules/browserslist',
+    result: [
+      'isCorrect: isOk',
+    ],
+  },
 ];
 
 for (const test of tests) {
