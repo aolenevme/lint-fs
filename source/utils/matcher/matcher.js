@@ -40,7 +40,7 @@ const matcher = ({
         isRuled,
       ] = isOk(path, rules);
 
-      if (!isRuled) {
+      if (isRuled) {
         return [
           `isCorrect: ${isRuled}`,
         ];

@@ -22,6 +22,16 @@ const tests = [
     path: 'node_modules/browserslist',
     result: [],
   },
+  {
+    config: {
+      ignores: [],
+      rules: [
+        /^node_modules/u,
+      ],
+    },
+    path: 'node_modules/browserslist',
+    result: [],
+  },
 ];
 
 for (const test of tests) {
