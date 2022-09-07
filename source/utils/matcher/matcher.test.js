@@ -14,10 +14,12 @@ const testMatcher = ({
 const tests = [
   {
     config: {
-      ignores: [],
+      ignores: [
+        /^node_modules/u,
+      ],
       rules: [],
     },
-    path: 'test-path',
+    path: 'node_modules/browserslist',
     result: [],
   },
 ];
