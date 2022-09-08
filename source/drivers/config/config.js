@@ -36,7 +36,7 @@ const createRegExps = (templates) => {
   } catch (error) {
     return [
       undefined,
-      `createRegExps: ${error}`,
+      `createRegExps: ${error.message}`,
     ];
   }
 };

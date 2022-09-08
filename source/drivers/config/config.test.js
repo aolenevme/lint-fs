@@ -54,6 +54,47 @@ const tests = [
   },
   {
     fs: {
+      readFile () {},
+    },
+    options: {},
+    result: [
+      undefined,
+      'read: createRegExps: Invalid regular expression: /[/: Unterminated character class',
+    ],
+    yaml: {
+      load () {
+        return {
+          ignores: [
+            '[',
+          ],
+          rules: [],
+        };
+      },
+    },
+  },
+  {
+    fs: {
+      readFile () {},
+    },
+    options: {},
+    result: [
+      undefined,
+      'read: createRegExps: Invalid regular expression: /]/: Lone quantifier brackets',
+    ],
+    yaml: {
+      load () {
+        return {
+          ignores: [],
+          rules: [
+            ']',
+          ],
+        };
+      },
+    },
+  },
+
+  {
+    fs: {
       readFile () {
         throw new Error('file');
       },
@@ -66,7 +107,6 @@ const tests = [
       undefined,
       'read: load: file',
     ],
-    yaml: {},
   },
 ];
 
