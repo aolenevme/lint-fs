@@ -6,7 +6,7 @@ const testDrivers = () => {
     config,
   } = drivers({});
 
-  assert.ok(typeof config === 'function');
+  assert.deepEqual(typeof config, 'object');
 };
 
 testDrivers();
