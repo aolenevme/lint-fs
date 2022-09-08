@@ -52,6 +52,22 @@ const tests = [
       },
     },
   },
+  {
+    fs: {
+      readFile () {
+        throw new Error('file');
+      },
+    },
+    options: {
+      encoding: 'utf8',
+      fileName: './config.yaml',
+    },
+    result: [
+      undefined,
+      'read: load: file',
+    ],
+    yaml: {},
+  },
 ];
 
 for (const test of tests) {

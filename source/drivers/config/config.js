@@ -15,7 +15,7 @@ const load = async ({
   } catch (error) {
     return [
       undefined,
-      `load: ${error}`,
+      `load: ${error.message}`,
     ];
   }
 };
@@ -58,7 +58,7 @@ const config = ({
       if (loadError) {
         return [
           undefined,
-          `load: ${loadError}`,
+          `read: ${loadError}`,
         ];
       }
 
@@ -69,7 +69,7 @@ const config = ({
       if (ignoresRegExpError) {
         return [
           undefined,
-          `parse: ${ignoresRegExpError}`,
+          `read: ${ignoresRegExpError}`,
         ];
       }
 
@@ -80,7 +80,7 @@ const config = ({
       if (rulesRegExpError) {
         return [
           undefined,
-          `parse: ${rulesRegExpError}`,
+          `read: ${rulesRegExpError}`,
         ];
       }
 
