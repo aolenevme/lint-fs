@@ -18,37 +18,33 @@ const isOk = (path, regExps) => {
   return [];
 };
 
-const matcher = ({
-  config,
-}) => {
-  return {
-    isCorrect (path) {
-      const {
-        ignores,
-        rules,
-      } = config;
+const matcher = {
+  isCorrect (config, path) {
+    const {
+      ignores,
+      rules,
+    } = config;
 
-      const [
-        isIgnored,
-      ] = isOk(path, ignores);
+    const [
+      isIgnored,
+    ] = isOk(path, ignores);
 
-      if (!isIgnored) {
-        return [];
-      }
-
-      const [
-        isRuled,
-      ] = isOk(path, rules);
-
-      if (isRuled) {
-        return [
-          `isCorrect: ${isRuled}`,
-        ];
-      }
-
+    if (!isIgnored) {
       return [];
-    },
-  };
+    }
+
+    const [
+      isRuled,
+    ] = isOk(path, rules);
+
+    if (isRuled) {
+      return [
+        `isCorrect: ${isRuled}`,
+      ];
+    }
+
+    return [];
+  },
 };
 
 export default matcher;

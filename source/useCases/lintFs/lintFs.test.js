@@ -2,11 +2,14 @@ import assert from 'node:assert/strict';
 import lintFs from './lintFs.js';
 
 const testLintFs = ({
+  config,
   matcher,
   paths,
   result,
 }) => {
   assert.deepEqual(lintFs({
+    config,
+  }, {
     matcher,
   })({
     paths,
@@ -15,8 +18,17 @@ const testLintFs = ({
 
 const tests = [
   {
+    config: {
+      ignores: [],
+      rules: [],
+    },
     matcher: {
-      isCorrect (path) {
+      isCorrect (testConfig, path) {
+        assert.deepEqual(testConfig, {
+          ignores: [],
+          rules: [],
+        });
+
         const ok = path === '/correctPath.js';
 
         if (ok) {

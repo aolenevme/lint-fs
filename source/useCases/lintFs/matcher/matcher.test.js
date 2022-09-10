@@ -6,9 +6,7 @@ const testMatcher = ({
   path,
   result,
 }) => {
-  assert.deepEqual(matcher({
-    config,
-  }).isCorrect(path), result);
+  assert.deepEqual(matcher.isCorrect(config, path), result);
 };
 
 const tests = [
