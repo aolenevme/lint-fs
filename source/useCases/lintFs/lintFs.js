@@ -1,6 +1,12 @@
+import matcherModule from './matcher/matcher.js';
+
+const dependecies = {
+  matcher: matcherModule,
+};
+
 const lintFs = ({
   matcher,
-}) => {
+} = dependecies) => {
   return ({
     paths,
   }) => {
