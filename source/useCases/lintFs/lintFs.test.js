@@ -4,16 +4,15 @@ import lintFs from './lintFs.js';
 const testLintFs = ({
   config,
   matcher,
-  paths,
+  filesystem,
   result,
 }) => {
   assert.deepEqual(lintFs({
     config,
+    filesystem,
   }, {
     matcher,
-  })({
-    paths,
-  }), result);
+  })(), result);
 };
 
 const tests = [
@@ -21,6 +20,14 @@ const tests = [
     config: {
       ignores: [],
       rules: [],
+    },
+    filesystem: {
+      paths () {
+        return [
+          '/correctPath.js',
+          '/incorrectPath.js',
+        ];
+      },
     },
     matcher: {
       isCorrect (testConfig, path) {
@@ -40,10 +47,6 @@ const tests = [
         ];
       },
     },
-    paths: [
-      '/correctPath.js',
-      '/incorrectPath.js',
-    ],
     result: [
       {
         correct: [
@@ -57,15 +60,19 @@ const tests = [
     ],
   },
   {
+    filesystem: {
+      paths () {
+        return [
+          '/correctPath1.js',
+          '/correctPath2.js',
+        ];
+      },
+    },
     matcher: {
       isCorrect () {
         return [];
       },
     },
-    paths: [
-      '/correctPath1.js',
-      '/correctPath2.js',
-    ],
     result: [
       {
         correct: [
@@ -76,7 +83,6 @@ const tests = [
       },
     ],
   },
-
 ];
 
 for (const test of tests) {

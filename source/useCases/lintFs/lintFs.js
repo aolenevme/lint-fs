@@ -1,22 +1,21 @@
 import matcherModule from './matcher/matcher.js';
-// 2. Implement it!
-import paths from './paths/paths.js';
 
 const dependecies = {
   matcher: matcherModule,
 };
 
-// 3. Write logger driver just for a simple string. And add logger logic over here as a dependency.
-// 1. Fix tests!
+// 1. Write logger driver just for a simple string. And add logger logic over here as a dependency.
 const lintFs = ({
   config,
+  filesystem,
 }, {
   matcher,
-  paths,
 } = dependecies) => {
   return () => {
     const correct = [];
     const incorrect = [];
+
+    const paths = filesystem.paths();
 
     for (const path of paths) {
       const [
