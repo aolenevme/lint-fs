@@ -38,6 +38,18 @@ const tests = [
     ],
     root: '.',
   },
+  {
+    fs: {
+      stat () {
+        throw new Error('fs-stat');
+      },
+    },
+    result: [
+      undefined,
+      'paths: fs-stat',
+    ],
+    root: '.',
+  },
 ];
 
 for (const test of tests) {

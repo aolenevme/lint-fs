@@ -35,7 +35,7 @@ const filesystem = ({
       } catch (error) {
         return [
           undefined,
-          `tree: ${error.message}`,
+          `paths: ${error.message}`,
         ];
       }
     },
