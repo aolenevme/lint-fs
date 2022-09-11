@@ -22,7 +22,7 @@ const tests = [
         ];
       },
       stat (candidate) {
-        const result = candidate !== '.';
+        const result = candidate === '.';
 
         return {
           isDirectory () {

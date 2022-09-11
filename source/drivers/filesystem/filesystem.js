@@ -14,7 +14,7 @@ const filesystem = ({
 
           const isDirectory = (await fs.stat(candidate)).isDirectory();
 
-          if (isDirectory) {
+          if (!isDirectory) {
             paths.push(candidate);
 
             continue;

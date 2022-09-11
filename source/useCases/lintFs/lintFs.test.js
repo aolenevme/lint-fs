@@ -1,13 +1,13 @@
 import assert from 'node:assert/strict';
 import lintFs from './lintFs.js';
 
-const testLintFs = ({
+const testLintFs = async ({
   config,
   matcher,
   filesystem,
   result,
 }) => {
-  assert.deepEqual(lintFs({
+  assert.deepEqual(await lintFs({
     config,
     filesystem,
   }, {
@@ -22,11 +22,13 @@ const tests = [
       rules: [],
     },
     filesystem: {
-      paths () {
+      paths (root) {
+        assert.deepEqual(root, '.');
+
         return [
           [
-            '/correctPath.js',
-            '/incorrectPath.js',
+            './correctPath.js',
+            './incorrectPath.js',
           ],
         ];
       },
@@ -38,7 +40,7 @@ const tests = [
           rules: [],
         });
 
-        const ok = path === '/correctPath.js';
+        const ok = path === './correctPath.js';
 
         if (ok) {
           return [];
@@ -52,10 +54,10 @@ const tests = [
     result: [
       {
         correct: [
-          '/correctPath.js',
+          './correctPath.js',
         ],
         incorrect: [
-          '/incorrectPath.js',
+          './incorrectPath.js',
         ],
       },
       'lintFs: matcher',
@@ -66,8 +68,8 @@ const tests = [
       paths () {
         return [
           [
-            '/correctPath1.js',
-            '/correctPath2.js',
+            './correctPath1.js',
+            './correctPath2.js',
           ],
         ];
       },
@@ -80,8 +82,8 @@ const tests = [
     result: [
       {
         correct: [
-          '/correctPath1.js',
-          '/correctPath2.js',
+          './correctPath1.js',
+          './correctPath2.js',
         ],
         incorrect: [],
       },

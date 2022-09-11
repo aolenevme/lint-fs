@@ -4,21 +4,21 @@ const dependecies = {
   matcher: matcherModule,
 };
 
-// 1. Write logger driver just for a simple string. And add logger logic over here as a dependency.
+// 1. Починить тесты для lint-fs
+// 2. Продумать разные кейсы, когда ignores/rules пустые или отсутствуют
+// 3. Write logger driver just for a simple string. And add logger logic over here as a dependency.
 const lintFs = ({
   config,
   filesystem,
 }, {
   matcher,
 } = dependecies) => {
-  return () => {
-    const correct = [];
-    const incorrect = [];
-
+  return async () => {
     const [
       paths,
       filesystemError,
-    ] = filesystem.paths();
+    ] = await filesystem.paths('.');
+
     if (filesystemError) {
       return [
         undefined,
@@ -26,10 +26,28 @@ const lintFs = ({
       ];
     }
 
+    const [
+      initedConfig,
+      configError,
+    ] = await config.read({
+      encoding: 'utf8',
+      fileName: './lint-fs.yaml',
+    });
+
+    if (configError) {
+      return [
+        undefined,
+        `lintFs: ${configError}`,
+      ];
+    }
+
+    const correct = [];
+    const incorrect = [];
+
     for (const path of paths) {
       const [
         error,
-      ] = matcher.isCorrect(config, path);
+      ] = matcher.isCorrect(initedConfig, path);
 
       if (error) {
         incorrect.push(path);
