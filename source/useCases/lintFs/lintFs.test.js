@@ -24,8 +24,10 @@ const tests = [
     filesystem: {
       paths () {
         return [
-          '/correctPath.js',
-          '/incorrectPath.js',
+          [
+            '/correctPath.js',
+            '/incorrectPath.js',
+          ],
         ];
       },
     },
@@ -56,15 +58,17 @@ const tests = [
           '/incorrectPath.js',
         ],
       },
-      'matcher',
+      'lintFs: matcher',
     ],
   },
   {
     filesystem: {
       paths () {
         return [
-          '/correctPath1.js',
-          '/correctPath2.js',
+          [
+            '/correctPath1.js',
+            '/correctPath2.js',
+          ],
         ];
       },
     },
@@ -81,6 +85,21 @@ const tests = [
         ],
         incorrect: [],
       },
+    ],
+  },
+  {
+    filesystem: {
+      paths () {
+        return [
+          undefined,
+          'filesystem.paths',
+        ];
+      },
+    },
+    matcher: {},
+    result: [
+      undefined,
+      'lintFs: filesystem.paths',
     ],
   },
 ];

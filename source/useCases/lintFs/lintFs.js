@@ -15,7 +15,16 @@ const lintFs = ({
     const correct = [];
     const incorrect = [];
 
-    const paths = filesystem.paths();
+    const [
+      paths,
+      filesystemError,
+    ] = filesystem.paths();
+    if (filesystemError) {
+      return [
+        undefined,
+        `lintFs: ${filesystemError}`,
+      ];
+    }
 
     for (const path of paths) {
       const [
@@ -37,7 +46,7 @@ const lintFs = ({
           correct,
           incorrect,
         },
-        'matcher',
+        'lintFs: matcher',
       ];
     }
 
