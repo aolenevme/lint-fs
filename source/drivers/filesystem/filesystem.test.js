@@ -14,22 +14,29 @@ const testFilesystem = async ({
 const tests = [
   {
     fs: {
+      readdir (candidate) {
+        assert.deepEqual(candidate, '.');
+
+        return [
+          'test.js',
+        ];
+      },
       stat (candidate) {
-        assert.deepEqual(candidate, './');
+        const result = candidate !== '.';
 
         return {
           isDirectory () {
-            return true;
+            return result;
           },
         };
       },
     },
     result: [
       [
-        './',
+        './test.js',
       ],
     ],
-    root: './',
+    root: '.',
   },
 ];
 
