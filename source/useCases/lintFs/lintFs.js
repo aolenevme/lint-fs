@@ -4,9 +4,8 @@ const dependecies = {
   matcher: matcherModule,
 };
 
-// 1. Починить тесты для lint-fs
-// 2. Продумать разные кейсы, когда ignores/rules пустые или отсутствуют
-// 3. Write logger driver just for a simple string. And add logger logic over here as a dependency.
+// 1. Продумать разные кейсы, когда ignores/rules пустые или отсутствуют
+// 2. Write logger driver just for a simple string. And add logger logic over here as a dependency.
 const lintFs = ({
   config,
   filesystem,

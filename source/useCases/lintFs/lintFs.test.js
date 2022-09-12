@@ -18,8 +18,21 @@ const testLintFs = async ({
 const tests = [
   {
     config: {
-      ignores: [],
-      rules: [],
+      read (options) {
+        assert.deepEqual(options, {
+          encoding: 'utf8',
+          fileName: './lint-fs.yaml',
+        });
+
+        return [
+          {
+            ignores: [],
+            rules: [
+              './correctPath.js',
+            ],
+          },
+        ];
+      },
     },
     filesystem: {
       paths (root) {
@@ -37,7 +50,9 @@ const tests = [
       isCorrect (testConfig, path) {
         assert.deepEqual(testConfig, {
           ignores: [],
-          rules: [],
+          rules: [
+            './correctPath.js',
+          ],
         });
 
         const ok = path === './correctPath.js';
@@ -64,6 +79,18 @@ const tests = [
     ],
   },
   {
+    config: {
+      read () {
+        return [
+          {
+            ignores: [],
+            rules: [
+              './correctPath\\d.js',
+            ],
+          },
+        ];
+      },
+    },
     filesystem: {
       paths () {
         return [
@@ -90,6 +117,16 @@ const tests = [
     ],
   },
   {
+    config: {
+      read () {
+        return [
+          {
+            ignores: [],
+            rules: [],
+          },
+        ];
+      },
+    },
     filesystem: {
       paths () {
         return [
@@ -104,6 +141,29 @@ const tests = [
       'lintFs: filesystem.paths',
     ],
   },
+  {
+    config: {
+      read () {
+        return [
+          undefined,
+          'config.read',
+        ];
+      },
+    },
+    filesystem: {
+      paths () {
+        return [
+          [],
+        ];
+      },
+    },
+    matcher: {},
+    result: [
+      undefined,
+      'lintFs: config.read',
+    ],
+  },
+
 ];
 
 for (const test of tests) {
