@@ -58,6 +58,43 @@ const tests = [
     },
     options: {},
     result: [
+      {
+        ignores: [],
+        rules: [],
+      },
+    ],
+    yaml: {
+      load () {
+        return {};
+      },
+    },
+  },
+  {
+    fs: {
+      readFile () {},
+    },
+    options: {},
+    result: [
+      {
+        ignores: [],
+        rules: [],
+      },
+    ],
+    yaml: {
+      load () {
+        return {
+          ignores: null,
+          rules: null,
+        };
+      },
+    },
+  },
+  {
+    fs: {
+      readFile () {},
+    },
+    options: {},
+    result: [
       undefined,
       'read: createRegExps: Invalid regular expression: /[/: Unterminated character class',
     ],
@@ -92,7 +129,6 @@ const tests = [
       },
     },
   },
-
   {
     fs: {
       readFile () {

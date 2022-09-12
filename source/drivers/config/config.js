@@ -22,9 +22,11 @@ const load = async ({
 
 const createRegExps = (templates) => {
   try {
+    const checkedTemplates = templates ?? [];
+
     const regExps = [];
 
-    for (const template of templates) {
+    for (const template of checkedTemplates) {
       const regExp = new RegExp(template, 'u');
 
       regExps.push(regExp);

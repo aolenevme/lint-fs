@@ -4,7 +4,7 @@ import yaml from 'js-yaml';
 import drivers from './drivers/drivers.js';
 import useCases from './useCases/useCases.js';
 
-await useCases(drivers({
+console.log(await useCases(drivers({
   fs,
   yaml,
-})).lintFs();
+})).lintFs());
