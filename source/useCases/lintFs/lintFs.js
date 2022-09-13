@@ -56,6 +56,7 @@ const lintFs = ({
       correct.push(path);
     }
 
+    // 2. абсолютно лишний блок кода + не соответствует CODESTYLE
     if (incorrect.length > 0) {
       return [
         {
