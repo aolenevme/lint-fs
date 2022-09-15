@@ -1,14 +1,18 @@
 import matcherModule from './matcher/matcher.js';
+import reporterModule from './reporter/reporter.js';
 
 const dependecies = {
   matcher: matcherModule,
+  reporter: reporterModule,
 };
 
 const lintFs = ({
   config,
   filesystem,
+  logger,
 }, {
   matcher,
+  reporter,
 } = dependecies) => {
   return async () => {
     const [
@@ -17,10 +21,8 @@ const lintFs = ({
     ] = await filesystem.paths('.');
 
     if (filesystemError) {
-      return [
-        undefined,
-        `lintFs: ${filesystemError}`,
-      ];
+      // 1. driver.fail
+      throw new Error(`lintFs: ${filesystemError}`);
     }
 
     const [
@@ -32,10 +34,7 @@ const lintFs = ({
     });
 
     if (configError) {
-      return [
-        undefined,
-        `lintFs: ${configError}`,
-      ];
+      throw new Error(`lintFs: ${configError}`);
     }
 
     const correct = [];
@@ -55,12 +54,10 @@ const lintFs = ({
       correct.push(path);
     }
 
-    return [
-      {
-        correct,
-        incorrect,
-      },
-    ];
+    reporter.print(logger, {
+      correct,
+      incorrect,
+    });
   };
 };
 
