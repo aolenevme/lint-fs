@@ -15,11 +15,30 @@ const tests = [
   {
     method: 'log',
 
-    result: 'resultText',
+    result: 'text',
 
     std: {
       log (text) {
-        assert.deepEqual(text, 'resultText');
+        assert.deepEqual(text, 'text');
+      },
+    },
+  },
+  {
+    method: 'logBatch',
+
+    result: [
+      'text1',
+      'text2',
+      'text3',
+    ],
+
+    std: {
+      log (text) {
+        assert.ok([
+          'text1',
+          'text2',
+          'text3',
+        ].includes(text));
       },
     },
   },
