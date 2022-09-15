@@ -1,17 +1,17 @@
-const log = (std, text) => {
-  std.log(text);
+const log = (format, std, text) => {
+  std.log(format, text);
 };
 
 const logger = ({
   std,
 }) => {
   return {
-    log: (text) => {
-      log(std, text);
+    log: (format, text) => {
+      log(format, std, text);
     },
-    logBatch: (texts) => {
+    logBatch: (format, texts) => {
       for (const text of texts) {
-        log(std, text);
+        log(format, std, text);
       }
     },
   };

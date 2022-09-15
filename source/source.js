@@ -29,6 +29,5 @@ if (lintFsError) {
   throw new Error(lintFsError);
 }
 
-// 1. Окрасить в цвет
-logger.logBatch(correct);
-logger.logBatch(incorrect);
+logger.logBatch('\u001B[32m%s\u001B[0m', correct);
+logger.logBatch('\u001B[31m%s\u001B[0m', incorrect);
