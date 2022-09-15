@@ -8,6 +8,7 @@ const dependecies = {
 
 const lintFs = ({
   config,
+  fail,
   filesystem,
   logger,
 }, {
@@ -21,8 +22,7 @@ const lintFs = ({
     ] = await filesystem.paths('.');
 
     if (filesystemError) {
-      // 1. driver.fail
-      throw new Error(`lintFs: ${filesystemError}`);
+      fail(`lintFs: ${filesystemError}`);
     }
 
     const [
@@ -34,7 +34,7 @@ const lintFs = ({
     });
 
     if (configError) {
-      throw new Error(`lintFs: ${configError}`);
+      fail(`lintFs: ${configError}`);
     }
 
     const correct = [];
@@ -54,10 +54,14 @@ const lintFs = ({
       correct.push(path);
     }
 
-    reporter.print(logger, {
+    const [reporterError] = reporter.print(logger, {
       correct,
       incorrect,
     });
+
+    if (reporterError) {
+      fail(reporterError);
+    }
   };
 };
 

@@ -3,16 +3,19 @@ import lintFs from './lintFs.js';
 
 const testLintFs = async ({
   config,
-  matcher,
+  fail,
   filesystem,
-  result,
+  matcher,
 }) => {
-  assert.deepEqual(await lintFs({
+  await lintFs({
     config,
+    fail,
     filesystem,
+    logger,
   }, {
     matcher,
-  })(), result);
+    reporter,
+  })();
 };
 
 const tests = [
@@ -46,6 +49,21 @@ const tests = [
         ];
       },
     },
+   reporter: {
+     print (testLogger, testPaths) {
+       assert.deepEqual 
+     }
+   },
+   result: [
+      {
+        correct: [
+          './correctPath.js',
+        ],
+        incorrect: [
+          './incorrectPath.js',
+        ],
+      },
+    ],
     matcher: {
       isCorrect (testConfig, path) {
         assert.deepEqual(testConfig, {
@@ -66,16 +84,6 @@ const tests = [
         ];
       },
     },
-    result: [
-      {
-        correct: [
-          './correctPath.js',
-        ],
-        incorrect: [
-          './incorrectPath.js',
-        ],
-      },
-    ],
   },
   {
     config: {
