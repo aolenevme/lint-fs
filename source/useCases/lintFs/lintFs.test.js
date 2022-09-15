@@ -75,7 +75,6 @@ const tests = [
           './incorrectPath.js',
         ],
       },
-      'lintFs: matcher',
     ],
   },
   {

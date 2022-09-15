@@ -4,7 +4,6 @@ const dependecies = {
   matcher: matcherModule,
 };
 
-// 1. Write logger driver just for a simple string. And add logger logic over here as a dependency.
 const lintFs = ({
   config,
   filesystem,
@@ -56,20 +55,9 @@ const lintFs = ({
       correct.push(path);
     }
 
-    // 2. абсолютно лишний блок кода + не соответствует CODESTYLE
-    if (incorrect.length > 0) {
-      return [
-        {
-          correct,
-          incorrect,
-        },
-        'lintFs: matcher',
-      ];
-    }
-
     return [
       {
-        correct: paths,
+        correct,
         incorrect,
       },
     ];

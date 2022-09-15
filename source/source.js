@@ -14,8 +14,21 @@ const {
   yaml,
 });
 
-// 3. улучшить здесь
-logger.log(await useCases({
+const [
+  {
+    correct,
+    incorrect,
+  },
+  lintFsError,
+] = await useCases({
   config,
   filesystem,
-}).lintFs());
+}).lintFs();
+
+if (lintFsError) {
+  throw new Error(lintFsError);
+}
+
+// 1. Окрасить в цвет
+logger.logBatch(correct);
+logger.logBatch(incorrect);
