@@ -6,6 +6,8 @@ const reporter = {
         incorrect,
       } = paths;
 
+      logger.log('\u001B[36m%s\u001B[0m', 'File System is Linted! 📐\n\n');
+
       logger.logBatch('\u001B[32m%s\u001B[0m', correct);
       logger.logBatch('\u001B[31m%s\u001B[0m', incorrect);
 

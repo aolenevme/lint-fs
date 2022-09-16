@@ -12,6 +12,10 @@ const testReporter = ({
 const tests = [
   {
     logger: {
+      log (format, text) {
+        assert.deepEqual(format, '\u001B[36m%s\u001B[0m');
+        assert.deepEqual(text, 'File System is Linted! 📐\n\n');
+      },
       logBatch (format, texts) {
         assert.ok([
           '\u001B[32m%s\u001B[0m',
@@ -36,13 +40,13 @@ const tests = [
   },
   {
     logger: {
-      logBatch () {
-        throw new Error('logger.logBatch');
+      log () {
+        throw new Error('logger.log');
       },
     },
     paths: {},
     result: [
-      'reporter: logger.logBatch',
+      'reporter: logger.log',
     ],
   },
 ];
