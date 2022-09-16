@@ -39,6 +39,9 @@ const tests = [
         ];
       },
     },
+    fail (message) {
+      assert.deepEqual(message, 'File System Structure is Incorrect! 💢');
+    },
     filesystem: {
       paths (root) {
         assert.deepEqual(root, '.');

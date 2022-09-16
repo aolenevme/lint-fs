@@ -68,6 +68,11 @@ const lintFs = ({
     if (reporterError) {
       fail(`lintFs: ${reporterError}`);
     }
+
+    const isFileSystemIncorrect = incorrect.length > 0;
+    if (isFileSystemIncorrect) {
+      fail('File System Structure is Incorrect! 💢');
+    }
   };
 };
 
