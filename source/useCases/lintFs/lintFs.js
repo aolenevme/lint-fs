@@ -23,6 +23,8 @@ const lintFs = ({
 
     if (filesystemError) {
       fail(`lintFs: ${filesystemError}`);
+
+      return;
     }
 
     const [
@@ -35,6 +37,8 @@ const lintFs = ({
 
     if (configError) {
       fail(`lintFs: ${configError}`);
+
+      return;
     }
 
     const correct = [];
@@ -54,13 +58,15 @@ const lintFs = ({
       correct.push(path);
     }
 
-    const [reporterError] = reporter.print(logger, {
+    const [
+      reporterError,
+    ] = reporter.print(logger, {
       correct,
       incorrect,
     });
 
     if (reporterError) {
-      fail(reporterError);
+      fail(`lintFs: ${reporterError}`);
     }
   };
 };

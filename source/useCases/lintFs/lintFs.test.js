@@ -5,7 +5,9 @@ const testLintFs = async ({
   config,
   fail,
   filesystem,
+  logger,
   matcher,
+  reporter,
 }) => {
   await lintFs({
     config,
@@ -49,21 +51,7 @@ const tests = [
         ];
       },
     },
-   reporter: {
-     print (testLogger, testPaths) {
-       assert.deepEqual 
-     }
-   },
-   result: [
-      {
-        correct: [
-          './correctPath.js',
-        ],
-        incorrect: [
-          './incorrectPath.js',
-        ],
-      },
-    ],
+    logger: {},
     matcher: {
       isCorrect (testConfig, path) {
         assert.deepEqual(testConfig, {
@@ -82,6 +70,21 @@ const tests = [
         return [
           'testError',
         ];
+      },
+    },
+    reporter: {
+      print (testLogger, testPaths) {
+        assert.deepEqual(testLogger, {});
+        assert.deepEqual(testPaths, {
+          correct: [
+            './correctPath.js',
+          ],
+          incorrect: [
+            './incorrectPath.js',
+          ],
+        });
+
+        return [];
       },
     },
   },
@@ -113,15 +116,19 @@ const tests = [
         return [];
       },
     },
-    result: [
-      {
-        correct: [
-          './correctPath1.js',
-          './correctPath2.js',
-        ],
-        incorrect: [],
+    reporter: {
+      print (testLogger, testPaths) {
+        assert.deepEqual(testPaths, {
+          correct: [
+            './correctPath1.js',
+            './correctPath2.js',
+          ],
+          incorrect: [],
+        });
+
+        return [];
       },
-    ],
+    },
   },
   {
     config: {
@@ -134,6 +141,9 @@ const tests = [
         ];
       },
     },
+    fail (message) {
+      assert.deepEqual(message, 'lintFs: filesystem.paths');
+    },
     filesystem: {
       paths () {
         return [
@@ -142,11 +152,6 @@ const tests = [
         ];
       },
     },
-    matcher: {},
-    result: [
-      undefined,
-      'lintFs: filesystem.paths',
-    ],
   },
   {
     config: {
@@ -157,6 +162,9 @@ const tests = [
         ];
       },
     },
+    fail (message) {
+      assert.deepEqual(message, 'lintFs: config.read');
+    },
     filesystem: {
       paths () {
         return [
@@ -164,15 +172,38 @@ const tests = [
         ];
       },
     },
-    matcher: {},
-    result: [
-      undefined,
-      'lintFs: config.read',
-    ],
   },
-
+  {
+    config: {
+      read () {
+        return [
+          {
+            ignores: [],
+            rules: [],
+          },
+        ];
+      },
+    },
+    fail (message) {
+      assert.deepEqual(message, 'lintFs: reporter.print');
+    },
+    filesystem: {
+      paths () {
+        return [
+          [],
+        ];
+      },
+    },
+    reporter: {
+      print () {
+        return [
+          'reporter.print',
+        ];
+      },
+    },
+  },
 ];
 
 for (const test of tests) {
-  testLintFs(test);
+  await testLintFs(test);
 }

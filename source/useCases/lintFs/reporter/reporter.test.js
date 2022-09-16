@@ -13,8 +13,20 @@ const tests = [
   {
     logger: {
       log (format, text) {
-        assert.deepEqual(format, '\u001B[36m%s\u001B[0m');
-        assert.deepEqual(text, 'File System is Linted! 📐\n\n');
+        const formats = [
+          '\u001B[4m\u001B[36m%s\u001B[0m',
+          '\u001B[42m%s\u001B[0m',
+          '\u001B[37m\u001B[41m%s\u001B[0m',
+        ];
+
+        const texts = [
+          'File System is Linted!📐\n',
+          'Correct Files',
+          '\nIncorrect Files',
+        ];
+
+        assert.ok(formats.includes(format));
+        assert.ok(texts.includes(text));
       },
       logBatch (format, texts) {
         assert.ok([

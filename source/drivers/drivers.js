@@ -6,7 +6,7 @@ import logger from './logger/logger.js';
 const drivers = (dependencies) => {
   return {
     config: config(dependencies),
-    fail: fail(dependencies),
+    fail,
     filesystem: filesystem(dependencies),
     logger: logger(dependencies),
   };
