@@ -1,5 +1,9 @@
+ignores:
+  - ^./node_modules/
+  - ^./.git/
 rules:
-  - ^\.\/[A-Z]+\.md$
-  - ^\.\/package-lock\.json$
-  - ^\.\/package\.json$
-  - ^\.\/source\/source\.js$
+  - ^./[A-Z]+.md$
+  - ^./package-lock.json$
+  - ^./package.json$
+  - ^./run-tests.js$
+  - ^./source/source.js$
