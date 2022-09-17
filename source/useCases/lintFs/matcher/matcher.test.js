@@ -39,7 +39,7 @@ const tests = [
     },
     path: 'wrong_node_modules/browserslist',
     result: [
-      'isCorrect: isOk',
+      'isCorrect',
     ],
   },
 ];

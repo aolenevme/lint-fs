@@ -9,13 +9,7 @@ const isOk = (path, regExps) => {
     }
   }
 
-  if (!ok) {
-    return [
-      'isOk',
-    ];
-  }
-
-  return [];
+  return ok;
 };
 
 const matcher = {
@@ -25,21 +19,17 @@ const matcher = {
       rules,
     } = config;
 
-    const [
-      isIgnored,
-    ] = isOk(path, ignores);
+    const isIgnored = isOk(path, ignores);
 
-    if (!isIgnored) {
+    if (isIgnored) {
       return [];
     }
 
-    const [
-      isRuled,
-    ] = isOk(path, rules);
+    const isRuled = isOk(path, rules);
 
-    if (isRuled) {
+    if (!isRuled) {
       return [
-        `isCorrect: ${isRuled}`,
+        'isCorrect',
       ];
     }
 
