@@ -4,8 +4,25 @@ import yaml from 'js-yaml';
 import drivers from './drivers/drivers.js';
 import useCases from './useCases/useCases.js';
 
-await useCases(drivers({
+const {
+  config,
+  fail,
+  filesystem,
+  logger,
+} = drivers({
   fs,
   std: console,
   yaml,
-})).lintFs();
+});
+
+const [
+  _,
+  error,
+] = await useCases({
+  config,
+  filesystem,
+  logger,
+}).lintFs();
+if (error) {
+  fail(error);
+}

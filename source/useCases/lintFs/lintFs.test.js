@@ -33,7 +33,7 @@ const tests = [
           {
             ignores: [],
             rules: [
-              './correctPath.js',
+              /.\/correctPath.js/u,
             ],
           },
         ];
@@ -56,15 +56,12 @@ const tests = [
     },
     logger: {},
     matcher: {
-      isCorrect (testConfig, path) {
-        assert.deepEqual(testConfig, {
-          ignores: [],
-          rules: [
-            './correctPath.js',
-          ],
-        });
+      isCorrect (path, regExps) {
+        assert.deepEqual(regExps, [
+          /.\/correctPath.js/u,
+        ]);
 
-        const ok = path === './correctPath.js';
+        const ok = 'Path.js';
 
         if (ok) {
           return [];

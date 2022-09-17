@@ -8,7 +8,6 @@ const dependecies = {
 
 const lintFs = ({
   config,
-  fail,
   filesystem,
   logger,
 }, {
@@ -22,9 +21,10 @@ const lintFs = ({
     ] = await filesystem.paths('.');
 
     if (filesystemError) {
-      fail(`lintFs: ${filesystemError}`);
-
-      return;
+      return [
+        undefined,
+        `lintFs: ${filesystemError}`,
+      ];
     }
 
     const [
@@ -36,9 +36,10 @@ const lintFs = ({
     });
 
     if (configError) {
-      fail(`lintFs: ${configError}`);
-
-      return;
+      return [
+        undefined,
+        `lintFs: ${configError}`,
+      ];
     }
 
     const correct = [];
@@ -56,9 +57,10 @@ const lintFs = ({
       ] = matcher.isCorrect(path, ignores);
 
       if (ignoresError) {
-        fail(`lintFs: ${ignoresError}`);
-
-        return;
+        return [
+          undefined,
+          `lintFs: ${ignoresError}`,
+        ];
       }
 
       if (isIgnored) {
@@ -71,9 +73,10 @@ const lintFs = ({
       ] = matcher.isCorrect(path, rules);
 
       if (rulesError) {
-        fail(`lintFs: ${rulesError}`);
-
-        return;
+        return [
+          undefined,
+          `lintFs: ${rulesError}`,
+        ];
       }
 
       if (isRuled) {
@@ -91,13 +94,21 @@ const lintFs = ({
     });
 
     if (reporterError) {
-      fail(`lintFs: ${reporterError}`);
+      return [
+        undefined,
+        `lintFs: ${reporterError}`,
+      ];
     }
 
     const isFileSystemIncorrect = incorrect.length > 0;
     if (isFileSystemIncorrect) {
-      fail('File System Structure is Incorrect! 💢');
+      return [
+        undefined,
+        'File System Structure is Incorrect! 💢',
+      ];
     }
+
+    return [];
   };
 };
 
