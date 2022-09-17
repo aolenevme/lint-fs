@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
 import lintFs from './lintFs.js';
 
+let counter = 0;
+
 const testLintFs = async ({
   config,
   fail,
@@ -10,6 +12,8 @@ const testLintFs = async ({
   reporter,
   result,
 }) => {
+  counter = 0;
+
   assert.deepEqual(await lintFs({
     config,
     fail,
@@ -115,7 +119,6 @@ const tests = [
         ];
       },
     },
-
     filesystem: {
       paths (root) {
         assert.deepEqual(root, '.');
@@ -149,9 +152,11 @@ const tests = [
       read () {
         return [
           {
-            ignores: [],
+            ignores: [
+              /.\/ignorePath.js/u,
+            ],
             rules: [
-              './correctPath\\d.js',
+              /.\/rulesPath.js/u,
             ],
           },
         ];
@@ -161,31 +166,29 @@ const tests = [
       paths () {
         return [
           [
-            './correctPath1.js',
-            './correctPath2.js',
+            './ignorePath.js',
+            './rulesPath.js',
           ],
         ];
       },
     },
     matcher: {
       isCorrect () {
-        return [];
-      },
-    },
-    reporter: {
-      print (testLogger, testPaths) {
-        assert.deepEqual(testPaths, {
-          correct: [
-            './correctPath1.js',
-            './correctPath2.js',
-          ],
-          incorrect: [],
-        });
+        counter++;
 
-        return [];
+        const ok = counter % 2 === 0;
+        const errorMessage = counter % 2 === 1 ? undefined : 'rulesError';
+
+        return [
+          ok,
+          errorMessage,
+        ];
       },
     },
-    result: [],
+    result: [
+      undefined,
+      'lintFs: rulesError',
+    ],
   },
 ];
 
