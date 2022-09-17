@@ -72,6 +72,7 @@ const lintFs = ({
         rulesError,
       ] = matcher.isCorrect(path, rules);
 
+      console.log(isRuled, rulesError);
       if (rulesError) {
         return [
           undefined,

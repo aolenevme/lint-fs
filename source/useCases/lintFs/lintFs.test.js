@@ -112,7 +112,7 @@ const tests = [
         return [
           {
             ignores: [
-              /.\/ignorePath.js/u,
+              /.\/ignoresPath.js/u,
             ],
             rules: [],
           },
@@ -125,7 +125,7 @@ const tests = [
 
         return [
           [
-            './ignorePath.js',
+            './ignoresPath.js',
           ],
         ];
       },
@@ -133,7 +133,7 @@ const tests = [
     matcher: {
       isCorrect (path, regExps) {
         assert.deepEqual(regExps, [
-          /.\/ignorePath.js/u,
+          /.\/ignoresPath.js/u,
         ]);
 
         return [
@@ -188,6 +188,61 @@ const tests = [
     result: [
       undefined,
       'lintFs: rulesError',
+    ],
+  },
+  {
+    config: {
+      read () {
+        return [
+          {
+            ignores: [
+              /.\/ignoresPath.js/u,
+            ],
+            rules: [
+              /.\/rulesPath.js/u,
+            ],
+          },
+        ];
+      },
+    },
+    filesystem: {
+      paths () {
+        return [
+          [
+            './ignoresPath.js',
+            './rulesPath.js',
+          ],
+        ];
+      },
+    },
+    logger: {},
+    matcher: {
+      isCorrect () {
+        counter++;
+
+        return [
+          counter % 2 === 1,
+        ];
+      },
+    },
+    reporter: {
+      print (logger, report) {
+        assert.deepEqual(logger, {});
+        assert.deepEqual(report, {
+          correct: [
+            './rulesPath.js',
+          ],
+          incorrect: [],
+        });
+
+        return [
+          'reporterError',
+        ];
+      },
+    },
+    result: [
+      undefined,
+      'lintFs: reporterError',
     ],
   },
 ];
