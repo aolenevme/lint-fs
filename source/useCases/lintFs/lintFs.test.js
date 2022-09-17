@@ -8,8 +8,9 @@ const testLintFs = async ({
   logger,
   matcher,
   reporter,
+  result,
 }) => {
-  await lintFs({
+  assert.deepEqual(await lintFs({
     config,
     fail,
     filesystem,
@@ -17,10 +18,85 @@ const testLintFs = async ({
   }, {
     matcher,
     reporter,
-  })();
+  })(), result);
 };
 
 const tests = [
+  {
+    config: {
+      read () {
+        return [
+          undefined,
+          'config.read',
+        ];
+      },
+    },
+    filesystem: {
+      paths () {
+        return [
+          [],
+        ];
+      },
+    },
+    result: [
+      undefined,
+      'lintFs: config.read',
+    ],
+  },
+  {
+    config: {
+      read () {
+        return [
+          {
+            ignores: [],
+            rules: [],
+          },
+        ];
+      },
+    },
+    filesystem: {
+      paths () {
+        return [
+          undefined,
+          'filesystem.paths',
+        ];
+      },
+    },
+    result: [
+      undefined,
+      'lintFs: filesystem.paths',
+    ],
+  },
+  {
+    config: {
+      read () {
+        return [
+          {
+            ignores: [],
+            rules: [],
+          },
+        ];
+      },
+    },
+    filesystem: {
+      paths () {
+        return [
+          [],
+        ];
+      },
+    },
+    reporter: {
+      print () {
+        return [
+          'reporter.print',
+        ];
+      },
+    },
+    result: [
+      undefined,
+      'lintFs: reporter.print',
+    ],
+  },
   {
     config: {
       read (options) {
@@ -31,62 +107,42 @@ const tests = [
 
         return [
           {
-            ignores: [],
-            rules: [
-              /.\/correctPath.js/u,
+            ignores: [
+              /.\/ignorePath.js/u,
             ],
+            rules: [],
           },
         ];
       },
     },
-    fail (message) {
-      assert.deepEqual(message, 'File System Structure is Incorrect! 💢');
-    },
+
     filesystem: {
       paths (root) {
         assert.deepEqual(root, '.');
 
         return [
           [
-            './correctPath.js',
-            './incorrectPath.js',
+            './ignorePath.js',
           ],
         ];
       },
     },
-    logger: {},
     matcher: {
       isCorrect (path, regExps) {
         assert.deepEqual(regExps, [
-          /.\/correctPath.js/u,
+          /.\/ignorePath.js/u,
         ]);
 
-        const ok = 'Path.js';
-
-        if (ok) {
-          return [];
-        }
-
         return [
-          'testError',
+          undefined,
+          'ignoresError',
         ];
       },
     },
-    reporter: {
-      print (testLogger, testPaths) {
-        assert.deepEqual(testLogger, {});
-        assert.deepEqual(testPaths, {
-          correct: [
-            './correctPath.js',
-          ],
-          incorrect: [
-            './incorrectPath.js',
-          ],
-        });
-
-        return [];
-      },
-    },
+    result: [
+      undefined,
+      'lintFs: ignoresError',
+    ],
   },
   {
     config: {
@@ -129,78 +185,7 @@ const tests = [
         return [];
       },
     },
-  },
-  {
-    config: {
-      read () {
-        return [
-          {
-            ignores: [],
-            rules: [],
-          },
-        ];
-      },
-    },
-    fail (message) {
-      assert.deepEqual(message, 'lintFs: filesystem.paths');
-    },
-    filesystem: {
-      paths () {
-        return [
-          undefined,
-          'filesystem.paths',
-        ];
-      },
-    },
-  },
-  {
-    config: {
-      read () {
-        return [
-          undefined,
-          'config.read',
-        ];
-      },
-    },
-    fail (message) {
-      assert.deepEqual(message, 'lintFs: config.read');
-    },
-    filesystem: {
-      paths () {
-        return [
-          [],
-        ];
-      },
-    },
-  },
-  {
-    config: {
-      read () {
-        return [
-          {
-            ignores: [],
-            rules: [],
-          },
-        ];
-      },
-    },
-    fail (message) {
-      assert.deepEqual(message, 'lintFs: reporter.print');
-    },
-    filesystem: {
-      paths () {
-        return [
-          [],
-        ];
-      },
-    },
-    reporter: {
-      print () {
-        return [
-          'reporter.print',
-        ];
-      },
-    },
+    result: [],
   },
 ];
 

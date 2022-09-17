@@ -1,9 +1,7 @@
-const isOk = (regExps, path) => {
+const isOk = (path, regExps) => {
   let ok = false;
 
   for (const regExp of regExps) {
-    console.log(regExp, path);
-
     ok = ok || regExp.test(path);
 
     if (ok) {
@@ -16,7 +14,7 @@ const isOk = (regExps, path) => {
 
 const matcher = {
   isCorrect (path, regExps) {
-    const ok = isOk(regExps, path);
+    const ok = isOk(path, regExps);
 
     return [
       ok,

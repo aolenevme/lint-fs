@@ -6,7 +6,7 @@ const testMatcher = ({
   regExps,
   result,
 }) => {
-  assert.deepEqual(matcher.isCorrect(regExps, path), result);
+  assert.deepEqual(matcher.isCorrect(path, regExps), result);
 };
 
 const tests = [
