@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import lintFs from './lintFs.js';
 
-let counter = 0;
+let isCorrectCounter = 0;
 
 const testLintFs = async ({
   config,
@@ -12,7 +12,7 @@ const testLintFs = async ({
   reporter,
   result,
 }) => {
-  counter = 0;
+  isCorrectCounter = 0;
 
   assert.deepEqual(await lintFs({
     config,
@@ -174,10 +174,10 @@ const tests = [
     },
     matcher: {
       isCorrect () {
-        counter++;
+        isCorrectCounter++;
 
-        const ok = counter % 2 === 0;
-        const errorMessage = counter % 2 === 1 ? undefined : 'rulesError';
+        const ok = isCorrectCounter % 2 === 0;
+        const errorMessage = isCorrectCounter % 2 === 1 ? undefined : 'rulesError';
 
         return [
           ok,
@@ -190,6 +190,7 @@ const tests = [
       'lintFs: rulesError',
     ],
   },
+
   {
     config: {
       read () {
@@ -218,10 +219,10 @@ const tests = [
     logger: {},
     matcher: {
       isCorrect () {
-        counter++;
+        isCorrectCounter++;
 
         return [
-          counter % 2 === 1,
+          isCorrectCounter % 2 === 1,
         ];
       },
     },
@@ -251,6 +252,46 @@ const tests = [
         return [
           {
             ignores: [],
+            rules: [
+              /.\/correctPath.js/u,
+            ],
+          },
+        ];
+      },
+    },
+    filesystem: {
+      paths () {
+        return [
+          [
+            './incorretPath.js',
+          ],
+        ];
+      },
+    },
+    logger: {},
+    matcher: {
+      isCorrect () {
+        return [
+          false,
+        ];
+      },
+    },
+    reporter: {
+      print () {
+        return [];
+      },
+    },
+    result: [
+      undefined,
+      'File System Structure is Incorrect! 💢',
+    ],
+  },
+  {
+    config: {
+      read () {
+        return [
+          {
+            ignores: [],
             rules: [],
           },
         ];
@@ -271,7 +312,6 @@ const tests = [
     },
     result: [],
   },
-
 ];
 
 for (const test of tests) {
