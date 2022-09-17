@@ -44,18 +44,43 @@ const lintFs = ({
     const correct = [];
     const incorrect = [];
 
+    const {
+      ignores,
+      rules,
+    } = initedConfig;
+
     for (const path of paths) {
       const [
-        error,
-      ] = matcher.isCorrect(initedConfig, path);
+        isIgnored,
+        ignoresError,
+      ] = matcher.isCorrect(path, ignores);
 
-      if (error) {
-        incorrect.push(path);
+      if (ignoresError) {
+        fail(`lintFs: ${ignoresError}`);
 
+        return;
+      }
+
+      if (isIgnored) {
         continue;
       }
 
-      correct.push(path);
+      const [
+        isRuled,
+        rulesError,
+      ] = matcher.isCorrect(path, rules);
+
+      if (rulesError) {
+        fail(`lintFs: ${rulesError}`);
+
+        return;
+      }
+
+      if (isRuled) {
+        correct.push(path);
+      } else {
+        incorrect.push(path);
+      }
     }
 
     const [

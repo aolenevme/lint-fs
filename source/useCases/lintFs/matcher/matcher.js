@@ -1,4 +1,4 @@
-const isOk = (path, regExps) => {
+const isOk = (regExps, path) => {
   let ok = false;
 
   for (const regExp of regExps) {
@@ -13,27 +13,12 @@ const isOk = (path, regExps) => {
 };
 
 const matcher = {
-  isCorrect (config, path) {
-    const {
-      ignores,
-      rules,
-    } = config;
+  isCorrect (regExps, path) {
+    const ok = isOk(regExps, path);
 
-    const isIgnored = isOk(path, ignores);
-
-    if (isIgnored) {
-      return [];
-    }
-
-    const isRuled = isOk(path, rules);
-
-    if (!isRuled) {
-      return [
-        'isCorrect',
-      ];
-    }
-
-    return [];
+    return [
+      ok,
+    ];
   },
 };
 

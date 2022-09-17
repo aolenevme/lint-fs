@@ -2,44 +2,30 @@ import assert from 'node:assert/strict';
 import matcher from './matcher.js';
 
 const testMatcher = ({
-  config,
   path,
+  regExps,
   result,
 }) => {
-  assert.deepEqual(matcher.isCorrect(config, path), result);
+  assert.deepEqual(matcher.isCorrect(regExps, path), result);
 };
 
 const tests = [
   {
-    config: {
-      ignores: [
-        /^node_modules/u,
-      ],
-      rules: [],
-    },
     path: 'node_modules/browserslist',
-    result: [],
-  },
-  {
-    config: {
-      ignores: [],
-      rules: [
-        /^node_modules/u,
-      ],
-    },
-    path: 'node_modules/browserslist',
-    result: [],
-  },
-  {
-    config: {
-      ignores: [],
-      rules: [
-        /^node_moduless/u,
-      ],
-    },
-    path: 'wrong_node_modules/browserslist',
+    regExps: [
+      /^node_modules/u,
+    ],
     result: [
-      'isCorrect',
+      true,
+    ],
+  },
+  {
+    path: 'wrong_node_modules/browserslist',
+    regExps: [
+      /^node_moduless/u,
+    ],
+    result: [
+      false,
     ],
   },
 ];
