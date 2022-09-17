@@ -245,6 +245,33 @@ const tests = [
       'lintFs: reporterError',
     ],
   },
+  {
+    config: {
+      read () {
+        return [
+          {
+            ignores: [],
+            rules: [],
+          },
+        ];
+      },
+    },
+    filesystem: {
+      paths () {
+        return [
+          [],
+        ];
+      },
+    },
+    logger: {},
+    reporter: {
+      print () {
+        return [];
+      },
+    },
+    result: [],
+  },
+
 ];
 
 for (const test of tests) {
