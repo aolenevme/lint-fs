@@ -7,7 +7,9 @@ rules:
   - ^./.eslintrc.json$
   - ^./.gitignore$
   - ^./[A-Z]+.md$
+  - ^./lint-fs.yaml$
   - ^./package-lock.json$
   - ^./package.json$
-  - ^./lint-fs.yaml$
   - ^./run-tests.sh$
+  - ^./source/source.js$
+  - ^\.\/source(\/[a-z]+((\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?)*\/([a-z]+((\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?)\/\6(.test)?.js$
