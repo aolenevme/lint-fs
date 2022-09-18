@@ -86,8 +86,8 @@ const lintFs = ({
       }
     }
 
-    // TODO: _, reportError
     const [
+      _,
       reporterError,
     ] = reporter.print(logger, {
       correct,

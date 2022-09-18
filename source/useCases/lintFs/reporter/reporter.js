@@ -8,13 +8,15 @@ const reporter = {
 
       logger.log('\u001B[4m\u001B[36m%s\u001B[0m', 'File System is Linted!📐\n');
 
-      // TODO: only if have correct array is not empty
-      logger.log('\u001B[42m%s\u001B[0m', 'Correct Files');
-      logger.logBatch('\u001B[32m%s\u001B[0m', correct);
+      if (correct.length > 0) {
+        logger.log('\u001B[42m%s\u001B[0m', 'Correct Files');
+        logger.logBatch('\u001B[32m%s\u001B[0m', correct);
+      }
 
-      // TODO: only if have incorrect array is not empty
-      logger.log('\u001B[37m\u001B[41m%s\u001B[0m', '\nIncorrect Files');
-      logger.logBatch('\u001B[31m%s\u001B[0m', incorrect);
+      if (incorrect.length > 0) {
+        logger.log('\u001B[37m\u001B[41m%s\u001B[0m', '\nIncorrect Files');
+        logger.logBatch('\u001B[31m%s\u001B[0m', incorrect);
+      }
 
       return [];
     } catch (error) {

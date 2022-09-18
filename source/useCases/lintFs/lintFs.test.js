@@ -92,6 +92,7 @@ const tests = [
     reporter: {
       print () {
         return [
+          undefined,
           'reporter.print',
         ];
       },
@@ -237,6 +238,7 @@ const tests = [
         });
 
         return [
+          undefined,
           'reporterError',
         ];
       },
