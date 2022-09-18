@@ -1,9 +1,13 @@
 ignores:
   - ^./node_modules/
   - ^./.git/
+  - ^./\S+.(s|o)wp$
 rules:
+  - ^./.eslintignore$
+  - ^./.eslintrc.json$
+  - ^./.gitignore$
   - ^./[A-Z]+.md$
   - ^./package-lock.json$
   - ^./package.json$
-  - ^./run-tests.js$
-  - ^./source/source.js$
+  - ^./lint-fs.yaml$
+  - ^./run-tests.sh$
