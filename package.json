@@ -11,6 +11,7 @@
   },
   "description": "Lint Your File System with Regular Expressions! 📐",
   "devDependencies": {
+    "@stryker-mutator/core": "^6.2.2",
     "c8": "^7.12.0",
     "eslint": "^8.23.0",
     "eslint-config-canonical": "37.0.3"
@@ -35,6 +36,7 @@
     "lint:all": "npm run lint:code && npm run lint:fs",
     "lint:code": "eslint './**/*.js' --fix",
     "lint:fs": "node ./source/source.js",
-    "test:unit": "npx c8 ./run-tests.sh; rm -rf ./coverage"
+    "test:unit": "npx c8 node ./run-tests.js; rm -rf ./coverage",
+    "test:mutate": "npx stryker run"
   }
 }
