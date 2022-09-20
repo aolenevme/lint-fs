@@ -3,10 +3,6 @@ const isOk = (path, regExps) => {
 
   for (const regExp of regExps) {
     ok = ok || regExp.test(path);
-
-    if (ok) {
-      break;
-    }
   }
 
   return ok;
