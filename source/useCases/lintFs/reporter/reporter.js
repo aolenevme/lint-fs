@@ -21,6 +21,7 @@ const reporter = {
       return [];
     } catch (error) {
       return [
+        undefined,
         `reporter: ${error.message}`,
       ];
     }

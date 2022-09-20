@@ -58,6 +58,7 @@ const tests = [
     },
     paths: {},
     result: [
+      undefined,
       'reporter: logger.log',
     ],
   },
