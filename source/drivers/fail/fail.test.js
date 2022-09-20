@@ -5,11 +5,16 @@ const testFail = ({
   message,
   result,
 }) => {
+  const tracker = new assert.CallTracker();
+  const callsDeepEqual = tracker.calls(assert.deepEqual, 1);
+
   try {
     fail(message);
   } catch (error) {
-    assert.deepEqual(error.message, result);
+    callsDeepEqual(error.message, result);
   }
+
+  tracker.verify();
 };
 
 const tests = [
