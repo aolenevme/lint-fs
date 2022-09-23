@@ -7,11 +7,29 @@ const logger = ({
 }) => {
   return {
     log: (format, text) => {
-      log(format, std, text);
+      try {
+        log(format, std, text);
+
+        return [];
+      } catch (error) {
+        return [
+          undefined,
+          `log: ${error.message}`,
+        ];
+      }
     },
     logBatch: (format, texts) => {
-      for (const text of texts) {
-        log(format, std, text);
+      try {
+        for (const text of texts) {
+          log(format, std, text);
+        }
+
+        return [];
+      } catch (error) {
+        return [
+          undefined,
+          `logBatch: ${error.message}`,
+        ];
       }
     },
   };
