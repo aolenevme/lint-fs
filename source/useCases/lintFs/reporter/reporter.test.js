@@ -69,7 +69,29 @@ const tests = [
       'reporter: logger.log.title',
     ],
   },
+  {
+    logger: {
+      log (format, text) {
+        if (text === 'Correct Files') {
+          return [
+            undefined,
+            'logger.log.title',
+          ];
+        }
 
+        return [];
+      },
+    },
+    paths: {
+      correct: [
+        'correct.js',
+      ],
+    },
+    result: [
+      undefined,
+      'reporter: logger.log.title',
+    ],
+  },
 ];
 
 for (const test of tests) {

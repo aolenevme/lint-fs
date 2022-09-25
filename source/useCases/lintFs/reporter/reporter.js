@@ -1,4 +1,4 @@
-const wrapError = (message) => {
+const wrapMessage = (message) => {
   return [
     undefined,
     `reporter: ${message}`,
@@ -14,14 +14,20 @@ const reporter = {
 
     const [
       _,
-      message,
+      titleMessage,
     ] = logger.log('\u001B[4m\u001B[36m%s\u001B[0m', 'File System is Linted!📐\n');
-    if (message) {
-      return wrapError(message);
+    if (titleMessage) {
+      return wrapMessage(titleMessage);
     }
 
     if (correct.length) {
-      logger.log('\u001B[42m%s\u001B[0m', 'Correct Files');
+      const [
+        _,
+        correctMessage,
+      ] = logger.log('\u001B[42m%s\u001B[0m', 'Correct Files');
+      if (correctMessage) {
+        return wrapMessage(correctMessage);
+      }
     }
 
     logger.logBatch('\u001B[32m%s\u001B[0m', correct);
