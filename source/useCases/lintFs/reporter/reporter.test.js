@@ -138,6 +138,29 @@ const tests = [
       'reporter: logger.log.incorrectTitle',
     ],
   },
+  {
+    logger: {
+      log () {
+        return [];
+      },
+      logBatch () {
+        return [
+          undefined,
+          'logger.logBatch.incorrect',
+        ];
+      },
+    },
+    paths: {
+      correct: [],
+      incorrect: [
+        'incorrect.js',
+      ],
+    },
+    result: [
+      undefined,
+      'reporter: logger.logBatch.incorrect',
+    ],
+  },
 ];
 
 for (const test of tests) {

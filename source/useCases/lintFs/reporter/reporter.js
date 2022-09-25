@@ -47,7 +47,13 @@ const reporter = {
         return wrapMessage(incorrectTitleMessage);
       }
 
-      logger.logBatch('\u001B[31m%s\u001B[0m', incorrect);
+      const [
+        incorrectResult,
+        incorrectMessage,
+      ] = logger.logBatch('\u001B[31m%s\u001B[0m', incorrect);
+      if (incorrectMessage) {
+        return wrapMessage(incorrectMessage);
+      }
     }
 
     return [];
