@@ -71,11 +71,11 @@ const tests = [
   },
   {
     logger: {
-      log (format, text) {
+      log (_, text) {
         if (text === 'Correct Files') {
           return [
             undefined,
-            'logger.log.title',
+            'logger.log.correctTitle',
           ];
         }
 
@@ -89,7 +89,53 @@ const tests = [
     },
     result: [
       undefined,
-      'reporter: logger.log.title',
+      'reporter: logger.log.correctTitle',
+    ],
+  },
+  {
+    logger: {
+      log () {
+        return [];
+      },
+      logBatch () {
+        return [
+          undefined,
+          'logger.logBatch.correct',
+        ];
+      },
+    },
+    paths: {
+      correct: [
+        'correct.js',
+      ],
+    },
+    result: [
+      undefined,
+      'reporter: logger.logBatch.correct',
+    ],
+  },
+  {
+    logger: {
+      log (_, text) {
+        if (text === '\nIncorrect Files') {
+          return [
+            undefined,
+            'logger.log.incorrectTitle',
+          ];
+        }
+
+        return [];
+      },
+    },
+    paths: {
+      correct: [],
+      incorrect: [
+        'incorrect.js',
+      ],
+    },
+    result: [
+      undefined,
+      'reporter: logger.log.incorrectTitle',
     ],
   },
 ];

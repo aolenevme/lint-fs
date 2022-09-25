@@ -13,7 +13,7 @@ const reporter = {
     } = paths;
 
     const [
-      _,
+      titleResult,
       titleMessage,
     ] = logger.log('\u001B[4m\u001B[36m%s\u001B[0m', 'File System is Linted!📐\n');
     if (titleMessage) {
@@ -22,21 +22,33 @@ const reporter = {
 
     if (correct.length) {
       const [
-        _,
-        correctMessage,
+        correctTitleResult,
+        correctTitleMessage,
       ] = logger.log('\u001B[42m%s\u001B[0m', 'Correct Files');
+      if (correctTitleMessage) {
+        return wrapMessage(correctTitleMessage);
+      }
+
+      const [
+        correctResult,
+        correctMessage,
+      ] = logger.logBatch('\u001B[32m%s\u001B[0m', correct);
       if (correctMessage) {
         return wrapMessage(correctMessage);
       }
     }
 
-    logger.logBatch('\u001B[32m%s\u001B[0m', correct);
-
     if (incorrect.length) {
-      logger.log('\u001B[37m\u001B[41m%s\u001B[0m', '\nIncorrect Files');
-    }
+      const [
+        incorrectTitleResult,
+        incorrectTitleMessage,
+      ] = logger.log('\u001B[37m\u001B[41m%s\u001B[0m', '\nIncorrect Files');
+      if (incorrectTitleMessage) {
+        return wrapMessage(incorrectTitleMessage);
+      }
 
-    logger.logBatch('\u001B[31m%s\u001B[0m', incorrect);
+      logger.logBatch('\u001B[31m%s\u001B[0m', incorrect);
+    }
 
     return [];
   },
