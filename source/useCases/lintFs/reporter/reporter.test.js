@@ -27,6 +27,8 @@ const tests = [
 
         assert.ok(formats.includes(format));
         assert.ok(texts.includes(text));
+
+        return [];
       },
       logBatch (format, texts) {
         assert.ok([
@@ -38,6 +40,8 @@ const tests = [
         const hasIncorrect = texts[0] === 'incorrect.js';
 
         assert.ok(hasCorrect || hasIncorrect);
+
+        return [];
       },
     },
     paths: {
@@ -53,15 +57,19 @@ const tests = [
   {
     logger: {
       log () {
-        throw new Error('logger.log');
+        return [
+          undefined,
+          'logger.log.title',
+        ];
       },
     },
     paths: {},
     result: [
       undefined,
-      'reporter: logger.log',
+      'reporter: logger.log.title',
     ],
   },
+
 ];
 
 for (const test of tests) {
