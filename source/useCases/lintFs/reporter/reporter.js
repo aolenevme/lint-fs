@@ -13,7 +13,7 @@ const reporter = {
     } = paths;
 
     const [
-      titleResult,
+      _title,
       titleMessage,
     ] = logger.log('\u001B[4m\u001B[36m%s\u001B[0m', 'File System is Linted!📐\n');
     if (titleMessage) {
@@ -22,7 +22,7 @@ const reporter = {
 
     if (correct.length) {
       const [
-        correctTitleResult,
+        _correctTitle,
         correctTitleMessage,
       ] = logger.log('\u001B[42m%s\u001B[0m', 'Correct Files');
       if (correctTitleMessage) {
@@ -30,7 +30,7 @@ const reporter = {
       }
 
       const [
-        correctResult,
+        _correct,
         correctMessage,
       ] = logger.logBatch('\u001B[32m%s\u001B[0m', correct);
       if (correctMessage) {
@@ -40,7 +40,7 @@ const reporter = {
 
     if (incorrect.length) {
       const [
-        incorrectTitleResult,
+        _incorrectTitle,
         incorrectTitleMessage,
       ] = logger.log('\u001B[37m\u001B[41m%s\u001B[0m', '\nIncorrect Files');
       if (incorrectTitleMessage) {
@@ -48,7 +48,7 @@ const reporter = {
       }
 
       const [
-        incorrectResult,
+        _incorrect,
         incorrectMessage,
       ] = logger.logBatch('\u001B[31m%s\u001B[0m', incorrect);
       if (incorrectMessage) {
