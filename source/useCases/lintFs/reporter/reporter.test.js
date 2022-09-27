@@ -6,7 +6,43 @@ const testReporter = ({
   paths,
   result,
 }) => {
-  assert.deepEqual(reporter.print(logger, paths), result);
+  const {
+    correct,
+    incorrect,
+  } = paths;
+
+  let correctCounter = 0;
+  const correctProxied = correct && new Proxy(correct, {
+    get (target, property) {
+      correctCounter++;
+
+      return target[property];
+    },
+  });
+
+  let incorrectCounter = 0;
+  const incorrectProxied = incorrect && new Proxy(incorrect, {
+    get (target, property) {
+      incorrectCounter++;
+
+      return target[property];
+    },
+  });
+
+  const pathsProxied = {
+    correct: correctProxied,
+    incorrect: incorrectProxied,
+  };
+
+  assert.deepEqual(reporter.print(logger, pathsProxied), result);
+
+  if (correct) {
+    assert.deepEqual(correctCounter, 1);
+  }
+
+  if (incorrect) {
+    assert.ok(incorrectCounter, 1);
+  }
 };
 
 const tests = [
@@ -30,16 +66,11 @@ const tests = [
 
         return [];
       },
-      logBatch (format, texts) {
+      logBatch (format) {
         assert.ok([
           '\u001B[32m%s\u001B[0m',
           '\u001B[31m%s\u001B[0m',
         ].includes(format));
-
-        const hasCorrect = texts[0] === 'correct.js';
-        const hasIncorrect = texts[0] === 'incorrect.js';
-
-        assert.ok(hasCorrect || hasIncorrect);
 
         return [];
       },

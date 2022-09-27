@@ -2,6 +2,8 @@ ignores:
   - ^./node_modules/
   - ^./.git/
   - ^./\S+.(s|o)wp$
+  - ^./.stryker-tmp
+
 rules:
   - ^./.eslintignore$
   - ^./.eslintrc.json$
