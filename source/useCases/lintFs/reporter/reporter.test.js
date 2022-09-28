@@ -14,7 +14,9 @@ const testReporter = ({
   let correctCounter = 0;
   const correctProxied = correct && new Proxy(correct, {
     get (target, property) {
-      correctCounter++;
+      if (property === 'length') {
+        correctCounter++;
+      }
 
       return target[property];
     },
@@ -23,7 +25,9 @@ const testReporter = ({
   let incorrectCounter = 0;
   const incorrectProxied = incorrect && new Proxy(incorrect, {
     get (target, property) {
-      incorrectCounter++;
+      if (property === 'length') {
+        incorrectCounter++;
+      }
 
       return target[property];
     },
