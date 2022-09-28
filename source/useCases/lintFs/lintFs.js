@@ -1,6 +1,7 @@
 import matcherModule from './matcher/matcher.js';
 import reporterModule from './reporter/reporter.js';
 
+// Stryker disable next-line ObjectLiteral
 const dependecies = {
   matcher: matcherModule,
   reporter: reporterModule,
