@@ -1,4 +1,4 @@
-# Lint-fs 📐
+# LINT-FS 📐
 Lint Your File System with Regular Expressions!
 
 ## Why?
