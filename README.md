@@ -1,5 +1,5 @@
 # LINT-FS 📐
-Lint Your File System with Regular Expressions!
+Lint File System with Regular Expressions!
 
 ## Why?
 We have got linters and static analyzers. But the stated structure of your project plays an equally important role in keeping your code clean.

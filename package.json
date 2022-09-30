@@ -9,7 +9,7 @@
   "dependencies": {
     "js-yaml": "^4.1.0"
   },
-  "description": "Lint Your File System with Regular Expressions! 📐",
+  "description": "Lint File System with Regular Expressions! 📐",
   "devDependencies": {
     "@stryker-mutator/core": "^6.2.2",
     "c8": "^7.12.0",
