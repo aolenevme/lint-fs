@@ -3,7 +3,7 @@ Lint Your File System with Regular Expressions!
 
 ## Why?
 We have got linters and static analyzers. But the stated structure of your project plays an equally important role in keeping your code clean.
-**So welcome the automated tool for linting the filesystem of your projects!** ✌️
+**So welcome the automated tool for linting the file system of your projects!** ✌️
 
 ## How?
 1. Install
