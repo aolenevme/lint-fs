@@ -1,9 +1,9 @@
 # Lint-fs 📐
-Lint your filesystem with regular expressions!
+Lint Your File System with Regular Expressions!
 
 ## Why?
-We have got linters and static analyzers. But stated structure of your project plays equally important role in keeping your code clean.
-**So welcome the automated tool for linting filesystem of your projects!** ✌️
+We have got linters and static analyzers. But the stated structure of your project plays an equally important role in keeping your code clean.
+**So welcome the automated tool for linting the filesystem of your projects!** ✌️
 
 ## How?
 1. Install
@@ -15,7 +15,7 @@ npm install --save-dev lint-fs
 npm install -g lint-fs
 ```
 2. Configure
-Create the [`lint-fs.yaml`](lint-fs.yaml.example) file in the root of your project and specify the structure of your project using the power of [ECMAScript Regular Expressions](https://regex101.com/) for rules!
+Configure the [`lint-fs.yaml`](lint-fs.yaml) file in your project's root and specify your project's structure using the power of [ECMAScript Regular Expressions](https://regex101.com/) for rules!
 
 3. Run
 ```
