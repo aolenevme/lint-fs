@@ -23,6 +23,8 @@ const execWithErrorMessage = (...arguments) => ([undefined, "errorMessage"]);
 
 8. [TDD with 100% code coverage](https://blog.cleancoder.com/uncle-bob/2017/03/03/TDD-Harms-Architecture.html).
 
-9. [No Typescript](https://youtu.be/H9-F8uhKMRk?t=250).
+9. [Mutation testing with 100% code coverage](https://stryker-mutator.io/docs).
 
-10. Regular updates of **ALL** libraries and [engines](https://docs.npmjs.com/cli/v8/configuring-npm/package-json#engines).
+10. [No Typescript](https://youtu.be/H9-F8uhKMRk?t=250).
+
+11. Regular updates of **ALL** libraries and [engines](https://docs.npmjs.com/cli/v8/configuring-npm/package-json#engines).
