@@ -16,7 +16,7 @@ npm install -g lint-fs
 ```
 2. Configure
 
-Configure the [`lint-fs.yaml`](lint-fs.yaml) file in your project's root and specify your project's structure using the power of [ECMAScript Regular Expressions](https://regex101.com/) for rules!
+Configure the [`lint-fs.yaml`](lint-fs.yaml) file in your project's root and specify your project's structure using the power of [ECMAScript Regular Expressions](https://regex101.com/)!
 
 3. Run
 ```
