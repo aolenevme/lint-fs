@@ -1,4 +1,4 @@
-**Lint File System with Regular Expressions! 📐**
+# 📐 Lint File System with Regular Expressions!
 
 ## 🙋🏼  Why?
 We have got linters and static analyzers. But stated structures of projects play equally essential roles in keeping code clean. **So, welcome the automated tool for linting projects` file systems!** ✌️
