@@ -25,18 +25,19 @@
   ],
   "homepage": "https://github.com/aolenevme/lint-fs#readme",
   "license": "ISC",
+  "main": "source/source.js",
   "name": "lint-fs",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aolenevme/lint-fs.git"
   },
-  "version": "0.1.4",
-  "type": "module",
   "scripts": {
     "lint:all": "npm run lint:code && npm run lint:fs",
     "lint:code": "eslint './**/*.js' --fix",
     "lint:fs": "node ./source/source.js",
     "test:mutant": "npx stryker run",
     "test:unit": "npx c8 node ./run-tests.js; rm -rf ./coverage"
-  }
+  },
+  "type": "module",
+  "version": "0.1.4"
 }
