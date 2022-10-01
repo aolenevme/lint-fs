@@ -1,4 +1,11 @@
-# 📐 Lint File System with Regular Expressions!
+<div align="center">
+
+![lint-fs logo](https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/325/triangular-ruler_1f4d0.png)
+
+# lint-fs
+
+**Lint File System with Regular Expressions!**
+</div>
 
 ## 🙋🏼  Why?
 We have got linters and static analyzers. But stated structures of projects play equally essential roles in keeping code clean. **So, welcome the automated tool for linting projects` file systems!** ✌️
