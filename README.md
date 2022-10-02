@@ -1,26 +1,35 @@
-# Lint-fs 📐
-Lint your filesystem with regular expressions!
+<div align="center">
 
-## Why?
-We have got linters and static analyzers. But stated structure of your project plays equally important role in keeping your code clean.
-**So welcome the automated tool for linting filesystem of your projects!** ✌️
+![lint-fs logo](https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/325/triangular-ruler_1f4d0.png)
 
-## Installation
-### NPM
+# lint-fs
+
+**Lint File System with Regular Expressions!**
+</div>
+
+## 🙋🏼  Why?
+We have got linters and static analyzers. But stated structures of projects play equally essential roles in keeping code clean. **So, welcome the automated tool for linting projects` file systems!** ✌️
+
+## 📀 Install Now!
 ```
 npm install --save-dev lint-fs
 ```
+```
+npm install -g lint-fs
+```
 
-### Raw Binary
-You can download binary specifically for your platform (Debian, Ubuntu or Windows) on the [Releases page](https://github.com/eshekak/lint-fs/releases).
+## ⚙️  Configure
+Specify the [`lint-fs.yaml`](lint-fs.yaml) file in your project's root using the power of [ECMAScript Regular Expressions](https://regex101.com/)!
 
-## How?
-1. Create the [`lint-fs.yaml`](lint-fs.yaml.example) file in the root of your project and specify the structure of your project using the power of Regular Expressions!
-2. You should use [ECMAScript Regular Expressions](https://regex101.com/) for rules
-3. Then just:
-  - run ```node node_modules/lint-fs/npm/run``` for NPM;
-  - or execute downloaded file from the root of your project.
+## 🚀 Run
+```
+npx lint-fs
+```
+```
+lint-fs
+```
 
-## Feedback
+## 🤝🏼 Feedback
 To share your feedback, please, create an [issue](https://github.com/eshekak/lint-fs/issues).
 
+## 💅🏻 [Code Style](./CODESTYLE.md)

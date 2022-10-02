@@ -1,0 +1,24 @@
+{
+  "env": {
+    "node": true
+  },
+  "extends": [
+    "canonical",
+    "canonical/module",
+    "canonical/node"
+  ],
+  "rules": {
+    "no-unused-vars": [
+      "error",
+      {
+        "varsIgnorePattern": "_"
+      }
+    ],
+    "import/extensions": [
+      "error",
+      {
+        "js": "always"
+      }
+    ]
+  }
+}
