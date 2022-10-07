@@ -5,6 +5,7 @@ ignores:
   - ^./.stryker-tmp
 
 rules:
+  - ^./.github/FUNDING.yml$
   - ^./.eslintignore$
   - ^./.eslintrc.json$
   - ^./.gitignore$
