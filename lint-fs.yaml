@@ -9,7 +9,6 @@ rules:
   - ^./.eslintignore$
   - ^./.eslintrc.json$
   - ^./.gitignore$
-  - ^./LICENSE$
   - ^./[A-Z]+.md$
   - ^./lint-fs.yaml$
   - ^./package-lock.json$
