@@ -1,4 +1,4 @@
-# CODE STYLE
+# CODESTYLE
 
 1. [Golang-like error handling between modules.](https://go.dev/blog/error-handling-and-go)
 ```
