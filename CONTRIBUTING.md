@@ -12,4 +12,4 @@
 
 * To ease the code review, make sure that all automated checks are passed and your code follows the [CODESTYLE](https://github.com/aolenevme/lint-fs/blob/main/CODESTYLE.md).
 
-Thanks! :heart: :technologist_medium_light_skin_tone:
+Thanks! ❤️ 🧑🏼‍💻
