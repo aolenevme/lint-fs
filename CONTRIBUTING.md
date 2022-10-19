@@ -14,5 +14,3 @@
 #### **Do you want to create a PR?**
 
 * Create a pull request according to the [Pull Request Template](./.github/pull_request_template.md).
-
-Thanks! ❤️ 🧑🏼‍💻
