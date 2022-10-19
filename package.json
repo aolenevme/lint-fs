@@ -39,5 +39,5 @@
     "test:unit": "npx c8 node ./run-tests.js; rm -rf ./coverage"
   },
   "type": "module",
-  "version": "1.0.0"
+  "version": "1.0.1"
 }

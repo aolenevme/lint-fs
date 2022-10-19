@@ -6,10 +6,14 @@ ignores:
 
 rules:
   - ^./.github/FUNDING.yml$
+  - ^./.github/ISSUE_TEMPLATE/bug_report.md$
+  - ^./.github/ISSUE_TEMPLATE/chore_template.md$
+  - ^./.github/ISSUE_TEMPLATE/feature_request.md$
+  - ^./.github/pull_request_template.md$
   - ^./.eslintignore$
   - ^./.eslintrc.json$
   - ^./.gitignore$
-  - ^./[A-Z]+.md$
+  - ^./([A-Z]+_?)+.md$
   - ^./lint-fs.yaml$
   - ^./package-lock.json$
   - ^./package.json$
