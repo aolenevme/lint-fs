@@ -32,4 +32,4 @@ lint-fs
 ## 🤝🏼 Feedback
 To share your feedback, please, create an [issue](https://github.com/eshekak/lint-fs/issues).
 
-## 💅🏻 [Code Style](./CODESTYLE.md)
+## 💅🏻 [Code Style](./CODE_STYLE.md)

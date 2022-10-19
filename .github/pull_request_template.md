@@ -8,4 +8,5 @@
 ## Checklist before requesting a review
 - [ ] I have performed a self-review of my code.
 - [ ] All automatic checks are passed.
-- [ ] Code matches the [CODESTYLE](../CODESTYLE.md).
+- [ ] The code matches the [CODE_STYLE](../CODE_STYLE.md).
+- [ ] I agree with the [CODE_OF_CONDUCT](../CODE_OF_CONDUCT.md).
