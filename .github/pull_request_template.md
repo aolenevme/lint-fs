@@ -1,8 +1,6 @@
-## Name of the branch
+## Describe your changes
 
 ## Issue ticket number and link
-
-## Describe your changes
 
 ## Checklist before requesting a review
 - [ ] I have performed a self-review of my code
