@@ -13,7 +13,7 @@ rules:
   - ^./.eslintignore$
   - ^./.eslintrc.json$
   - ^./.gitignore$
-  - ^./[A-Z]+.md$
+  - ^./([A-Z]+_?)+.md$
   - ^./lint-fs.yaml$
   - ^./package-lock.json$
   - ^./package.json$
