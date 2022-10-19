@@ -1,4 +1,4 @@
-# CODE OF CONDUCT
+# [CODE OF CONDUCT](https://blog.cleancoder.com/uncle-bob/2015/11/18/TheProgrammersOath.html)
 
 **In order to defend and preserve the honor of the profession of computer programmers,**
 
