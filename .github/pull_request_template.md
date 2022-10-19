@@ -6,4 +6,3 @@
 - [ ] I have performed a self-review of my code.
 - [ ] All automatic checks are passed.
 - [ ] Code matches the [CODESTYLE](../CODESTYLE.md).
-- [ ] I wrote at least one phrase about this update.
