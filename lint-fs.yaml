@@ -10,6 +10,7 @@ rules:
   - ^./.github/ISSUE_TEMPLATE/chore_template.md$
   - ^./.github/ISSUE_TEMPLATE/feature_request.md$
   - ^./.github/pull_request_template.md$
+  - ^./.github/workflows/quality.yaml$
   - ^./.eslintignore$
   - ^./.eslintrc.json$
   - ^./.gitignore$
