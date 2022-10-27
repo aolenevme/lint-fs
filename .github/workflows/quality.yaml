@@ -1,5 +1,7 @@
 name: quality
+
 on: [pull_request]
+
 jobs:
   quality:
     runs-on: ubuntu-latest
