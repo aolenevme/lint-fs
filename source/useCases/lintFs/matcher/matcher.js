@@ -3,6 +3,8 @@ const isOk = (path, regExps) => {
 
   for (const regExp of regExps) {
     ok = ok || regExp.test(path);
+
+    // сделать break; после первого успешного test? чтобы правильно обработать excessive.
   }
 
   return ok;
