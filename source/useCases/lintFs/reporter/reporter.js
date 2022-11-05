@@ -1,9 +1,8 @@
-const wrapMessage = (message) => {
-  return [
-    undefined,
-    `reporter: ${message}`,
-  ];
-};
+import utils from '../../../utils/utils.js';
+
+const {
+  errors,
+} = utils;
 
 const reporter = {
   print (logger, paths) {
@@ -14,45 +13,45 @@ const reporter = {
 
     const [
       _title,
-      titleMessage,
+      titleError,
     ] = logger.log('\u001B[4m\u001B[36m%s\u001B[0m', 'File System is Linted!📐\n');
-    if (titleMessage) {
-      return wrapMessage(titleMessage);
+    if (titleError) {
+      return errors.wrap('reporter', titleError);
     }
 
     if (correct.length) {
       const [
         _correctTitle,
-        correctTitleMessage,
+        correctTitleError,
       ] = logger.log('\u001B[42m%s\u001B[0m', 'Correct Files');
-      if (correctTitleMessage) {
-        return wrapMessage(correctTitleMessage);
+      if (correctTitleError) {
+        return errors.wrap('reporter', correctTitleError);
       }
 
       const [
         _correct,
-        correctMessage,
+        correctError,
       ] = logger.logBatch('\u001B[32m%s\u001B[0m', correct);
-      if (correctMessage) {
-        return wrapMessage(correctMessage);
+      if (correctError) {
+        return errors.wrap('reporter', correctError);
       }
     }
 
     if (incorrect.length) {
       const [
         _incorrectTitle,
-        incorrectTitleMessage,
+        incorrectTitleError,
       ] = logger.log('\u001B[37m\u001B[41m%s\u001B[0m', '\nIncorrect Files');
-      if (incorrectTitleMessage) {
-        return wrapMessage(incorrectTitleMessage);
+      if (incorrectTitleError) {
+        return errors.wrap('reporter', incorrectTitleError);
       }
 
       const [
         _incorrect,
-        incorrectMessage,
+        incorrectError,
       ] = logger.logBatch('\u001B[31m%s\u001B[0m', incorrect);
-      if (incorrectMessage) {
-        return wrapMessage(incorrectMessage);
+      if (incorrectError) {
+        return errors.wrap('reporter', incorrectError);
       }
     }
 
