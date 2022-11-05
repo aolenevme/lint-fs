@@ -1,3 +1,9 @@
+import utils from '../../utils/utils.js';
+
+const {
+  errors,
+} = utils;
+
 const log = (format, std, text) => {
   std.log(format, text);
 };
@@ -12,10 +18,7 @@ const logger = ({
 
         return [];
       } catch (error) {
-        return [
-          undefined,
-          `log: ${error.message}`,
-        ];
+        return errors.wrap('log', error.message);
       }
     },
     logBatch: (format, texts) => {
@@ -26,10 +29,7 @@ const logger = ({
 
         return [];
       } catch (error) {
-        return [
-          undefined,
-          `logBatch: ${error.message}`,
-        ];
+        return errors.wrap('logBatch', error.message);
       }
     },
   };
