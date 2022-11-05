@@ -1,15 +1,15 @@
 import assert from 'node:assert/strict';
-import error from './error.js';
+import errors from './errors.js';
 
-const testErrorWrap = ({
+const testErrorsWrap = ({
   previous,
   next,
   result,
 }) => {
-  assert.deepEqual(error.wrap(previous, next), result);
+  assert.deepEqual(errors.wrap(previous, next), result);
 };
 
-const testsErrorWrap = [
+const testsErrorsWrap = [
   {
     next: 'next',
     previous: 'previous',
@@ -20,6 +20,6 @@ const testsErrorWrap = [
   },
 ];
 
-for (const test of testsErrorWrap) {
-  testErrorWrap(test);
+for (const test of testsErrorsWrap) {
+  testErrorsWrap(test);
 }

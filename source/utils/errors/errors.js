@@ -1,4 +1,4 @@
-const error = {
+const errors = {
   wrap (previous, next) {
     return [
       undefined,
@@ -7,4 +7,4 @@ const error = {
   },
 };
 
-export default error;
+export default errors;
