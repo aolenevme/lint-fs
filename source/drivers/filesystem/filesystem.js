@@ -1,3 +1,9 @@
+import utils from '../../utils/utils.js';
+
+const {
+  errors,
+} = utils;
+
 const filesystem = ({
   fs,
 }) => {
@@ -33,10 +39,7 @@ const filesystem = ({
           paths,
         ];
       } catch (error) {
-        return [
-          undefined,
-          `paths: ${error.message}`,
-        ];
+        return errors.wrap('paths', error.message);
       }
     },
   };

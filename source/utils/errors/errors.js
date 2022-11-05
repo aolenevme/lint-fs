@@ -1,8 +1,8 @@
 const errors = {
-  wrap (next, previous) {
+  wrap (current, previous) {
     return [
       undefined,
-      `${next}: ${previous}`,
+      `${current}: ${previous}`,
     ];
   },
 };
