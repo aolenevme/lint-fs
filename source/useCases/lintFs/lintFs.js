@@ -1,5 +1,10 @@
+import utils from '../../utils/utils.js';
 import matcherModule from './matcher/matcher.js';
 import reporterModule from './reporter/reporter.js';
+
+const {
+  errors,
+} = utils;
 
 // Stryker disable next-line ObjectLiteral
 const dependecies = {
@@ -22,10 +27,7 @@ const lintFs = ({
     ] = await filesystem.paths('.');
 
     if (filesystemError) {
-      return [
-        undefined,
-        `lintFs: ${filesystemError}`,
-      ];
+      return errors.wrap('lintFs', filesystemError);
     }
 
     const [
@@ -37,10 +39,7 @@ const lintFs = ({
     });
 
     if (configError) {
-      return [
-        undefined,
-        `lintFs: ${configError}`,
-      ];
+      return errors.wrap('lintFs', configError);
     }
 
     const correct = [];
@@ -58,10 +57,7 @@ const lintFs = ({
       ] = matcher.isCorrect(path, ignores);
 
       if (ignoresError) {
-        return [
-          undefined,
-          `lintFs: ${ignoresError}`,
-        ];
+        return errors.wrap('lintFs', ignoresError);
       }
 
       if (isIgnored) {
@@ -74,10 +70,7 @@ const lintFs = ({
       ] = matcher.isCorrect(path, rules);
 
       if (rulesError) {
-        return [
-          undefined,
-          `lintFs: ${rulesError}`,
-        ];
+        return errors.wrap('lintFs', rulesError);
       }
 
       if (isRuled) {
@@ -96,10 +89,7 @@ const lintFs = ({
     });
 
     if (reporterError) {
-      return [
-        undefined,
-        `lintFs: ${reporterError}`,
-      ];
+      return errors.wrap('lintFs', reporterError);
     }
 
     const isFileSystemIncorrect = incorrect.length > 0;
