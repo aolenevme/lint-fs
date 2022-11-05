@@ -1,3 +1,9 @@
+import utils from '../../utils/utils.js';
+
+const {
+  errors,
+} = utils;
+
 const load = async ({
   fs,
   yaml,
@@ -13,10 +19,7 @@ const load = async ({
       loadedConfig,
     ];
   } catch (error) {
-    return [
-      undefined,
-      `load: ${error.message}`,
-    ];
+    return errors.wrap('load', error.message);
   }
 };
 
@@ -36,10 +39,7 @@ const createRegExps = (templates) => {
       regExps,
     ];
   } catch (error) {
-    return [
-      undefined,
-      `createRegExps: ${error.message}`,
-    ];
+    return errors.wrap('createRegExps', error.message);
   }
 };
 
@@ -58,10 +58,7 @@ const config = ({
       }, options);
 
       if (loadError) {
-        return [
-          undefined,
-          `read: ${loadError}`,
-        ];
+        return errors.wrap('read', loadError);
       }
 
       const [
@@ -69,10 +66,7 @@ const config = ({
         ignoresRegExpError,
       ] = createRegExps(loadedConfig.ignores);
       if (ignoresRegExpError) {
-        return [
-          undefined,
-          `read: ${ignoresRegExpError}`,
-        ];
+        return errors.wrap('read', ignoresRegExpError);
       }
 
       const [
@@ -80,10 +74,7 @@ const config = ({
         rulesRegExpError,
       ] = createRegExps(loadedConfig.rules);
       if (rulesRegExpError) {
-        return [
-          undefined,
-          `read: ${rulesRegExpError}`,
-        ];
+        return errors.wrap('read', rulesRegExpError);
       }
 
       return [
