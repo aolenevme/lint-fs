@@ -1,3 +1,9 @@
+import utils from '../../../utils/utils.js';
+
+const {
+  errors,
+} = utils;
+
 const isOk = (path, regExps) => {
   for (const regExp of regExps) {
     const ok = regExp.test(path);
@@ -12,11 +18,15 @@ const isOk = (path, regExps) => {
 
 const matcher = {
   isCorrect (path, regExps) {
-    const ok = isOk(path, regExps);
+    try {
+      const ok = isOk(path, regExps);
 
-    return [
-      ok,
-    ];
+      return [
+        ok,
+      ];
+    } catch (error) {
+      return errors.wrap('isCorrect', error);
+    }
   },
 };
 

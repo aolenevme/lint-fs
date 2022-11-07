@@ -28,6 +28,16 @@ const tests = [
       false,
     ],
   },
+  {
+    path: 'node_modules/browserslist',
+    regExps: [
+      null,
+    ],
+    result: [
+      undefined,
+      'isCorrect: TypeError: Cannot read properties of null (reading \'test\')',
+    ],
+  },
 ];
 
 for (const test of tests) {
