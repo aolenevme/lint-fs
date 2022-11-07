@@ -1,13 +1,13 @@
 const isOk = (path, regExps) => {
-  let ok = false;
-
   for (const regExp of regExps) {
-    ok = ok || regExp.test(path);
+    const ok = regExp.test(path);
 
-    // сделать break; после первого успешного test? чтобы правильно обработать excessive.
+    if (ok) {
+      return true;
+    }
   }
 
-  return ok;
+  return false;
 };
 
 const matcher = {
