@@ -3,34 +3,34 @@ import matcher from './matcher.js';
 
 const testMatcher = ({
   path,
-  regExps,
+  regs,
   result,
 }) => {
-  assert.deepEqual(matcher.isCorrect(path, regExps), result);
+  assert.deepEqual(matcher.isCorrect(path, regs), result);
 };
 
 const tests = [
   {
     path: 'node_modules/browserslist',
-    regExps: [
+    regs: [
       /^node_modules/u,
     ],
     result: [
-      true,
+      /^node_modules/u,
     ],
   },
   {
     path: 'wrong_node_modules/browserslist',
-    regExps: [
+    regs: [
       /^node_moduless/u,
     ],
     result: [
-      false,
+      null,
     ],
   },
   {
     path: 'node_modules/browserslist',
-    regExps: [
+    regs: [
       null,
     ],
     result: [

@@ -50,31 +50,40 @@ const lintFs = ({
       rules,
     } = initedConfig;
 
+    const excessiveRegs = new Set([
+      ...ignores,
+      ...rules,
+    ]);
+
     for (const path of paths) {
       const [
-        isIgnored,
-        ignoresError,
+        ignoreReg,
+        ignoreError,
       ] = matcher.isCorrect(path, ignores);
 
-      if (ignoresError) {
-        return errors.wrap('lintFs', ignoresError);
+      if (ignoreError) {
+        return errors.wrap('lintFs', ignoreError);
       }
 
-      if (isIgnored) {
+      if (ignoreReg) {
+        excessiveRegs.delete(ignoreReg);
+
         continue;
       }
 
       const [
-        isRuled,
-        rulesError,
+        ruleReg,
+        ruleError,
       ] = matcher.isCorrect(path, rules);
 
-      if (rulesError) {
-        return errors.wrap('lintFs', rulesError);
+      if (ruleError) {
+        return errors.wrap('lintFs', ruleError);
       }
 
-      if (isRuled) {
+      if (ruleReg) {
         correct.push(path);
+
+        excessiveRegs.delete(ruleReg);
       } else {
         incorrect.push(path);
       }
@@ -92,19 +101,22 @@ const lintFs = ({
       return errors.wrap('lintFs', reporterError);
     }
 
-    const isFileSystemIncorrect = incorrect.length > 0;
-    if (isFileSystemIncorrect) {
+    /**
+     * const isExcessive = excessiveRegs.size;
+     * if (isExcessive) {
+     * console.log(excessiveRegs);
+     * }
+     */
+
+    const isIncorrect = incorrect.length;
+    if (isIncorrect) {
       return [
         undefined,
         'File System Structure is Incorrect! 💢',
       ];
     }
-
-    // Fail on Unused Regular Expressions
-    // 1. Перемапить ignores и rules из массивов в map`ы.
-    // 2. Скормить их в isCorrect. Должен принимать мапу - и брать внутри Map.entries. Если regexp подошел, то ставь в мапу true.
-    // 3. Отдельный метод на логирование ошибки. Цвет оранжевый. Назвать типо excessive regexps.
-    // 4. Надо оптимизировать вообще все логирование ошибок / результатов в lintFs.js
+    // 1. Отдельный метод на логирование ошибки. Цвет оранжевый. Назвать типо excessive regexps.
+    // 2. Надо оптимизировать вообще все логирование ошибок / результатов в lintFs.js
 
     return [];
   };

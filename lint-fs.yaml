@@ -2,7 +2,6 @@ ignores:
   - ^./node_modules/
   - ^./.git/
   - ^./\S+.(s|o)wp$
-  - ^./.stryker-tmp
 
 rules:
   - ^./.github/FUNDING.yml$
