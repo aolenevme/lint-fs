@@ -285,7 +285,7 @@ const tests = [
     },
     result: [
       undefined,
-      'File System Structure is Incorrect! 💢',
+      'lintFs: File System Structure is Incorrect!',
     ],
   },
   {

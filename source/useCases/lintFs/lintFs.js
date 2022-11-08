@@ -101,20 +101,16 @@ const lintFs = ({
       return errors.wrap('lintFs', reporterError);
     }
 
-    /**
-     * const isExcessive = excessiveRegs.size;
-     * if (isExcessive) {
-     * console.log(excessiveRegs);
-     * }
-     */
+    const isExcessive = excessiveRegs.size;
+    if (isExcessive) {
+      return errors.wrap('lintFs', 'Excessive Config Rules!');
+    }
 
     const isIncorrect = incorrect.length;
     if (isIncorrect) {
-      return [
-        undefined,
-        'File System Structure is Incorrect! 💢',
-      ];
+      return errors.wrap('lintFs', 'File System Structure is Incorrect!');
     }
+
     // 1. Отдельный метод на логирование ошибки. Цвет оранжевый. Назвать типо excessive regexps.
     // 2. Надо оптимизировать вообще все логирование ошибок / результатов в lintFs.js
 
