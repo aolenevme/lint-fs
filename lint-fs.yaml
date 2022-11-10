@@ -1,7 +1,6 @@
 ignores:
   - ^./node_modules/
   - ^./.git/
-  - ^./\S+.(s|o)wp$
 
 rules:
   - ^./.github/FUNDING.yml$

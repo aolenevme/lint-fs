@@ -94,6 +94,7 @@ const lintFs = ({
       reporterError,
     ] = reporter.print(logger, {
       correct,
+      excessiveRegs: Array.from(excessiveRegs),
       incorrect,
     });
 
