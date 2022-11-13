@@ -51,14 +51,14 @@ const config = ({
     read: async (options) => {
       const [
         loadedConfig,
-        loadError,
+        loadedConfigError,
       ] = await load({
         fs,
         yaml,
       }, options);
 
-      if (loadError) {
-        return errors.wrap('read', loadError);
+      if (loadedConfigError) {
+        return errors.wrap('read', loadedConfigError);
       }
 
       const [
@@ -71,10 +71,10 @@ const config = ({
 
       const [
         rules,
-        rulesRegExpError,
+        rulesError,
       ] = createRegExps(loadedConfig.rules);
-      if (rulesRegExpError) {
-        return errors.wrap('read', rulesRegExpError);
+      if (rulesError) {
+        return errors.wrap('read', rulesError);
       }
 
       return [

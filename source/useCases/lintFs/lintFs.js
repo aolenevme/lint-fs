@@ -23,11 +23,11 @@ const lintFs = ({
   return async () => {
     const [
       paths,
-      filesystemError,
+      pathsError,
     ] = await filesystem.paths('.');
 
-    if (filesystemError) {
-      return errors.wrap('lintFs', filesystemError);
+    if (pathsError) {
+      return errors.wrap('lintFs', pathsError);
     }
 
     const [
@@ -58,11 +58,11 @@ const lintFs = ({
     for (const path of paths) {
       const [
         ignoreReg,
-        ignoreError,
+        ignoreRegError,
       ] = matcher.isCorrect(path, ignores);
 
-      if (ignoreError) {
-        return errors.wrap('lintFs', ignoreError);
+      if (ignoreRegError) {
+        return errors.wrap('lintFs', ignoreRegError);
       }
 
       if (ignoreReg) {
@@ -73,11 +73,11 @@ const lintFs = ({
 
       const [
         ruleReg,
-        ruleError,
+        ruleRegError,
       ] = matcher.isCorrect(path, rules);
 
-      if (ruleError) {
-        return errors.wrap('lintFs', ruleError);
+      if (ruleRegError) {
+        return errors.wrap('lintFs', ruleRegError);
       }
 
       if (ruleReg) {
@@ -91,15 +91,15 @@ const lintFs = ({
 
     const [
       _,
-      reporterError,
+      printError,
     ] = reporter.print(logger, {
       correct,
       excessiveRegs: Array.from(excessiveRegs),
       incorrect,
     });
 
-    if (reporterError) {
-      return errors.wrap('lintFs', reporterError);
+    if (printError) {
+      return errors.wrap('lintFs', printError);
     }
 
     const isIncorrect = incorrect.length;
