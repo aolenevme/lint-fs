@@ -269,7 +269,7 @@ const tests = [
       paths () {
         return [
           [
-            './incorretPath.js',
+            './incorrectPath.js',
           ],
         ];
       },
@@ -290,6 +290,47 @@ const tests = [
     result: [
       undefined,
       'lintFs: File System Structure is Incorrect!',
+    ],
+  },
+  {
+    config: {
+      read () {
+        return [
+          {
+            ignores: [],
+            rules: [
+              /.\/correctPath\d.js/u,
+              /.\/correctPath1.js/u,
+            ],
+          },
+        ];
+      },
+    },
+    filesystem: {
+      paths () {
+        return [
+          [
+            './correctPath1.js',
+          ],
+        ];
+      },
+    },
+    logger: {},
+    matcher: {
+      isCorrect () {
+        return [
+          '/.\\/correctPath\\d.js/u',
+        ];
+      },
+    },
+    reporter: {
+      print () {
+        return [];
+      },
+    },
+    result: [
+      undefined,
+      'lintFs: Excessive Config!',
     ],
   },
   {

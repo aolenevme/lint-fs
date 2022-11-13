@@ -114,7 +114,7 @@ const lintFs = ({
 
     const isExcessive = excessives.size;
     if (isExcessive) {
-      return errors.wrap('lintFs', 'Excessive Config');
+      return errors.wrap('lintFs', 'Excessive Config!');
     }
 
     return [];
