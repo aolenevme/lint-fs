@@ -8,7 +8,6 @@ const reporter = {
   print (logger, {
     correct,
     incorrect,
-    excessiveRegs,
   }) {
     const [
       _title,
@@ -51,24 +50,6 @@ const reporter = {
       ] = logger.logBatch('\u001B[31m%s\u001B[0m', incorrect);
       if (incorrectError) {
         return errors.wrap('reporter', incorrectError);
-      }
-    }
-
-    if (excessiveRegs.length) {
-      const [
-        _excessiveTitle,
-        excessiveTitleError,
-      ] = logger.log('\u001B[37m\u001B[41m%s\u001B[0m', '\nExcessive Regular Expressions');
-      if (excessiveTitleError) {
-        return errors.wrap('reporter', excessiveTitleError);
-      }
-
-      const [
-        _excessive,
-        excessiveError,
-      ] = logger.logBatch('\u001B[31m%s\u001B[0m', excessiveRegs);
-      if (excessiveError) {
-        return errors.wrap('reporter', excessiveError);
       }
     }
 
