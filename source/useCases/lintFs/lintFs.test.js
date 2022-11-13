@@ -1,8 +1,6 @@
 import assert from 'node:assert/strict';
 import lintFs from './lintFs.js';
 
-let isCorrectCounter = 0;
-
 const testLintFs = async ({
   config,
   fail,
@@ -12,8 +10,6 @@ const testLintFs = async ({
   reporter,
   result,
 }) => {
-  isCorrectCounter = 0;
-
   assert.deepEqual(await lintFs({
     config,
     fail,
@@ -175,16 +171,17 @@ const tests = [
     },
     matcher: {
       isCorrect () {
-        isCorrectCounter++;
-
-        const ok = isCorrectCounter % 2 === 0;
-        const errorMessage = isCorrectCounter % 2 === 1 ? undefined : 'rulesError';
-
-        return [
-          ok,
-          errorMessage,
-        ];
+        return this.results.shift();
       },
+      results: [
+        [
+          '',
+        ],
+        [
+          undefined,
+          'rulesError',
+        ],
+      ],
     },
     result: [
       undefined,
@@ -220,12 +217,19 @@ const tests = [
     logger: {},
     matcher: {
       isCorrect () {
-        isCorrectCounter++;
-
-        return [
-          isCorrectCounter % 2 === 1,
-        ];
+        return this.results.shift();
       },
+      results: [
+        [
+          '/.\\/ignoresPath.js/u',
+        ],
+        [
+          '',
+        ],
+        [
+          '/.\\/rulesPath.js/u',
+        ],
+      ],
     },
     reporter: {
       print (logger, report) {
@@ -274,7 +278,7 @@ const tests = [
     matcher: {
       isCorrect () {
         return [
-          false,
+          '',
         ];
       },
     },

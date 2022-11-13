@@ -11,14 +11,16 @@ const matcher = {
         const ok = reg.test(path);
 
         if (ok) {
+          const stringified = `${reg}`;
+
           return [
-            reg,
+            stringified,
           ];
         }
       }
 
       return [
-        null,
+        '',
       ];
     } catch (error) {
       return errors.wrap('isCorrect', error);

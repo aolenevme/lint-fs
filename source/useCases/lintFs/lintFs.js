@@ -12,6 +12,14 @@ const dependecies = {
   reporter: reporterModule,
 };
 
+const createSet = (regs) => {
+  const stringified = regs.map((reg) => {
+    return `${reg}`;
+  });
+
+  return new Set(stringified);
+};
+
 const lintFs = ({
   config,
   filesystem,
@@ -44,13 +52,11 @@ const lintFs = ({
 
     const correct = [];
     const incorrect = [];
-
     const {
       ignores,
       rules,
     } = initedConfig;
-
-    const excessiveRegs = new Set([
+    const excessives = createSet([
       ...ignores,
       ...rules,
     ]);
@@ -66,7 +72,7 @@ const lintFs = ({
       }
 
       if (ignoreReg) {
-        excessiveRegs.delete(ignoreReg);
+        excessives.delete(ignoreReg);
 
         continue;
       }
@@ -81,9 +87,9 @@ const lintFs = ({
       }
 
       if (ruleReg) {
-        correct.push(path);
+        excessives.delete(ruleReg);
 
-        excessiveRegs.delete(ruleReg);
+        correct.push(path);
       } else {
         incorrect.push(path);
       }
@@ -94,7 +100,6 @@ const lintFs = ({
       printError,
     ] = reporter.print(logger, {
       correct,
-      excessiveRegs: Array.from(excessiveRegs),
       incorrect,
     });
 
@@ -107,9 +112,9 @@ const lintFs = ({
       return errors.wrap('lintFs', 'File System Structure is Incorrect!');
     }
 
-    const isExcessive = excessiveRegs.size;
+    const isExcessive = excessives.size;
     if (isExcessive) {
-      return errors.wrap('lintFs', 'Excessive Config Rules!');
+      return errors.wrap('lintFs', 'Excessive Config');
     }
 
     return [];

@@ -16,7 +16,7 @@ const tests = [
       /^node_modules/u,
     ],
     result: [
-      /^node_modules/u,
+      '/^node_modules/u',
     ],
   },
   {
@@ -25,7 +25,7 @@ const tests = [
       /^node_moduless/u,
     ],
     result: [
-      null,
+      '',
     ],
   },
   {
