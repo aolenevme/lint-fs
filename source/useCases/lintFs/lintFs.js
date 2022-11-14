@@ -100,6 +100,7 @@ const lintFs = ({
       printError,
     ] = reporter.print(logger, {
       correct,
+      excessives: Array.from(excessives),
       incorrect,
     });
 

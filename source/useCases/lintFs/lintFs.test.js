@@ -188,7 +188,6 @@ const tests = [
       'lintFs: rulesError',
     ],
   },
-
   {
     config: {
       read () {
@@ -198,7 +197,8 @@ const tests = [
               /.\/ignoresPath.js/u,
             ],
             rules: [
-              /.\/rulesPath.js/u,
+              /.\/rulesPath1.js/u,
+              /.\/rulesPath2.js/u,
             ],
           },
         ];
@@ -209,7 +209,7 @@ const tests = [
         return [
           [
             './ignoresPath.js',
-            './rulesPath.js',
+            './rulesPath1.js',
           ],
         ];
       },
@@ -227,7 +227,7 @@ const tests = [
           '',
         ],
         [
-          '/.\\/rulesPath.js/u',
+          '/.\\/rulesPath1.js/u',
         ],
       ],
     },
@@ -236,7 +236,10 @@ const tests = [
         assert.deepEqual(logger, {});
         assert.deepEqual(report, {
           correct: [
-            './rulesPath.js',
+            './rulesPath1.js',
+          ],
+          excessives: [
+            '/.\\/rulesPath2.js/u',
           ],
           incorrect: [],
         });
