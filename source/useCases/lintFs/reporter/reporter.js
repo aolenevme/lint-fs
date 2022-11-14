@@ -7,6 +7,7 @@ const {
 const reporter = {
   print (logger, {
     correct,
+    excessives,
     incorrect,
   }) {
     const [
@@ -50,6 +51,24 @@ const reporter = {
       ] = logger.logBatch('\u001B[31m%s\u001B[0m', incorrect);
       if (incorrectError) {
         return errors.wrap('reporter', incorrectError);
+      }
+    }
+
+    if (excessives.length) {
+      const [
+        _excessivesTitle,
+        excessivesTitleError,
+      ] = logger.log('\u001B[37m\u001B[41m%s\u001B[0m', '\nExcessive Rules');
+      if (excessivesTitleError) {
+        return errors.wrap('reporter', excessivesTitleError);
+      }
+
+      const [
+        _excessives,
+        excessivesError,
+      ] = logger.logBatch('\u001B[31m%s\u001B[0m', excessives);
+      if (excessivesError) {
+        return errors.wrap('reporter', excessivesError);
       }
     }
 
