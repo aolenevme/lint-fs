@@ -1,3 +1,9 @@
+import utils from '../../utils/utils.js';
+
+const {
+  errors,
+} = utils;
+
 const load = async ({
   fs,
   yaml,
@@ -13,10 +19,7 @@ const load = async ({
       loadedConfig,
     ];
   } catch (error) {
-    return [
-      undefined,
-      `load: ${error.message}`,
-    ];
+    return errors.wrap('load', error.message);
   }
 };
 
@@ -36,10 +39,7 @@ const createRegExps = (templates) => {
       regExps,
     ];
   } catch (error) {
-    return [
-      undefined,
-      `createRegExps: ${error.message}`,
-    ];
+    return errors.wrap('createRegExps', error.message);
   }
 };
 
@@ -51,17 +51,14 @@ const config = ({
     read: async (options) => {
       const [
         loadedConfig,
-        loadError,
+        loadedConfigError,
       ] = await load({
         fs,
         yaml,
       }, options);
 
-      if (loadError) {
-        return [
-          undefined,
-          `read: ${loadError}`,
-        ];
+      if (loadedConfigError) {
+        return errors.wrap('read', loadedConfigError);
       }
 
       const [
@@ -69,21 +66,15 @@ const config = ({
         ignoresRegExpError,
       ] = createRegExps(loadedConfig.ignores);
       if (ignoresRegExpError) {
-        return [
-          undefined,
-          `read: ${ignoresRegExpError}`,
-        ];
+        return errors.wrap('read', ignoresRegExpError);
       }
 
       const [
         rules,
-        rulesRegExpError,
+        rulesError,
       ] = createRegExps(loadedConfig.rules);
-      if (rulesRegExpError) {
-        return [
-          undefined,
-          `read: ${rulesRegExpError}`,
-        ];
+      if (rulesError) {
+        return errors.wrap('read', rulesError);
       }
 
       return [

@@ -8,6 +8,7 @@ const testReporter = ({
 }) => {
   const {
     correct,
+    excessives,
     incorrect,
   } = paths;
 
@@ -16,6 +17,17 @@ const testReporter = ({
     get (target, property) {
       if (property === 'length') {
         correctCounter++;
+      }
+
+      return target[property];
+    },
+  });
+
+  let excessivesCounter = 0;
+  const excessivesProxied = excessives && new Proxy(excessives, {
+    get (target, property) {
+      if (property === 'length') {
+        excessivesCounter++;
       }
 
       return target[property];
@@ -35,6 +47,7 @@ const testReporter = ({
 
   const pathsProxied = {
     correct: correctProxied,
+    excessives: excessivesProxied,
     incorrect: incorrectProxied,
   };
 
@@ -42,6 +55,10 @@ const testReporter = ({
 
   if (correct) {
     assert.deepEqual(correctCounter, 1);
+  }
+
+  if (excessives) {
+    assert.deepEqual(excessivesCounter, 1);
   }
 
   if (incorrect) {
@@ -63,6 +80,7 @@ const tests = [
           'File System is Linted!📐\n',
           'Correct Files',
           '\nIncorrect Files',
+          '\nExcessive Rules',
         ];
 
         assert.ok(formats.includes(format));
@@ -82,6 +100,9 @@ const tests = [
     paths: {
       correct: [
         'correct.js',
+      ],
+      excessives: [
+        '/.\\/excessivesPath.js/u',
       ],
       incorrect: [
         'incorrect.js',
@@ -194,6 +215,55 @@ const tests = [
     result: [
       undefined,
       'reporter: logger.logBatch.incorrect',
+    ],
+  },
+  {
+    logger: {
+      log (_, text) {
+        if (text === '\nExcessive Rules') {
+          return [
+            undefined,
+            'logger.log.excessivesTitleError',
+          ];
+        }
+
+        return [];
+      },
+    },
+    paths: {
+      correct: [],
+      excessives: [
+        '/.\\/excessivesPath.js/u',
+      ],
+      incorrect: [],
+    },
+    result: [
+      undefined,
+      'reporter: logger.log.excessivesTitleError',
+    ],
+  },
+  {
+    logger: {
+      log () {
+        return [];
+      },
+      logBatch () {
+        return [
+          undefined,
+          'logger.logBatch.excessivesError',
+        ];
+      },
+    },
+    paths: {
+      correct: [],
+      excessives: [
+        '/.\\/excessivesPath.js/u',
+      ],
+      incorrect: [],
+    },
+    result: [
+      undefined,
+      'reporter: logger.logBatch.excessivesError',
     ],
   },
 ];

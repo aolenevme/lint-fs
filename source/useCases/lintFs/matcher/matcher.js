@@ -1,20 +1,30 @@
-const isOk = (path, regExps) => {
-  let ok = false;
+import utils from '../../../utils/utils.js';
 
-  for (const regExp of regExps) {
-    ok = ok || regExp.test(path);
-  }
-
-  return ok;
-};
+const {
+  errors,
+} = utils;
 
 const matcher = {
-  isCorrect (path, regExps) {
-    const ok = isOk(path, regExps);
+  isCorrect (path, regs) {
+    try {
+      for (const reg of regs) {
+        const ok = reg.test(path);
 
-    return [
-      ok,
-    ];
+        if (ok) {
+          const stringified = `${reg}`;
+
+          return [
+            stringified,
+          ];
+        }
+      }
+
+      return [
+        '',
+      ];
+    } catch (error) {
+      return errors.wrap('isCorrect', error);
+    }
   },
 };
 

@@ -1,10 +1,23 @@
+import utils from '../../utils/utils.js';
 import matcherModule from './matcher/matcher.js';
 import reporterModule from './reporter/reporter.js';
+
+const {
+  errors,
+} = utils;
 
 // Stryker disable next-line ObjectLiteral
 const dependecies = {
   matcher: matcherModule,
   reporter: reporterModule,
+};
+
+const createSet = (regs) => {
+  const stringified = regs.map((reg) => {
+    return `${reg}`;
+  });
+
+  return new Set(stringified);
 };
 
 const lintFs = ({
@@ -18,14 +31,11 @@ const lintFs = ({
   return async () => {
     const [
       paths,
-      filesystemError,
+      pathsError,
     ] = await filesystem.paths('.');
 
-    if (filesystemError) {
-      return [
-        undefined,
-        `lintFs: ${filesystemError}`,
-      ];
+    if (pathsError) {
+      return errors.wrap('lintFs', pathsError);
     }
 
     const [
@@ -37,50 +47,48 @@ const lintFs = ({
     });
 
     if (configError) {
-      return [
-        undefined,
-        `lintFs: ${configError}`,
-      ];
+      return errors.wrap('lintFs', configError);
     }
 
     const correct = [];
     const incorrect = [];
-
     const {
       ignores,
       rules,
     } = initedConfig;
+    const excessives = createSet([
+      ...ignores,
+      ...rules,
+    ]);
 
     for (const path of paths) {
       const [
-        isIgnored,
-        ignoresError,
+        ignoreReg,
+        ignoreRegError,
       ] = matcher.isCorrect(path, ignores);
 
-      if (ignoresError) {
-        return [
-          undefined,
-          `lintFs: ${ignoresError}`,
-        ];
+      if (ignoreRegError) {
+        return errors.wrap('lintFs', ignoreRegError);
       }
 
-      if (isIgnored) {
+      if (ignoreReg) {
+        excessives.delete(ignoreReg);
+
         continue;
       }
 
       const [
-        isRuled,
-        rulesError,
+        ruleReg,
+        ruleRegError,
       ] = matcher.isCorrect(path, rules);
 
-      if (rulesError) {
-        return [
-          undefined,
-          `lintFs: ${rulesError}`,
-        ];
+      if (ruleRegError) {
+        return errors.wrap('lintFs', ruleRegError);
       }
 
-      if (isRuled) {
+      if (ruleReg) {
+        excessives.delete(ruleReg);
+
         correct.push(path);
       } else {
         incorrect.push(path);
@@ -89,25 +97,25 @@ const lintFs = ({
 
     const [
       _,
-      reporterError,
+      printError,
     ] = reporter.print(logger, {
       correct,
+      excessives: Array.from(excessives),
       incorrect,
     });
 
-    if (reporterError) {
-      return [
-        undefined,
-        `lintFs: ${reporterError}`,
-      ];
+    if (printError) {
+      return errors.wrap('lintFs', printError);
     }
 
-    const isFileSystemIncorrect = incorrect.length > 0;
-    if (isFileSystemIncorrect) {
-      return [
-        undefined,
-        'File System Structure is Incorrect! 💢',
-      ];
+    const isIncorrect = incorrect.length;
+    if (isIncorrect) {
+      return errors.wrap('lintFs', 'File System Structure is Incorrect!');
+    }
+
+    const isExcessive = excessives.size;
+    if (isExcessive) {
+      return errors.wrap('lintFs', 'Excessive Config!');
     }
 
     return [];

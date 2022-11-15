@@ -1,8 +1,6 @@
 import assert from 'node:assert/strict';
 import lintFs from './lintFs.js';
 
-let isCorrectCounter = 0;
-
 const testLintFs = async ({
   config,
   fail,
@@ -12,8 +10,6 @@ const testLintFs = async ({
   reporter,
   result,
 }) => {
-  isCorrectCounter = 0;
-
   assert.deepEqual(await lintFs({
     config,
     fail,
@@ -175,23 +171,23 @@ const tests = [
     },
     matcher: {
       isCorrect () {
-        isCorrectCounter++;
-
-        const ok = isCorrectCounter % 2 === 0;
-        const errorMessage = isCorrectCounter % 2 === 1 ? undefined : 'rulesError';
-
-        return [
-          ok,
-          errorMessage,
-        ];
+        return this.results.shift();
       },
+      results: [
+        [
+          '',
+        ],
+        [
+          undefined,
+          'rulesError',
+        ],
+      ],
     },
     result: [
       undefined,
       'lintFs: rulesError',
     ],
   },
-
   {
     config: {
       read () {
@@ -201,7 +197,8 @@ const tests = [
               /.\/ignoresPath.js/u,
             ],
             rules: [
-              /.\/rulesPath.js/u,
+              /.\/rulesPath1.js/u,
+              /.\/rulesPath2.js/u,
             ],
           },
         ];
@@ -212,7 +209,7 @@ const tests = [
         return [
           [
             './ignoresPath.js',
-            './rulesPath.js',
+            './rulesPath1.js',
           ],
         ];
       },
@@ -220,19 +217,29 @@ const tests = [
     logger: {},
     matcher: {
       isCorrect () {
-        isCorrectCounter++;
-
-        return [
-          isCorrectCounter % 2 === 1,
-        ];
+        return this.results.shift();
       },
+      results: [
+        [
+          '/.\\/ignoresPath.js/u',
+        ],
+        [
+          '',
+        ],
+        [
+          '/.\\/rulesPath1.js/u',
+        ],
+      ],
     },
     reporter: {
       print (logger, report) {
         assert.deepEqual(logger, {});
         assert.deepEqual(report, {
           correct: [
-            './rulesPath.js',
+            './rulesPath1.js',
+          ],
+          excessives: [
+            '/.\\/rulesPath2.js/u',
           ],
           incorrect: [],
         });
@@ -265,7 +272,7 @@ const tests = [
       paths () {
         return [
           [
-            './incorretPath.js',
+            './incorrectPath.js',
           ],
         ];
       },
@@ -274,7 +281,7 @@ const tests = [
     matcher: {
       isCorrect () {
         return [
-          false,
+          '',
         ];
       },
     },
@@ -285,7 +292,48 @@ const tests = [
     },
     result: [
       undefined,
-      'File System Structure is Incorrect! 💢',
+      'lintFs: File System Structure is Incorrect!',
+    ],
+  },
+  {
+    config: {
+      read () {
+        return [
+          {
+            ignores: [],
+            rules: [
+              /.\/correctPath\d.js/u,
+              /.\/correctPath1.js/u,
+            ],
+          },
+        ];
+      },
+    },
+    filesystem: {
+      paths () {
+        return [
+          [
+            './correctPath1.js',
+          ],
+        ];
+      },
+    },
+    logger: {},
+    matcher: {
+      isCorrect () {
+        return [
+          '/.\\/correctPath\\d.js/u',
+        ];
+      },
+    },
+    reporter: {
+      print () {
+        return [];
+      },
+    },
+    result: [
+      undefined,
+      'lintFs: Excessive Config!',
     ],
   },
   {
