@@ -1,3 +1,4 @@
+# переименовать в ignore
 ignores:
   - ^./node_modules/
   - ^./.git/
@@ -20,3 +21,6 @@ rules:
   - ^./run-tests.js$
   - ^./stryker.conf.json$
   - ^.(/[a-z]+((\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?)*/([a-z]+((\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?)/\6(.test)?.js$
+
+# mode: verbose | silent
+# провалидировать, что обязательно должно быть либо verbose, либо silent
