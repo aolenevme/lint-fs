@@ -16,8 +16,7 @@ const {
 });
 
 const [
-  _,
-  error,
+  , error,
 ] = await useCases({
   config,
   filesystem,
