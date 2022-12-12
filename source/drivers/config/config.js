@@ -1,47 +1,5 @@
 import utils from '../../utils/utils.js';
-
-const {
-  errors,
-} = utils;
-
-const load = async ({
-  fs,
-  yaml,
-}, {
-  encoding,
-  fileName,
-}) => {
-  try {
-    const file = await fs.readFile(fileName, encoding);
-    const loadedConfig = yaml.load(file);
-
-    return [
-      loadedConfig,
-    ];
-  } catch (error) {
-    return errors.wrap('load', error.message);
-  }
-};
-
-const createRegExps = (templates) => {
-  try {
-    const checkedTemplates = templates ?? [];
-
-    const regExps = [];
-
-    for (const template of checkedTemplates) {
-      const regExp = new RegExp(template, 'u');
-
-      regExps.push(regExp);
-    }
-
-    return [
-      regExps,
-    ];
-  } catch (error) {
-    return errors.wrap('createRegExps', error.message);
-  }
-};
+import helpers from './helpers.js';
 
 const config = ({
   fs,
@@ -52,29 +10,29 @@ const config = ({
       const [
         loadedConfig,
         loadedConfigError,
-      ] = await load({
+      ] = await helpers.load({
         fs,
         yaml,
       }, options);
 
       if (loadedConfigError) {
-        return errors.wrap('read', loadedConfigError);
+        return utils.errors.wrap('read', loadedConfigError);
       }
 
       const [
         ignores,
-        ignoresRegExpError,
-      ] = createRegExps(loadedConfig.ignores);
-      if (ignoresRegExpError) {
-        return errors.wrap('read', ignoresRegExpError);
+        ignoresError,
+      ] = helpers.createRegExps(loadedConfig.ignores);
+      if (ignoresError) {
+        return utils.errors.wrap('read', ignoresError);
       }
 
       const [
         rules,
         rulesError,
-      ] = createRegExps(loadedConfig.rules);
+      ] = helpers.createRegExps(loadedConfig.rules);
       if (rulesError) {
-        return errors.wrap('read', rulesError);
+        return utils.errors.wrap('read', rulesError);
       }
 
       return [
