@@ -35,9 +35,18 @@ const config = ({
         return utils.errors.wrap('read', rulesError);
       }
 
+      const mode = loadedConfig.mode;
+      const [
+        , modeError,
+      ] = helpers.isModeValid(loadedConfig.mode);
+      if (modeError) {
+        return utils.errors.wrap('read', modeError);
+      }
+
       return [
         {
           ignores,
+          mode,
           rules,
         },
       ];

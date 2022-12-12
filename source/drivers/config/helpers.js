@@ -16,8 +16,22 @@ const createRegExps = (templates) => {
       regExps,
     ];
   } catch (error) {
-    return utils.errors.wrap('createRegExps', error.message);
+    return utils.errors.wrap(createRegExps.name, error.message);
   }
+};
+
+const isModeValid = (mode) => {
+  const modes = [
+    'silent',
+    'verbose',
+  ];
+  const isValid = modes.includes(mode);
+
+  if (!isValid) {
+    return utils.errors.wrap(isModeValid.name, 'the valid mode configuration is \'silent\' | \'verbose\'');
+  }
+
+  return [];
 };
 
 const load = async ({
@@ -35,12 +49,13 @@ const load = async ({
       loadedConfig,
     ];
   } catch (error) {
-    return utils.errors.wrap('load', error.message);
+    return utils.errors.wrap(load.name, error.message);
   }
 };
 
 const helpers = {
   createRegExps,
+  isModeValid,
   load,
 };
 
