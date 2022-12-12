@@ -96,8 +96,7 @@ const lintFs = ({
     }
 
     const [
-      _,
-      printError,
+      , printError,
     ] = reporter.print(logger, {
       correct,
       excessives: Array.from(excessives),
