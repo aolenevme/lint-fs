@@ -36,11 +36,9 @@ const config = ({
       }
 
       const mode = loadedConfig.mode;
-      const [
-        , modeError,
-      ] = helpers.isModeValid(loadedConfig.mode);
-      if (modeError) {
-        return utils.errors.wrap('read', modeError);
+      const isValid = helpers.isModeValid(loadedConfig.mode);
+      if (!isValid) {
+        return utils.errors.wrap('read', 'the valid mode configuration is \'silent\' or \'verbose\'');
       }
 
       return [

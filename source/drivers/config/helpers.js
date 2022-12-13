@@ -27,11 +27,7 @@ const isModeValid = (mode) => {
   ];
   const isValid = modes.includes(mode);
 
-  if (!isValid) {
-    return utils.errors.wrap(isModeValid.name, 'the valid mode configuration is \'silent\' | \'verbose\'');
-  }
-
-  return [];
+  return isValid;
 };
 
 const load = async ({

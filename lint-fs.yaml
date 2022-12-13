@@ -1,9 +1,8 @@
-# переименовать в ignore
 ignores:
   - ^./node_modules/
   - ^./.git/
 
-mode: silent 
+mode: silent
 
 rules:
   - ^./.github/FUNDING.yml$

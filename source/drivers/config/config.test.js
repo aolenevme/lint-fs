@@ -142,8 +142,30 @@ const tests = [
     },
     options: {},
     result: [
+      {
+        ignores: [],
+        mode: 'silent',
+        rules: [],
+      },
+    ],
+    yaml: {
+      load () {
+        return {
+          ignores: [],
+          mode: 'silent',
+          rules: [],
+        };
+      },
+    },
+  },
+  {
+    fs: {
+      readFile () {},
+    },
+    options: {},
+    result: [
       undefined,
-      'read: isModeValid: the valid mode configuration is \'silent\' | \'verbose\'',
+      'read: the valid mode configuration is \'silent\' or \'verbose\'',
     ],
     yaml: {
       load () {
