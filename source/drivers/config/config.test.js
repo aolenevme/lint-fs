@@ -138,6 +138,25 @@ const tests = [
   },
   {
     fs: {
+      readFile () {},
+    },
+    options: {},
+    result: [
+      undefined,
+      'read: isModeValid: the valid mode configuration is \'silent\' | \'verbose\'',
+    ],
+    yaml: {
+      load () {
+        return {
+          ignores: [],
+          mode: 'wrong-mode',
+          rules: [],
+        };
+      },
+    },
+  },
+  {
+    fs: {
       readFile () {
         throw new Error('file');
       },
@@ -156,4 +175,3 @@ const tests = [
 for (const test of tests) {
   testConfig(test);
 }
-
