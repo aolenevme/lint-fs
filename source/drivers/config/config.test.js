@@ -32,6 +32,7 @@ const tests = [
         ignores: [
           /^node_modules/u,
         ],
+        mode: 'verbose',
         rules: [
           /^.\/[A-Z]+.md$/u,
         ],
@@ -45,6 +46,7 @@ const tests = [
           ignores: [
             '^node_modules',
           ],
+          mode: 'verbose',
           rules: [
             '^./[A-Z]+.md$',
           ],
@@ -60,12 +62,15 @@ const tests = [
     result: [
       {
         ignores: [],
+        mode: 'verbose',
         rules: [],
       },
     ],
     yaml: {
       load () {
-        return {};
+        return {
+          mode: 'verbose',
+        };
       },
     },
   },
@@ -77,6 +82,7 @@ const tests = [
     result: [
       {
         ignores: [],
+        mode: 'verbose',
         rules: [],
       },
     ],
@@ -84,6 +90,7 @@ const tests = [
       load () {
         return {
           ignores: null,
+          mode: 'verbose',
           rules: null,
         };
       },
