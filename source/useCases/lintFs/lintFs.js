@@ -53,6 +53,7 @@ const lintFs = ({
     const correct = [];
     const incorrect = [];
     const {
+      mode,
       ignores,
       rules,
     } = initedConfig;
@@ -101,6 +102,7 @@ const lintFs = ({
       correct,
       excessives: Array.from(excessives),
       incorrect,
+      mode,
     });
 
     if (printError) {

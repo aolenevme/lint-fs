@@ -49,6 +49,7 @@ const tests = [
         return [
           {
             ignores: [],
+            mode: 'verbose',
             rules: [],
           },
         ];
@@ -73,6 +74,7 @@ const tests = [
         return [
           {
             ignores: [],
+            mode: 'verbose',
             rules: [],
           },
         ];
@@ -111,6 +113,7 @@ const tests = [
             ignores: [
               /.\/ignoresPath.js/u,
             ],
+            mode: 'verbose',
             rules: [],
           },
         ];
@@ -152,6 +155,7 @@ const tests = [
             ignores: [
               /.\/ignorePath.js/u,
             ],
+            mode: 'verbose',
             rules: [
               /.\/rulesPath.js/u,
             ],
@@ -196,6 +200,7 @@ const tests = [
             ignores: [
               /.\/ignoresPath.js/u,
             ],
+            mode: 'verbose',
             rules: [
               /.\/rulesPath1.js/u,
               /.\/rulesPath2.js/u,
@@ -242,6 +247,7 @@ const tests = [
             '/.\\/rulesPath2.js/u',
           ],
           incorrect: [],
+          mode: 'verbose',
         });
 
         return [
@@ -261,6 +267,7 @@ const tests = [
         return [
           {
             ignores: [],
+            mode: 'verbose',
             rules: [
               /.\/correctPath.js/u,
             ],
@@ -301,6 +308,7 @@ const tests = [
         return [
           {
             ignores: [],
+            mode: 'verbose',
             rules: [
               /.\/correctPath\d.js/u,
               /.\/correctPath1.js/u,
@@ -342,6 +350,7 @@ const tests = [
         return [
           {
             ignores: [],
+            mode: 'verbose',
             rules: [],
           },
         ];

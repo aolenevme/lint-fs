@@ -9,6 +9,7 @@ const reporter = {
     correct,
     excessives,
     incorrect,
+    mode,
   }) {
     const [
       , titleError,
@@ -17,7 +18,7 @@ const reporter = {
       return errors.wrap('reporter', titleError);
     }
 
-    if (correct.length) {
+    if (mode === 'verbose' && correct.length) {
       const [
         , correctTitleError,
       ] = logger.log('\u001B[42m%s\u001B[0m', 'Correct Files');
