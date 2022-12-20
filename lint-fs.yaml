@@ -1,4 +1,4 @@
-# Type Annotations of the Configuration File
+# Type Annotations
 #
 # ignores?: RegEx[];
 # mode: 'silent' | 'verbose';
