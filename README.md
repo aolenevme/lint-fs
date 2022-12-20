@@ -25,9 +25,6 @@ Specify the [`lint-fs.yaml`](lint-fs.yaml) file in your project's root using the
 ```
 npx lint-fs
 ```
-```
-lint-fs
-```
 
 ## 🤝🏼 Feedback
 To share your feedback, please, create an [issue](https://github.com/eshekak/lint-fs/issues).
