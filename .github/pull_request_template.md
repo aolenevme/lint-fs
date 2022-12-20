@@ -11,3 +11,4 @@
 - [ ] I have described the changes above in grammatically correct English.
 - [ ] I have connected the Issue with the Pull Request.
 - [ ] I have hanged the same labels on the Pull Request as in the Issue.
+- [ ] I have incremented the version both within [package.json](https://github.com/aolenevme/lint-fs/blob/main/package.json) and [package-lock.json](https://github.com/aolenevme/lint-fs/blob/main/package-lock.json).

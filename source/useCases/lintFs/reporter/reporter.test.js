@@ -3,14 +3,15 @@ import reporter from './reporter.js';
 
 const testReporter = ({
   logger,
-  paths,
+  info,
   result,
 }) => {
   const {
     correct,
     excessives,
     incorrect,
-  } = paths;
+    mode,
+  } = info;
 
   let correctCounter = 0;
   const correctProxied = correct && new Proxy(correct, {
@@ -45,16 +46,20 @@ const testReporter = ({
     },
   });
 
-  const pathsProxied = {
+  const infoProxied = {
     correct: correctProxied,
     excessives: excessivesProxied,
     incorrect: incorrectProxied,
+    mode,
   };
 
-  assert.deepEqual(reporter.print(logger, pathsProxied), result);
+  assert.deepEqual(reporter.print(logger, infoProxied), result);
 
   if (correct) {
-    assert.deepEqual(correctCounter, 1);
+    const isVerbose = mode === 'verbose';
+    const counter = Number(isVerbose);
+
+    assert.deepEqual(correctCounter, counter);
   }
 
   if (excessives) {
@@ -68,6 +73,18 @@ const testReporter = ({
 
 const tests = [
   {
+    info: {
+      correct: [
+        'correct.js',
+      ],
+      excessives: [
+        '/.\\/excessivesPath.js/u',
+      ],
+      incorrect: [
+        'incorrect.js',
+      ],
+      mode: 'verbose',
+    },
     logger: {
       log (format, text) {
         const formats = [
@@ -97,20 +114,10 @@ const tests = [
         return [];
       },
     },
-    paths: {
-      correct: [
-        'correct.js',
-      ],
-      excessives: [
-        '/.\\/excessivesPath.js/u',
-      ],
-      incorrect: [
-        'incorrect.js',
-      ],
-    },
     result: [],
   },
   {
+    info: {},
     logger: {
       log () {
         return [
@@ -119,13 +126,18 @@ const tests = [
         ];
       },
     },
-    paths: {},
     result: [
       undefined,
       'reporter: logger.log.title',
     ],
   },
   {
+    info: {
+      correct: [
+        'correct.js',
+      ],
+      mode: 'verbose',
+    },
     logger: {
       log (_, text) {
         if (text === 'Correct Files') {
@@ -138,17 +150,18 @@ const tests = [
         return [];
       },
     },
-    paths: {
-      correct: [
-        'correct.js',
-      ],
-    },
     result: [
       undefined,
       'reporter: logger.log.correctTitle',
     ],
   },
   {
+    info: {
+      correct: [
+        'correct.js',
+      ],
+      mode: 'verbose',
+    },
     logger: {
       log () {
         return [];
@@ -160,17 +173,18 @@ const tests = [
         ];
       },
     },
-    paths: {
-      correct: [
-        'correct.js',
-      ],
-    },
     result: [
       undefined,
       'reporter: logger.logBatch.correct',
     ],
   },
   {
+    info: {
+      correct: [],
+      incorrect: [
+        'incorrect.js',
+      ],
+    },
     logger: {
       log (_, text) {
         if (text === '\nIncorrect Files') {
@@ -183,18 +197,18 @@ const tests = [
         return [];
       },
     },
-    paths: {
-      correct: [],
-      incorrect: [
-        'incorrect.js',
-      ],
-    },
     result: [
       undefined,
       'reporter: logger.log.incorrectTitle',
     ],
   },
   {
+    info: {
+      correct: [],
+      incorrect: [
+        'incorrect.js',
+      ],
+    },
     logger: {
       log () {
         return [];
@@ -206,18 +220,19 @@ const tests = [
         ];
       },
     },
-    paths: {
-      correct: [],
-      incorrect: [
-        'incorrect.js',
-      ],
-    },
     result: [
       undefined,
       'reporter: logger.logBatch.incorrect',
     ],
   },
   {
+    info: {
+      correct: [],
+      excessives: [
+        '/.\\/excessivesPath.js/u',
+      ],
+      incorrect: [],
+    },
     logger: {
       log (_, text) {
         if (text === '\nExcessive Rules') {
@@ -230,19 +245,19 @@ const tests = [
         return [];
       },
     },
-    paths: {
-      correct: [],
-      excessives: [
-        '/.\\/excessivesPath.js/u',
-      ],
-      incorrect: [],
-    },
     result: [
       undefined,
       'reporter: logger.log.excessivesTitleError',
     ],
   },
   {
+    info: {
+      correct: [],
+      excessives: [
+        '/.\\/excessivesPath.js/u',
+      ],
+      incorrect: [],
+    },
     logger: {
       log () {
         return [];
@@ -253,13 +268,6 @@ const tests = [
           'logger.logBatch.excessivesError',
         ];
       },
-    },
-    paths: {
-      correct: [],
-      excessives: [
-        '/.\\/excessivesPath.js/u',
-      ],
-      incorrect: [],
     },
     result: [
       undefined,

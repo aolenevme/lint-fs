@@ -53,6 +53,7 @@ const lintFs = ({
     const correct = [];
     const incorrect = [];
     const {
+      mode,
       ignores,
       rules,
     } = initedConfig;
@@ -96,12 +97,12 @@ const lintFs = ({
     }
 
     const [
-      _,
-      printError,
+      , printError,
     ] = reporter.print(logger, {
       correct,
       excessives: Array.from(excessives),
       incorrect,
+      mode,
     });
 
     if (printError) {
