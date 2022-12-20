@@ -1,3 +1,9 @@
+# Type Annotations of the Configuration File
+#
+# ignores?: RegEx[];
+# mode: 'silent' | 'verbose';
+# rules?: RegEx[];
+
 ignores:
   - ^./node_modules/
   - ^./.git/
