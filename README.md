@@ -14,9 +14,6 @@ We have got linters and static analyzers. But stated structures of projects play
 ```
 npm install --save-dev lint-fs
 ```
-```
-npm install -g lint-fs
-```
 
 ## ⚙️  Configure
 Specify the [`lint-fs.yaml`](lint-fs.yaml) file in your project's root using the power of [ECMAScript Regular Expressions](https://regex101.com/)!
