@@ -15,12 +15,14 @@ rules:
   - ^./.github/ISSUE_TEMPLATE/bug_report.md$
   - ^./.github/ISSUE_TEMPLATE/chore_template.md$
   - ^./.github/ISSUE_TEMPLATE/feature_request.md$
+  - ^./.github/dependabot.yml$
   - ^./.github/pull_request_template.md$
   - ^./.github/workflows/quality.yaml$
   - ^./.github/workflows/release.yaml$
   - ^./.eslintignore$
   - ^./.eslintrc.json$
   - ^./.gitignore$
+  - ^./.nvmrc$
   - ^./([A-Z]+_?)+.md$
   - ^./lint-fs.yaml$
   - ^./package-lock.json$
