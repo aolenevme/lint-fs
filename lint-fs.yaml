@@ -8,7 +8,7 @@ ignores:
   - ^./node_modules/
   - ^./.git/
 
-mode: silent
+mode: verbose
 
 rules:
   - ^./.github/FUNDING.yml$
@@ -21,6 +21,7 @@ rules:
   - ^./.eslintignore$
   - ^./.eslintrc.json$
   - ^./.gitignore$
+  - ^./.nvmrc$
   - ^./([A-Z]+_?)+.md$
   - ^./lint-fs.yaml$
   - ^./package-lock.json$
