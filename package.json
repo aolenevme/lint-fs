@@ -33,7 +33,8 @@
   },
   "scripts": {
     "lint:all": "npm run lint:code && npm run lint:fs",
-    "lint:code": "eslint './**/*.js' --fix",
+    "lint:code": "eslint './**/*.js'",
+    "lint:code:fix": "eslint './**/*.js' --fix",
     "lint:fs": "node ./source/source.js",
     "test:mutant": "npx stryker run",
     "test:unit": "npx c8 node ./run-tests.js; rm -rf ./coverage"
