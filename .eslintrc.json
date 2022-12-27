@@ -7,7 +7,13 @@
     "canonical/module",
     "canonical/node"
   ],
+  "plugins": ["promise"],
   "rules": {
+    "promise/prefer-await-to-callbacks": "error",
+    "promise/prefer-await-to-then": "error",
+    "promise/no-new-statics": "error",
+    "promise/no-promise-in-callback": "error",
+    "promise/valid-params": "error",
     "import/extensions": [
       "error",
       {
