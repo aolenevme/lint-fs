@@ -27,6 +27,7 @@
       {
         "js": "always"
       }
-    ]
+    ],
+    "import/no-unassigned-import": ["error", { "allow": ["**/core/core.js"] }]
   }
 }
