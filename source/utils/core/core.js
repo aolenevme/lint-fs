@@ -1,7 +1,7 @@
 Object.prototype.toString = () => {
-  throw new Error('toString() is forbidden');
+  throw new TypeError('toString() is forbidden');
 };
 
 Object.prototype.valueOf = () => {
-  throw new Error('valueOf() is forbidden');
+  throw new TypeError('valueOf() is forbidden');
 };

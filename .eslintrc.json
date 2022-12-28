@@ -7,12 +7,20 @@
     "canonical/module",
     "canonical/node"
   ],
-  "plugins": ["promise"],
+  "overrides": [
+    {
+      "files": "source/utils/core/core.js",
+      "rules": {
+        "no-extend-native": ["error", { "exceptions": ["Object"] }]
+      }
+    }
+  ],
   "rules": {
-    "promise/prefer-await-to-callbacks": "error",
-    "promise/prefer-await-to-then": "error",
+    "promise/avoid-new": "error",
     "promise/no-new-statics": "error",
     "promise/no-promise-in-callback": "error",
+    "promise/prefer-await-to-callbacks": "error",
+    "promise/prefer-await-to-then": "error",
     "promise/valid-params": "error",
     "import/extensions": [
       "error",
