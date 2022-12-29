@@ -8,18 +8,21 @@
     "canonical/node"
   ],
   "rules": {
+    "import/extensions": [
+      "error",
+      {
+        "js": "always"
+      }
+    ],
+    "import/max-dependencies": ["error", {
+      "max": 4
+    }], 
     "prefer-destructuring": ["error", {"object": true, "array": true }],
     "promise/avoid-new": "error",
     "promise/no-new-statics": "error",
     "promise/no-promise-in-callback": "error",
     "promise/prefer-await-to-callbacks": "error",
     "promise/prefer-await-to-then": "error",
-    "promise/valid-params": "error",
-    "import/extensions": [
-      "error",
-      {
-        "js": "always"
-      }
-    ]
+    "promise/valid-params": "error"
   }
 }
