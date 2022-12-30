@@ -15,9 +15,12 @@
       }
     ],
     "import/exports-last": "error",
+    "import/group-exports": "error",
     "import/max-dependencies": ["error", {
       "max": 4
     }], 
+    "import/named": "error",
+    "import/namespace": [ "error", { "allowComputed": true } ],
     "prefer-destructuring": ["error", {"object": true, "array": true }],
     "promise/avoid-new": "error",
     "promise/no-new-statics": "error",
