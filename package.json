@@ -35,7 +35,7 @@
   "scripts": {
     "lint:all": "npm run lint:code && npm run lint:fs",
     "lint:code": "eslint './**/*.js' && prettier --check ./",
-    "lint:code:fix": "eslint './**/*.js' --fix && prettier --loglevel=error --write ./",
+    "lint:code:fix": "eslint './**/*.js' --fix && prettier --write ./",
     "lint:fs": "node ./source/source.js",
     "test:mutant": "npx stryker run",
     "test:unit": "npx c8 node ./run-tests.js; rm -rf ./coverage"
