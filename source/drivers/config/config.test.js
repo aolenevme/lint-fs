@@ -7,10 +7,13 @@ const testConfig = async ({
   result,
   yaml,
 }) => {
-  assert.deepEqual(await config({
-    fs,
-    yaml,
-  }).read(options), result);
+  assert.deepEqual(
+    await config({
+      fs,
+      yaml,
+    }).read(options),
+    result,
+  );
 };
 
 const tests = [

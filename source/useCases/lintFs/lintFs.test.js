@@ -10,15 +10,21 @@ const testLintFs = async ({
   reporter,
   result,
 }) => {
-  assert.deepEqual(await lintFs({
-    config,
-    fail,
-    filesystem,
-    logger,
-  }, {
-    matcher,
-    reporter,
-  })(), result);
+  assert.deepEqual(
+    await lintFs(
+      {
+        config,
+        fail,
+        filesystem,
+        logger,
+      },
+      {
+        matcher,
+        reporter,
+      },
+    )(),
+    result,
+  );
 };
 
 const tests = [

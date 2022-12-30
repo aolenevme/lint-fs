@@ -8,9 +8,12 @@ const testLogger = async ({
   std,
   result,
 }) => {
-  assert.deepEqual(logger({
-    std,
-  })[method](format, content), result);
+  assert.deepEqual(
+    logger({
+      std,
+    })[method](format, content),
+    result,
+  );
 };
 
 const tests = [

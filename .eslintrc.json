@@ -2,11 +2,7 @@
   "env": {
     "node": true
   },
-  "extends": [
-    "canonical",
-    "canonical/module",
-    "canonical/node"
-  ],
+  "extends": ["canonical", "canonical/module", "canonical/node"],
   "rules": {
     "import/extensions": [
       "error",
@@ -16,17 +12,20 @@
     ],
     "import/exports-last": "error",
     "import/group-exports": "error",
-    "import/max-dependencies": ["error", {
-      "max": 4
-    }], 
+    "import/max-dependencies": [
+      "error",
+      {
+        "max": 4
+      }
+    ],
     "import/named": "error",
-    "import/namespace": [ "error", { "allowComputed": true } ],
+    "import/namespace": ["error", { "allowComputed": true }],
     "import/no-anonymous-default-export": "error",
     "import/no-commonjs": "error",
     "import/no-deprecated": "error",
     "import/no-import-module-exports": "error",
     "import/no-named-export": "error",
-    "prefer-destructuring": ["error", {"object": true, "array": true }],
+    "prefer-destructuring": ["error", { "object": true, "array": true }],
     "promise/avoid-new": "error",
     "promise/no-new-statics": "error",
     "promise/no-promise-in-callback": "error",

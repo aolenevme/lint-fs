@@ -10,10 +10,13 @@ const config = ({
       const [
         loadedConfig,
         loadedConfigError,
-      ] = await helpers.load({
-        fs,
-        yaml,
-      }, options);
+      ] = await helpers.load(
+        {
+          fs,
+          yaml,
+        },
+        options,
+      );
 
       if (loadedConfigError) {
         return utils.errors.wrap('read', loadedConfigError);

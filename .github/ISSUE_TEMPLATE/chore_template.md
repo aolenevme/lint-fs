@@ -1,10 +1,9 @@
 ---
 name: Chore issue template
 about: Describe this chore issue template's purpose here.
-title: "[CHORE]"
+title: '[CHORE]'
 labels: documentation, infra
 assignees: aolenevme
-
 ---
 
 **Describe the chore**

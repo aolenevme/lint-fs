@@ -14,7 +14,8 @@
     "@stryker-mutator/core": "^6.3.1",
     "c8": "^7.12.0",
     "eslint": "^8.30.0",
-    "eslint-config-canonical": "37.0.3"
+    "eslint-config-canonical": "37.0.3",
+    "prettier": "2.8.1"
   },
   "engines": {
     "node": "18.12.1",
@@ -33,8 +34,8 @@
   },
   "scripts": {
     "lint:all": "npm run lint:code && npm run lint:fs",
-    "lint:code": "eslint './**/*.js'",
-    "lint:code:fix": "eslint './**/*.js' --fix",
+    "lint:code": "eslint './**/*.js' && prettier --check ./",
+    "lint:code:fix": "eslint './**/*.js' --fix && prettier --loglevel=error --write ./",
     "lint:fs": "node ./source/source.js",
     "test:mutant": "npx stryker run",
     "test:unit": "npx c8 node ./run-tests.js; rm -rf ./coverage"

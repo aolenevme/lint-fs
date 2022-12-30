@@ -14,37 +14,43 @@ const testReporter = ({
   } = info;
 
   let correctCounter = 0;
-  const correctProxied = correct && new Proxy(correct, {
-    get (target, property) {
-      if (property === 'length') {
-        correctCounter++;
-      }
+  const correctProxied =
+    correct &&
+    new Proxy(correct, {
+      get (target, property) {
+        if (property === 'length') {
+          correctCounter++;
+        }
 
-      return target[property];
-    },
-  });
+        return target[property];
+      },
+    });
 
   let excessivesCounter = 0;
-  const excessivesProxied = excessives && new Proxy(excessives, {
-    get (target, property) {
-      if (property === 'length') {
-        excessivesCounter++;
-      }
+  const excessivesProxied =
+    excessives &&
+    new Proxy(excessives, {
+      get (target, property) {
+        if (property === 'length') {
+          excessivesCounter++;
+        }
 
-      return target[property];
-    },
-  });
+        return target[property];
+      },
+    });
 
   let incorrectCounter = 0;
-  const incorrectProxied = incorrect && new Proxy(incorrect, {
-    get (target, property) {
-      if (property === 'length') {
-        incorrectCounter++;
-      }
+  const incorrectProxied =
+    incorrect &&
+    new Proxy(incorrect, {
+      get (target, property) {
+        if (property === 'length') {
+          incorrectCounter++;
+        }
 
-      return target[property];
-    },
-  });
+        return target[property];
+      },
+    });
 
   const infoProxied = {
     correct: correctProxied,

@@ -22,6 +22,8 @@ rules:
   - ^./.eslintignore$
   - ^./.eslintrc.json$
   - ^./.gitignore$
+  - ^./.prettierignore$
+  - ^./.prettierrc.json$
   - ^./.nvmrc$
   - ^./([A-Z]+_?)+.md$
   - ^./lint-fs.yaml$

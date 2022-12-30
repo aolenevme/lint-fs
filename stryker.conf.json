@@ -5,9 +5,6 @@
   "coverageAnalysis": "perTest",
   "mutate": ["source/**/*.js", "!source/source.js", "!source/**/*.test.js"],
   "packageManager": "npm",
-  "reporters": [
-    "clear-text",
-    "progress"
-  ],
+  "reporters": ["clear-text", "progress"],
   "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json"
 }
