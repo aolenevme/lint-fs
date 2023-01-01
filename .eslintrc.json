@@ -11,6 +11,9 @@
       }
     }
   ],
+  "parserOptions": {
+    "sourceType": "module"
+  },
   "rules": {
     "import/extensions": [
       "error",
@@ -35,6 +38,7 @@
     "import/no-named-export": "error",
     "import/no-namespace": "error",
     "import/no-unused-modules": ["error", { "missingExports": true, "unusedExports": true }],
+    "import/prefer-default-export": "error",
     "prefer-destructuring": ["error", { "object": true, "array": true }],
     "promise/avoid-new": "error",
     "promise/no-new-statics": "error",
