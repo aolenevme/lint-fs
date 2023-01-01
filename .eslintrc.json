@@ -25,6 +25,7 @@
     "import/no-deprecated": "error",
     "import/no-import-module-exports": "error",
     "import/no-named-export": "error",
+    "import/no-namespace": "error",
     "prefer-destructuring": ["error", { "object": true, "array": true }],
     "promise/avoid-new": "error",
     "promise/no-new-statics": "error",
