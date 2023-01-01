@@ -29,6 +29,6 @@ rules:
   - ^./lint-fs.yaml$
   - ^./package-lock.json$
   - ^./package.json$
-  - ^./run-tests.js$
+  - ^./test.js$
   - ^./stryker.conf.json$
   - ^.(/[a-z]+((\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?)*/([a-z]+((\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?)/(\6(.test)?|helpers).js$

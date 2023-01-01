@@ -3,6 +3,14 @@
     "node": true
   },
   "extends": ["canonical", "canonical/module", "canonical/node"],
+  "overrides": [
+    {
+      "files": ["./**/*.test.js", "./source/source.js", "./test.js"],
+      "rules": {
+        "import/no-unused-modules": "off"
+      }
+    }
+  ],
   "rules": {
     "import/extensions": [
       "error",
@@ -26,6 +34,7 @@
     "import/no-import-module-exports": "error",
     "import/no-named-export": "error",
     "import/no-namespace": "error",
+    "import/no-unused-modules": ["error", { "missingExports": true, "unusedExports": true }],
     "prefer-destructuring": ["error", { "object": true, "array": true }],
     "promise/avoid-new": "error",
     "promise/no-new-statics": "error",

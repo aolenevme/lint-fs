@@ -1,6 +1,6 @@
 {
   "commandRunner": {
-    "command": "node ./run-tests.js"
+    "command": "node ./test.js"
   },
   "coverageAnalysis": "perTest",
   "mutate": ["source/**/*.js", "!source/source.js", "!source/**/*.test.js"],

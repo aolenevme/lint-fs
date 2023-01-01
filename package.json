@@ -38,7 +38,7 @@
     "lint:code:fix": "eslint './**/*.js' --fix && prettier --write ./",
     "lint:fs": "node ./source/source.js",
     "test:mutant": "npx stryker run",
-    "test:unit": "npx c8 node ./run-tests.js; rm -rf ./coverage"
+    "test:unit": "npx c8 node ./test.js; rm -rf ./coverage"
   },
   "type": "module",
   "version": "1.2.1"
