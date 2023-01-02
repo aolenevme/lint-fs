@@ -18,6 +18,10 @@
     "camelcase": "error",
     "capitalized-comments": ["error", "always", { "ignorePattern": "c8" }],
     "class-methods-use-this": "error",
+    "eslint-comments/no-unused-disable": "error",
+    "eslint-comments/no-unused-enable": "error",
+    "eslint-comments/no-use": "error",
+    "eslint-comments/require-description": "error",
     "import/extensions": [
       "error",
       {
