@@ -94,7 +94,11 @@
       "extends": [
         "canonical/yaml"
       ],
-      "files": "*.yaml"
+      "files": "*.yaml",
+      "rules": {
+        "yml/key-name-casing": "error",
+        "yml/plain-scalar": "error"
+      }
     }
   ],
   "parserOptions": {
