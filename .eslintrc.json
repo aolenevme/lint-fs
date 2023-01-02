@@ -2,57 +2,96 @@
   "env": {
     "node": true
   },
-  "extends": ["canonical", "canonical/module", "canonical/node"],
+  "extends": [
+    "canonical"
+  ],
   "overrides": [
     {
-      "files": ["./**/*.test.js", "./source/source.js", "./test.js"],
+      "extends": [
+        "canonical/module",
+        "canonical/node"
+      ],
+      "files": [
+        "./**/*.js"
+      ],
+      "rules": {
+        "camelcase": "error",
+        "capitalized-comments": [
+          "error",
+          "always",
+          {"ignorePattern": "c8"}
+        ],
+        "class-methods-use-this": "error",
+        "eslint-comments/no-unused-disable": "error",
+        "eslint-comments/no-unused-enable": "error",
+        "eslint-comments/no-use": "error",
+        "eslint-comments/require-description": "error",
+        "import/exports-last": "error",
+        "import/extensions": [
+          "error",
+          {
+            "js": "always"
+          }
+        ],
+        "import/group-exports": "error",
+        "import/max-dependencies": [
+          "error",
+          {
+            "max": 4
+          }
+        ],
+        "import/named": "error",
+        "import/namespace": [
+          "error",
+          {"allowComputed": true}
+        ],
+        "import/no-anonymous-default-export": "error",
+        "import/no-commonjs": "error",
+        "import/no-deprecated": "error",
+        "import/no-import-module-exports": "error",
+        "import/no-named-export": "error",
+        "import/no-namespace": "error",
+        "import/no-unused-modules": [
+          "error",
+          {"missingExports": true,
+            "unusedExports": true}
+        ],
+        "import/prefer-default-export": "error",
+        "init-declarations": [
+          "error",
+          "always"
+        ],
+        "prefer-destructuring": [
+          "error",
+          {"array": true,
+            "object": true}
+        ],
+        "promise/avoid-new": "error",
+        "promise/no-new-statics": "error",
+        "promise/no-promise-in-callback": "error",
+        "promise/prefer-await-to-callbacks": "error",
+        "promise/prefer-await-to-then": "error",
+        "promise/valid-params": "error"
+      }
+    },
+    {
+      "files": [
+        "./**/*.test.js",
+        "./source/source.js",
+        "./test.js"
+      ],
       "rules": {
         "import/no-unused-modules": "off"
       }
+    },
+    {
+      "extends": [
+        "canonical/json"
+      ],
+      "files": "*.json"
     }
   ],
   "parserOptions": {
     "sourceType": "module"
-  },
-  "rules": {
-    "camelcase": "error",
-    "capitalized-comments": ["error", "always", { "ignorePattern": "c8" }],
-    "class-methods-use-this": "error",
-    "eslint-comments/no-unused-disable": "error",
-    "eslint-comments/no-unused-enable": "error",
-    "eslint-comments/no-use": "error",
-    "eslint-comments/require-description": "error",
-    "import/extensions": [
-      "error",
-      {
-        "js": "always"
-      }
-    ],
-    "import/exports-last": "error",
-    "import/group-exports": "error",
-    "import/max-dependencies": [
-      "error",
-      {
-        "max": 4
-      }
-    ],
-    "import/named": "error",
-    "import/namespace": ["error", { "allowComputed": true }],
-    "import/no-anonymous-default-export": "error",
-    "import/no-commonjs": "error",
-    "import/no-deprecated": "error",
-    "import/no-import-module-exports": "error",
-    "import/no-named-export": "error",
-    "import/no-namespace": "error",
-    "import/no-unused-modules": ["error", { "missingExports": true, "unusedExports": true }],
-    "import/prefer-default-export": "error",
-    "init-declarations": ["error", "always"],
-    "prefer-destructuring": ["error", { "object": true, "array": true }],
-    "promise/avoid-new": "error",
-    "promise/no-new-statics": "error",
-    "promise/no-promise-in-callback": "error",
-    "promise/prefer-await-to-callbacks": "error",
-    "promise/prefer-await-to-then": "error",
-    "promise/valid-params": "error"
   }
 }
