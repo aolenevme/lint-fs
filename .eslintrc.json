@@ -89,9 +89,16 @@
         "canonical/json"
       ],
       "files": "*.json"
+    },
+    {
+      "extends": [
+        "canonical/yaml"
+      ],
+      "files": "*.yaml"
     }
   ],
   "parserOptions": {
     "sourceType": "module"
-  }
+  },
+  "root": true
 }

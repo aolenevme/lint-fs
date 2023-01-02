@@ -34,8 +34,8 @@
   },
   "scripts": {
     "lint:all": "npm run lint:code && npm run lint:fs",
-    "lint:code": "eslint --ext .js --ext .json .",
-    "lint:code:fix": "eslint --ext .js --ext json . --fix",
+    "lint:code": "eslint --ext .js --ext .json --ext .yaml .",
+    "lint:code:fix": "eslint --ext .js --ext .json --ext .yaml . --fix",
     "lint:fs": "node ./source/source.js",
     "test:mutant": "npx stryker run stryker.json",
     "test:unit": "npx c8 node ./test.js; rm -rf ./coverage"

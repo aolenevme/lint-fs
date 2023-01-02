@@ -3,13 +3,10 @@
 # ignores?: RegEx[];
 # mode: 'silent' | 'verbose';
 # rules?: RegEx[];
-
 ignores:
   - ^./node_modules/
   - ^./.git/
-
 mode: silent
-
 rules:
   - ^./.github/FUNDING.yml$
   - ^./.github/ISSUE_TEMPLATE/bug_report.md$
