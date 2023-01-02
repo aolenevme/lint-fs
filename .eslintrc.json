@@ -15,6 +15,9 @@
     "sourceType": "module"
   },
   "rules": {
+    "camelcase": "error",
+    "capitalized-comments": ["error", "always", { "ignorePattern": "c8" }],
+    "class-methods-use-this": "error",
     "import/extensions": [
       "error",
       {
