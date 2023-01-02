@@ -37,7 +37,7 @@
     "lint:code": "eslint --ext .js --ext .json .",
     "lint:code:fix": "eslint --ext .js --ext json . --fix",
     "lint:fs": "node ./source/source.js",
-    "test:mutant": "npx stryker run",
+    "test:mutant": "npx stryker run stryker.json",
     "test:unit": "npx c8 node ./test.js; rm -rf ./coverage"
   },
   "type": "module",
