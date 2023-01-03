@@ -61,6 +61,11 @@
           "error",
           "always"
         ],
+        "max-classes-per-file": "error",
+        "max-depth": [
+          "error",
+          3
+        ],
         "prefer-destructuring": [
           "error",
           {"array": true,
