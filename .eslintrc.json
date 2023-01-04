@@ -97,6 +97,7 @@
         "no-duplicate-imports": "error",
         "no-else-return": "error",
         "no-empty-function": "error",
+        "no-invalid-this": "error",
         "prefer-destructuring": [
           "error",
           {
