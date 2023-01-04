@@ -20,19 +20,17 @@ const filesystem = ({
 
           const isDirectory = (await fs.stat(candidate)).isDirectory();
 
-          if (!isDirectory) {
+          if (isDirectory) {
+            const files = await fs.readdir(candidate);
+
+            const nextCandidates = files.map((file) => {
+              return `${candidate}/${file}`;
+            });
+
+            candidates.push(...nextCandidates);
+          } else {
             paths.push(candidate);
-
-            continue;
           }
-
-          const files = await fs.readdir(candidate);
-
-          const nextCandidates = files.map((file) => {
-            return `${candidate}/${file}`;
-          });
-
-          candidates.push(...nextCandidates);
         }
 
         return [

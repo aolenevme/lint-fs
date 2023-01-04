@@ -74,25 +74,23 @@ const lintFs = ({
 
       if (ignoreReg) {
         excessives.delete(ignoreReg);
-
-        continue;
-      }
-
-      const [
-        ruleReg,
-        ruleRegError,
-      ] = matcher.isCorrect(path, rules);
-
-      if (ruleRegError) {
-        return errors.wrap('lintFs', ruleRegError);
-      }
-
-      if (ruleReg) {
-        excessives.delete(ruleReg);
-
-        correct.push(path);
       } else {
-        incorrect.push(path);
+        const [
+          ruleReg,
+          ruleRegError,
+        ] = matcher.isCorrect(path, rules);
+
+        if (ruleRegError) {
+          return errors.wrap('lintFs', ruleRegError);
+        }
+
+        if (ruleReg) {
+          excessives.delete(ruleReg);
+
+          correct.push(path);
+        } else {
+          incorrect.push(path);
+        }
       }
     }
 

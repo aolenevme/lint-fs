@@ -93,6 +93,8 @@
         "new-cap": "error",
         "newline-per-chained-call": "error",
         "no-constant-condition": "error",
+        "no-continue": "error",
+        "no-duplicate-imports": "error",
         "prefer-destructuring": [
           "error",
           {
