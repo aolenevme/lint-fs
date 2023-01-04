@@ -85,6 +85,11 @@
             "tabWidth": 2
           }
         ],
+        "multiline-comment-style": "error",
+        "multiline-ternary": [
+          "error",
+          "always"
+        ],
         "prefer-destructuring": [
           "error",
           {
