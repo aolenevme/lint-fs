@@ -91,6 +91,7 @@
           "always"
         ],
         "new-cap": "error",
+        "newline-per-chained-call": "error",
         "prefer-destructuring": [
           "error",
           {
