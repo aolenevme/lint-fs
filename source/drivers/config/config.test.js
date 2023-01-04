@@ -59,7 +59,9 @@ const tests = [
   },
   {
     fs: {
-      readFile () {},
+      readFile () {
+        return 'file';
+      },
     },
     options: {},
     result: [
@@ -79,7 +81,9 @@ const tests = [
   },
   {
     fs: {
-      readFile () {},
+      readFile () {
+        return 'file';
+      },
     },
     options: {},
     result: [
@@ -101,7 +105,9 @@ const tests = [
   },
   {
     fs: {
-      readFile () {},
+      readFile () {
+        return 'file';
+      },
     },
     options: {},
     result: [
@@ -121,7 +127,9 @@ const tests = [
   },
   {
     fs: {
-      readFile () {},
+      readFile () {
+        return 'file';
+      },
     },
     options: {},
     result: [
@@ -141,7 +149,9 @@ const tests = [
   },
   {
     fs: {
-      readFile () {},
+      readFile () {
+        return 'file';
+      },
     },
     options: {},
     result: [
@@ -163,7 +173,9 @@ const tests = [
   },
   {
     fs: {
-      readFile () {},
+      readFile () {
+        return 'file';
+      },
     },
     options: {},
     result: [

@@ -96,6 +96,7 @@
         "no-continue": "error",
         "no-duplicate-imports": "error",
         "no-else-return": "error",
+        "no-empty-function": "error",
         "prefer-destructuring": [
           "error",
           {
