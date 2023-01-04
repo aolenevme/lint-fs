@@ -43,7 +43,10 @@ const config = ({
       } = loadedConfig;
       const isValid = helpers.isModeValid(mode);
       if (!isValid) {
-        return utils.errors.wrap('read', 'the valid mode configuration is \'silent\' or \'verbose\'');
+        return utils.errors.wrap(
+          'read',
+          'the valid mode configuration is \'silent\' or \'verbose\'',
+        );
       }
 
       return [

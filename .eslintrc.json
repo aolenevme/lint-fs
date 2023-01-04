@@ -19,7 +19,9 @@
         "capitalized-comments": [
           "error",
           "always",
-          {"ignorePattern": "c8"}
+          {
+            "ignorePattern": "c8"
+          }
         ],
         "class-methods-use-this": "error",
         "eslint-comments/no-unused-disable": "error",
@@ -43,7 +45,9 @@
         "import/named": "error",
         "import/namespace": [
           "error",
-          {"allowComputed": true}
+          {
+            "allowComputed": true
+          }
         ],
         "import/no-anonymous-default-export": "error",
         "import/no-commonjs": "error",
@@ -53,8 +57,10 @@
         "import/no-namespace": "error",
         "import/no-unused-modules": [
           "error",
-          {"missingExports": true,
-            "unusedExports": true}
+          {
+            "missingExports": true,
+            "unusedExports": true
+          }
         ],
         "import/prefer-default-export": "error",
         "init-declarations": [
@@ -66,10 +72,25 @@
           "error",
           3
         ],
+        "max-len": [
+          "error",
+          {
+            "code": 80,
+            "ignoreComments": false,
+            "ignoreRegExpLiterals": false,
+            "ignoreStrings": true,
+            "ignoreTemplateLiterals": false,
+            "ignoreTrailingComments": false,
+            "ignoreUrls": false,
+            "tabWidth": 2
+          }
+        ],
         "prefer-destructuring": [
           "error",
-          {"array": true,
-            "object": true}
+          {
+            "array": true,
+            "object": true
+          }
         ],
         "promise/avoid-new": "error",
         "promise/no-new-statics": "error",
