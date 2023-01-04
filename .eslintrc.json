@@ -99,6 +99,8 @@
         "no-empty-function": "error",
         "no-invalid-this": "error",
         "no-magic-numbers": "error",
+        "no-mixed-operators": "error",
+        "no-nested-ternary": "error",
         "prefer-destructuring": [
           "error",
           {
