@@ -15,7 +15,7 @@ const filesystem = ({
           root,
         ];
 
-        for (let index = 0; index < candidates.length; index++) {
+        for (let index = 0; index < candidates.length; index += 1) {
           const candidate = candidates[index];
 
           const isDirectory = (await fs.stat(candidate)).isDirectory();

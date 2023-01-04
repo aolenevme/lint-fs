@@ -19,7 +19,7 @@ const testReporter = ({
     new Proxy(correct, {
       get (target, property) {
         if (property === 'length') {
-          correctCounter++;
+          correctCounter += 1;
         }
 
         return target[property];
@@ -32,7 +32,7 @@ const testReporter = ({
     new Proxy(excessives, {
       get (target, property) {
         if (property === 'length') {
-          excessivesCounter++;
+          excessivesCounter += 1;
         }
 
         return target[property];
@@ -45,7 +45,7 @@ const testReporter = ({
     new Proxy(incorrect, {
       get (target, property) {
         if (property === 'length') {
-          incorrectCounter++;
+          incorrectCounter += 1;
         }
 
         return target[property];

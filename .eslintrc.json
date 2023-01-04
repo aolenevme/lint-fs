@@ -98,9 +98,19 @@
         "no-else-return": "error",
         "no-empty-function": "error",
         "no-invalid-this": "error",
-        "no-magic-numbers": "error",
+        "no-magic-numbers": [
+          "error",
+          {
+            "detectObjects": true,
+            "ignore": [
+              1
+            ]
+          }
+        ],
         "no-mixed-operators": "error",
         "no-nested-ternary": "error",
+        "no-plusplus": "error",
+        "no-return-await": "error",
         "prefer-destructuring": [
           "error",
           {
