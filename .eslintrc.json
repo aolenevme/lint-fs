@@ -90,6 +90,7 @@
           "error",
           "always"
         ],
+        "new-cap": "error",
         "prefer-destructuring": [
           "error",
           {

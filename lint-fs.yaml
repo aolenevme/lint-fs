@@ -19,13 +19,11 @@ rules:
   - ^./.eslintignore$
   - ^./.eslintrc.json$
   - ^./.gitignore$
-  - ^./.prettierignore$
-  - ^./.prettierrc.json$
   - ^./.nvmrc$
   - ^./([A-Z]+_?)+.md$
   - ^./lint-fs.yaml$
   - ^./package-lock.json$
   - ^./package.json$
   - ^./test.js$
-  - ^./stryker.conf.json$
+  - ^./stryker.json$
   - ^.(/[a-z]+((\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?)*/([a-z]+((\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?)/(\6(.test)?|helpers).js$
