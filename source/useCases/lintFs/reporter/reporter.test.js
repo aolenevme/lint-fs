@@ -69,11 +69,15 @@ const testReporter = ({
   }
 
   if (excessives) {
-    assert.deepEqual(excessivesCounter, 1);
+    const counterNumber = 1;
+
+    assert.deepEqual(excessivesCounter, counterNumber);
   }
 
   if (incorrect) {
-    assert.ok(incorrectCounter, 1);
+    const counterNumber = 1;
+
+    assert.ok(incorrectCounter, counterNumber);
   }
 };
 

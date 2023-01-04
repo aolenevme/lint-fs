@@ -98,6 +98,7 @@
         "no-else-return": "error",
         "no-empty-function": "error",
         "no-invalid-this": "error",
+        "no-magic-numbers": "error",
         "prefer-destructuring": [
           "error",
           {
