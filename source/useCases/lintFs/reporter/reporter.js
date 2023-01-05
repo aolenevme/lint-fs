@@ -18,7 +18,7 @@ const reporter = {
       return errors.wrap('reporter', titleError);
     }
 
-    if (mode === 'verbose' && correct.length) {
+    if (mode === 'verbose' && correct.length !== 0) {
       const [
         , correctTitleError,
       ] = logger.log('\u001B[42m%s\u001B[0m', 'Correct Files');
@@ -34,7 +34,7 @@ const reporter = {
       }
     }
 
-    if (incorrect.length) {
+    if (incorrect.length !== 0) {
       const [
         , incorrectTitleError,
       ] = logger.log('\u001B[37m\u001B[41m%s\u001B[0m', '\nIncorrect Files');
@@ -50,7 +50,7 @@ const reporter = {
       }
     }
 
-    if (excessives.length) {
+    if (excessives.length !== 0) {
       const [
         , excessivesTitleError,
       ] = logger.log('\u001B[37m\u001B[41m%s\u001B[0m', '\nExcessive Rules');

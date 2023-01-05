@@ -103,6 +103,7 @@
           {
             "detectObjects": true,
             "ignore": [
+              0,
               1
             ]
           }
@@ -143,7 +144,13 @@
             "natural": true
           }
         ],
-        "unicorn/consistent-destructuring": "error"
+        "unicorn/consistent-destructuring": "error",
+        "unicorn/explicit-length-check": [
+          "error",
+          {
+            "non-zero": "not-equal"
+          }
+        ]
       }
     },
     {
