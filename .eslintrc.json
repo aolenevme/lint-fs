@@ -150,7 +150,18 @@
           {
             "non-zero": "not-equal"
           }
-        ]
+        ],
+        "unicorn/no-array-callback-reference": "error",
+        "unicorn/no-array-push-push": "error",
+        "unicorn/no-console-spaces": "error",
+        "unicorn/no-keyword-prefix": [
+          "error",
+          {
+            "checkProperties": true,
+            "onlyCamelCase": true
+          }
+        ],
+        "unicorn/no-null": "error"
       }
     },
     {

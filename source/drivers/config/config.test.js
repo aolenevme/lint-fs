@@ -96,9 +96,7 @@ const tests = [
     yaml: {
       load () {
         return {
-          ignores: null,
           mode: 'verbose',
-          rules: null,
         };
       },
     },
