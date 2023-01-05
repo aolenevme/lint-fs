@@ -132,7 +132,8 @@
         "promise/no-promise-in-callback": "error",
         "promise/prefer-await-to-callbacks": "error",
         "promise/prefer-await-to-then": "error",
-        "promise/valid-params": "error"
+        "promise/valid-params": "error",
+        "require-await": "error"
       }
     },
     {
