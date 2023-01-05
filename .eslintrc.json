@@ -111,6 +111,10 @@
         "no-plusplus": "error",
         "no-return-await": "error",
         "no-ternary": "error",
+        "no-underscore-dangle": "error",
+        "no-unreachable": "error",
+        "no-unused-private-class-members": "error",
+        "no-warning-comments": "error",
         "prefer-destructuring": [
           "error",
           {
