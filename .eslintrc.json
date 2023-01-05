@@ -133,7 +133,17 @@
         "promise/prefer-await-to-callbacks": "error",
         "promise/prefer-await-to-then": "error",
         "promise/valid-params": "error",
-        "require-await": "error"
+        "require-await": "error",
+        "sort-keys": [
+          "error",
+          "asc",
+          {
+            "caseSensitive": true,
+            "minKeys": 2,
+            "natural": true
+          }
+        ],
+        "unicorn/consistent-destructuring": "error"
       }
     },
     {
