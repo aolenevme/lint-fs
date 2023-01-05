@@ -161,7 +161,14 @@
             "onlyCamelCase": true
           }
         ],
-        "unicorn/no-null": "error"
+        "unicorn/no-null": "error",
+        "unicorn/no-process-exit": "error",
+        "unicorn/no-unreadable-array-destructuring": "error",
+        "unicorn/no-useless-undefined": "error",
+        "unicorn/prefer-add-event-listener": "error",
+        "unicorn/prefer-at": "error",
+        "unicorn/prefer-code-point": "error",
+        "unicorn/prefer-negative-index": "error"
       }
     },
     {
