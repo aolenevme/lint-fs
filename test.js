@@ -27,5 +27,5 @@ const runTests = async () => {
   }
 };
 
-runTests();
+await runTests();
 /* c8 ignore stop */

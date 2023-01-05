@@ -56,5 +56,5 @@ const tests = [
 ];
 
 for (const test of tests) {
-  testFilesystem(test);
+  await testFilesystem(test);
 }

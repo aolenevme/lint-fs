@@ -128,6 +128,7 @@
             "object": true
           }
         ],
+        "prefer-object-has-own": "error",
         "promise/avoid-new": "error",
         "promise/no-new-statics": "error",
         "promise/no-promise-in-callback": "error",
@@ -164,11 +165,22 @@
         "unicorn/no-null": "error",
         "unicorn/no-process-exit": "error",
         "unicorn/no-unreadable-array-destructuring": "error",
+        "unicorn/no-useless-spread": "error",
         "unicorn/no-useless-undefined": "error",
         "unicorn/prefer-add-event-listener": "error",
         "unicorn/prefer-at": "error",
         "unicorn/prefer-code-point": "error",
-        "unicorn/prefer-negative-index": "error"
+        "unicorn/prefer-negative-index": "error",
+        "unicorn/prefer-prototype-methods": "error",
+        "unicorn/prefer-switch": [
+          "error",
+          {
+            "emptyDefaultCase": "no-default-case",
+            "minimumCases": 2
+          }
+        ],
+        "unicorn/prefer-top-level-await": "error",
+        "wrap-regex": "error"
       }
     },
     {

@@ -90,5 +90,5 @@ const tests = [
 ];
 
 for (const test of tests) {
-  testLogger(test);
+  await testLogger(test);
 }

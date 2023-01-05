@@ -208,5 +208,5 @@ const tests = [
 ];
 
 for (const test of tests) {
-  testConfig(test);
+  await testConfig(test);
 }
