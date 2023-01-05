@@ -115,6 +115,11 @@
         "no-unreachable": "error",
         "no-unused-private-class-members": "error",
         "no-warning-comments": "error",
+        "node/no-missing-import": "error",
+        "object-curly-spacing": [
+          "error",
+          "always"
+        ],
         "prefer-destructuring": [
           "error",
           {
