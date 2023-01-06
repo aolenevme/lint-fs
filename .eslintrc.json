@@ -86,6 +86,20 @@
             "tabWidth": 2
           }
         ],
+        "max-lines": [
+          "error",
+          {"max": 100}
+        ],
+        "max-lines-per-function": "error",
+        "max-nested-callbacks": [
+          "error",
+          1
+        ],
+        "max-params": [
+          "error",
+          2
+        ],
+        "max-statements": "error",
         "multiline-comment-style": "error",
         "multiline-ternary": [
           "error",
@@ -118,10 +132,6 @@
         "no-unused-private-class-members": "error",
         "no-warning-comments": "error",
         "node/no-missing-import": "error",
-        "object-curly-spacing": [
-          "error",
-          "always"
-        ],
         "prefer-destructuring": [
           "error",
           {

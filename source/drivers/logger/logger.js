@@ -4,7 +4,11 @@ const {
   errors,
 } = utils;
 
-const log = (format, std, text) => {
+const log = ({
+  format,
+  std,
+  text,
+}) => {
   std.log(format, text);
 };
 
@@ -14,7 +18,11 @@ const logger = ({
   return {
     log: (format, text) => {
       try {
-        log(format, std, text);
+        log({
+          format,
+          std,
+          text,
+        });
 
         return [];
       } catch (error) {
@@ -24,7 +32,11 @@ const logger = ({
     logBatch: (format, texts) => {
       try {
         for (const text of texts) {
-          log(format, std, text);
+          log({
+            format,
+            std,
+            text,
+          });
         }
 
         return [];
