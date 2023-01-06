@@ -28,4 +28,5 @@ const runTests = async () => {
 };
 
 await runTests();
+
 /* c8 ignore stop */

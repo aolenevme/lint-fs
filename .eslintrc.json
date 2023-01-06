@@ -67,6 +67,7 @@
           "error",
           "always"
         ],
+        "lines-around-comment": "error",
         "max-classes-per-file": "error",
         "max-depth": [
           "error",
