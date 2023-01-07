@@ -110,7 +110,7 @@ const tests = [
     options: {},
     result: [
       undefined,
-      'read: createRegExps: Invalid regular expression: /[/: Unterminated character class',
+      'read: parse: createRegExps: Invalid regular expression: /[/: Unterminated character class',
     ],
     yaml: {
       load () {
@@ -132,7 +132,7 @@ const tests = [
     options: {},
     result: [
       undefined,
-      'read: createRegExps: Invalid regular expression: /]/: Lone quantifier brackets',
+      'read: parse: createRegExps: Invalid regular expression: /]/: Lone quantifier brackets',
     ],
     yaml: {
       load () {
@@ -202,7 +202,7 @@ const tests = [
     },
     result: [
       undefined,
-      'read: load: file',
+      'read: parse: load: file',
     ],
   },
 ];

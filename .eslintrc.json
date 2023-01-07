@@ -205,6 +205,17 @@
       }
     },
     {
+      "files": [
+        "./**/*.test.js"
+      ],
+      "rules": {
+        "max-lines": [
+          "error",
+          {"max": 400}
+        ]
+      }
+    },
+    {
       "extends": [
         "canonical/json"
       ],

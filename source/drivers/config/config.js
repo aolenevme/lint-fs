@@ -1,47 +1,40 @@
 import utils from '../../utils/utils.js';
-import helpers from './helpers.js';
+import parse from './parse.js';
 
-const config = ({
-  fs,
-  yaml,
-}) => {
+const isModeValid = (mode) => {
+  const modes = [
+    'silent',
+    'verbose',
+  ];
+  const isValid = modes.includes(mode);
+
+  return isValid;
+};
+
+const config = (dependencies) => {
   return {
     read: async (options) => {
       const [
-        loadedConfig,
-        loadedConfigError,
-      ] = await helpers.load(
-        {
-          fs,
-          yaml,
-        },
+        parsedConfig,
+        parseError,
+      ] = await parse({
+        dependencies,
         options,
-      );
-
-      if (loadedConfigError) {
-        return utils.errors.wrap('read', loadedConfigError);
-      }
-
-      const [
-        ignores,
-        ignoresError,
-      ] = helpers.createRegExps(loadedConfig.ignores);
-      if (ignoresError) {
-        return utils.errors.wrap('read', ignoresError);
-      }
-
-      const [
-        rules,
-        rulesError,
-      ] = helpers.createRegExps(loadedConfig.rules);
-      if (rulesError) {
-        return utils.errors.wrap('read', rulesError);
+      });
+      if (parseError) {
+        return utils.errors.wrap(
+          'read',
+          parseError,
+        );
       }
 
       const {
+        ignoreRegExps: ignores,
         mode,
-      } = loadedConfig;
-      const isValid = helpers.isModeValid(mode);
+        rulesRegExps: rules,
+      } = parsedConfig;
+
+      const isValid = isModeValid(mode);
       if (!isValid) {
         return utils.errors.wrap(
           'read',
