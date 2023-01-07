@@ -2,10 +2,6 @@ import utils from '../../utils/utils.js';
 import matcherModule from './matcher/matcher.js';
 import reporterModule from './reporter/reporter.js';
 
-const {
-  errors,
-} = utils;
-
 // Stryker disable next-line ObjectLiteral
 const dependecies = {
   matcher: matcherModule,
@@ -35,7 +31,7 @@ const lintFs = ({
     ] = await filesystem.paths('.');
 
     if (pathsError) {
-      return errors.wrap('lintFs', pathsError);
+      return utils.errors.wrap('lintFs', pathsError);
     }
 
     const [
@@ -47,7 +43,7 @@ const lintFs = ({
     });
 
     if (configError) {
-      return errors.wrap('lintFs', configError);
+      return utils.errors.wrap('lintFs', configError);
     }
 
     const correct = [];
@@ -69,7 +65,7 @@ const lintFs = ({
       ] = matcher.isCorrect(path, ignores);
 
       if (ignoreRegError) {
-        return errors.wrap('lintFs', ignoreRegError);
+        return utils.errors.wrap('lintFs', ignoreRegError);
       }
 
       if (ignoreReg) {
@@ -81,7 +77,7 @@ const lintFs = ({
         ] = matcher.isCorrect(path, rules);
 
         if (ruleRegError) {
-          return errors.wrap('lintFs', ruleRegError);
+          return utils.errors.wrap('lintFs', ruleRegError);
         }
 
         if (ruleReg) {
@@ -104,17 +100,17 @@ const lintFs = ({
     });
 
     if (printError) {
-      return errors.wrap('lintFs', printError);
+      return utils.errors.wrap('lintFs', printError);
     }
 
     const isIncorrect = incorrect.length;
     if (isIncorrect) {
-      return errors.wrap('lintFs', 'File System Structure is Incorrect!');
+      return utils.errors.wrap('lintFs', 'File System Structure is Incorrect!');
     }
 
     const isExcessive = excessives.size;
     if (isExcessive) {
-      return errors.wrap('lintFs', 'Excessive Config!');
+      return utils.errors.wrap('lintFs', 'Excessive Config!');
     }
 
     return [];
