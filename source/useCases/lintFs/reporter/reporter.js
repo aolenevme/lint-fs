@@ -1,4 +1,30 @@
 import utils from '../../../utils/utils.js';
+import logData from './logData.js';
+
+const print = ({
+  logBatchArguments,
+  logArguments,
+  logger,
+  shouldReport,
+}) => {
+  if (shouldReport()) {
+    const [
+      , titleError,
+    ] = logger.log(...logArguments);
+    if (titleError) {
+      return titleError;
+    }
+
+    const [
+      , batchError,
+    ] = logger.logBatch(...logBatchArguments);
+    if (batchError) {
+      return batchError;
+    }
+  }
+
+  return '';
+};
 
 const reporter = {
   print (logger, {
@@ -14,51 +40,49 @@ const reporter = {
       return utils.errors.wrap('reporter', titleError);
     }
 
-    if (mode === 'verbose' && correct.length !== 0) {
-      const [
-        , correctTitleError,
-      ] = logger.log('\u001B[42m%s\u001B[0m', 'Correct Files');
-      if (correctTitleError) {
-        return utils.errors.wrap('reporter', correctTitleError);
-      }
+    const reportData = [
+      {
+        batch: correct,
+        shouldReport: () => {
+          return mode === 'verbose' && correct.length !== 0;
+        },
+      },
+      {
+        batch: incorrect,
+        shouldReport: () => {
+          return incorrect.length !== 0;
+        },
+      },
+      {
+        batch: excessives,
+        shouldReport: () => {
+          return excessives.length !== 0;
+        },
+      },
+    ];
 
-      const [
-        , correctError,
-      ] = logger.logBatch('\u001B[32m%s\u001B[0m', correct);
-      if (correctError) {
-        return utils.errors.wrap('reporter', correctError);
-      }
-    }
+    for (const [
+      index,
+      {
+        batch,
+        shouldReport,
+      },
+    ] of reportData.entries()) {
+      const {
+        logArguments,
+        defineBatchArguments,
+      } = logData[index];
 
-    if (incorrect.length !== 0) {
-      const [
-        , incorrectTitleError,
-      ] = logger.log('\u001B[37m\u001B[41m%s\u001B[0m', '\nIncorrect Files');
-      if (incorrectTitleError) {
-        return utils.errors.wrap('reporter', incorrectTitleError);
-      }
+      const info = {
+        logArguments,
+        logBatchArguments: defineBatchArguments(batch),
+        logger,
+        shouldReport,
+      };
 
-      const [
-        , incorrectError,
-      ] = logger.logBatch('\u001B[31m%s\u001B[0m', incorrect);
-      if (incorrectError) {
-        return utils.errors.wrap('reporter', incorrectError);
-      }
-    }
-
-    if (excessives.length !== 0) {
-      const [
-        , excessivesTitleError,
-      ] = logger.log('\u001B[37m\u001B[41m%s\u001B[0m', '\nExcessive Rules');
-      if (excessivesTitleError) {
-        return utils.errors.wrap('reporter', excessivesTitleError);
-      }
-
-      const [
-        , excessivesError,
-      ] = logger.logBatch('\u001B[31m%s\u001B[0m', excessives);
-      if (excessivesError) {
-        return utils.errors.wrap('reporter', excessivesError);
+      const error = print(info);
+      if (error) {
+        return utils.errors.wrap('reporter', error);
       }
     }
 
