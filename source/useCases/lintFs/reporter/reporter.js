@@ -1,30 +1,6 @@
 import utils from '../../../utils/utils.js';
-import logData from './logData.js';
-
-const print = ({
-  logBatchArguments,
-  logArguments,
-  logger,
-  shouldReport,
-}) => {
-  if (shouldReport()) {
-    const [
-      , titleError,
-    ] = logger.log(...logArguments);
-    if (titleError) {
-      return titleError;
-    }
-
-    const [
-      , batchError,
-    ] = logger.logBatch(...logBatchArguments);
-    if (batchError) {
-      return batchError;
-    }
-  }
-
-  return '';
-};
+import prepareData from './prepareData.js';
+import print from './print.js';
 
 const reporter = {
   print (logger, {
@@ -40,44 +16,17 @@ const reporter = {
       return utils.errors.wrap('reporter', titleError);
     }
 
-    const reportData = [
-      {
-        batch: correct,
-        shouldReport: () => {
-          return mode === 'verbose' && correct.length !== 0;
-        },
-      },
-      {
-        batch: incorrect,
-        shouldReport: () => {
-          return incorrect.length !== 0;
-        },
-      },
-      {
-        batch: excessives,
-        shouldReport: () => {
-          return excessives.length !== 0;
-        },
-      },
-    ];
+    const prepared = prepareData({
+      correct,
+      excessives,
+      incorrect,
+      mode,
+    });
 
-    for (const [
-      index,
-      {
-        batch,
-        shouldReport,
-      },
-    ] of reportData.entries()) {
-      const {
-        logArguments,
-        defineBatchArguments,
-      } = logData[index];
-
+    for (const data of prepared) {
       const info = {
-        logArguments,
-        logBatchArguments: defineBatchArguments(batch),
+        ...data,
         logger,
-        shouldReport,
       };
 
       const error = print(info);
