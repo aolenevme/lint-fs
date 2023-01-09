@@ -4,7 +4,7 @@ const prepareData = ({
   incorrect,
   excessives,
 }) => {
-  const data = [
+  return [
     {
       batch: correct,
       logArguments: [
@@ -50,8 +50,6 @@ const prepareData = ({
       },
     },
   ];
-
-  return data;
 };
 
 export default prepareData;
