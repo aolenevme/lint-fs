@@ -60,28 +60,28 @@ const lintFs = ({
 
     for (const path of paths) {
       const [
-        ignoreReg,
-        ignoreRegError,
+        ignoredRegExp,
+        ignoredRegExpError,
       ] = matcher.isCorrect(path, ignores);
 
-      if (ignoreRegError) {
-        return utils.errors.wrap('lintFs', ignoreRegError);
+      if (ignoredRegExpError) {
+        return utils.errors.wrap('lintFs', ignoredRegExpError);
       }
 
-      if (ignoreReg) {
-        excessives.delete(ignoreReg);
+      if (ignoredRegExp) {
+        excessives.delete(ignoredRegExp);
       } else {
         const [
-          ruleReg,
-          ruleRegError,
+          correctRegExp,
+          correctRegExpError,
         ] = matcher.isCorrect(path, rules);
 
-        if (ruleRegError) {
-          return utils.errors.wrap('lintFs', ruleRegError);
+        if (correctRegExpError) {
+          return utils.errors.wrap('lintFs', correctRegExpError);
         }
 
-        if (ruleReg) {
-          excessives.delete(ruleReg);
+        if (correctRegExp) {
+          excessives.delete(correctRegExp);
 
           correct.push(path);
         } else {
