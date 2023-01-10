@@ -1,4 +1,5 @@
 import utils from '../../utils/utils.js';
+import error from './error.js';
 import matcherModule from './matcher/matcher.js';
 import reporterModule from './reporter/reporter.js';
 
@@ -114,17 +115,10 @@ const lintFs = ({
       return utils.errors.wrap('lintFs', printError);
     }
 
-    const isIncorrect = incorrect.length;
-    if (isIncorrect) {
-      return utils.errors.wrap('lintFs', 'File System Structure is Incorrect!');
-    }
-
-    const isExcessive = excessives.length;
-    if (isExcessive) {
-      return utils.errors.wrap('lintFs', 'Excessive Config!');
-    }
-
-    return [];
+    return error({
+      excessives,
+      incorrect,
+    });
   };
 };
 
