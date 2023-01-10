@@ -8,12 +8,22 @@ const dependecies = {
   reporter: reporterModule,
 };
 
-const createSet = (regs) => {
-  const stringified = regs.map((reg) => {
-    return `${reg}`;
+const createExcessivesSet = ({
+  ignores,
+  rules,
+}) => {
+  const regExps = [
+    ...ignores,
+    ...rules,
+  ];
+  const entries = regExps.map((regExp) => {
+    return [
+      regExp,
+      regExp,
+    ];
   });
 
-  return new Set(stringified);
+  return Object.fromEntries(entries);
 };
 
 const lintFs = ({
@@ -53,10 +63,10 @@ const lintFs = ({
       ignores,
       rules,
     } = initedConfig;
-    const excessives = createSet([
-      ...ignores,
-      ...rules,
-    ]);
+    const excessivesSet = createExcessivesSet({
+      ignores,
+      rules,
+    });
 
     for (const path of paths) {
       const [
@@ -69,7 +79,7 @@ const lintFs = ({
       }
 
       if (ignoredRegExp) {
-        excessives.delete(ignoredRegExp);
+        delete excessivesSet[ignoredRegExp];
       } else {
         const [
           correctRegExp,
@@ -81,7 +91,7 @@ const lintFs = ({
         }
 
         if (correctRegExp) {
-          excessives.delete(correctRegExp);
+          delete excessivesSet[correctRegExp];
 
           correct.push(path);
         } else {
@@ -90,11 +100,12 @@ const lintFs = ({
       }
     }
 
+    const excessives = Object.keys(excessivesSet);
     const [
       , printError,
     ] = reporter.print(logger, {
       correct,
-      excessives: Array.from(excessives),
+      excessives,
       incorrect,
       mode,
     });
@@ -108,7 +119,7 @@ const lintFs = ({
       return utils.errors.wrap('lintFs', 'File System Structure is Incorrect!');
     }
 
-    const isExcessive = excessives.size;
+    const isExcessive = excessives.length;
     if (isExcessive) {
       return utils.errors.wrap('lintFs', 'Excessive Config!');
     }
