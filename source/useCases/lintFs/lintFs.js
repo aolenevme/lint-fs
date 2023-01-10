@@ -78,9 +78,9 @@ const lintFs = ({
         return utils.errors.wrap('lintFs', ignoredRegExpError);
       }
 
-      if (ignoredRegExp) {
-        delete excessivesSet[ignoredRegExp];
-      } else {
+      delete excessivesSet[ignoredRegExp];
+
+      if (!ignoredRegExp) {
         const [
           correctRegExp,
           correctRegExpError,
@@ -90,9 +90,9 @@ const lintFs = ({
           return utils.errors.wrap('lintFs', correctRegExpError);
         }
 
-        if (correctRegExp) {
-          delete excessivesSet[correctRegExp];
+        delete excessivesSet[correctRegExp];
 
+        if (correctRegExp) {
           correct.push(path);
         } else {
           incorrect.push(path);
