@@ -164,12 +164,7 @@
           }
         ],
         "unicorn/consistent-destructuring": "error",
-        "unicorn/explicit-length-check": [
-          "error",
-          {
-            "non-zero": "not-equal"
-          }
-        ],
+        "unicorn/explicit-length-check": "error",
         "unicorn/no-array-callback-reference": "error",
         "unicorn/no-array-push-push": "error",
         "unicorn/no-console-spaces": "error",

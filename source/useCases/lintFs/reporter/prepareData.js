@@ -16,7 +16,7 @@ const prepareData = ({
         correct,
       ],
       shouldReport: () => {
-        return mode === 'verbose' && correct.length !== 0;
+        return Boolean(mode === 'verbose' && correct.at(0));
       },
     },
     {
@@ -31,7 +31,7 @@ const prepareData = ({
         incorrect,
       ],
       shouldReport: () => {
-        return incorrect.length !== 0;
+        return Boolean(incorrect.at(0));
       },
     },
     {
@@ -46,7 +46,7 @@ const prepareData = ({
         excessives,
       ],
       shouldReport: () => {
-        return excessives.length !== 0;
+        return Boolean(excessives.at(0));
       },
     },
   ];
