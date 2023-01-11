@@ -150,7 +150,7 @@ const tests = [
     },
     result: [
       undefined,
-      'lintFs: ignoresError',
+      'lintFs: validate: ignoresError',
     ],
   },
   {
@@ -195,7 +195,7 @@ const tests = [
     },
     result: [
       undefined,
-      'lintFs: rulesError',
+      'lintFs: validate: rulesError',
     ],
   },
   {

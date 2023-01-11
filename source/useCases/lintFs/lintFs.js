@@ -2,29 +2,12 @@ import utils from '../../utils/utils.js';
 import error from './error.js';
 import matcherModule from './matcher/matcher.js';
 import reporterModule from './reporter/reporter.js';
+import validate from './validate.js';
 
 // Stryker disable next-line ObjectLiteral
 const dependecies = {
   matcher: matcherModule,
   reporter: reporterModule,
-};
-
-const createExcessivesSet = ({
-  ignores,
-  rules,
-}) => {
-  const regExps = [
-    ...ignores,
-    ...rules,
-  ];
-  const entries = regExps.map((regExp) => {
-    return [
-      regExp,
-      regExp,
-    ];
-  });
-
-  return Object.fromEntries(entries);
 };
 
 const lintFs = ({
@@ -46,62 +29,42 @@ const lintFs = ({
     }
 
     const [
-      initedConfig,
-      configError,
+      readConfig,
+      readConfigError,
     ] = await config.read({
       encoding: 'utf8',
       fileName: './lint-fs.yaml',
     });
 
-    if (configError) {
-      return utils.errors.wrap('lintFs', configError);
+    if (readConfigError) {
+      return utils.errors.wrap('lintFs', readConfigError);
     }
 
-    const correct = [];
-    const incorrect = [];
     const {
       ignores,
       mode,
       rules,
-    } = initedConfig;
-    const excessivesSet = createExcessivesSet({
+    } = readConfig;
+
+    const [
+      validated,
+      validationError,
+    ] = validate({
       ignores,
+      matcher,
+      paths,
       rules,
     });
-
-    for (const path of paths) {
-      const [
-        ignoredRegExp,
-        ignoredRegExpError,
-      ] = matcher.isCorrect(path, ignores);
-
-      if (ignoredRegExpError) {
-        return utils.errors.wrap('lintFs', ignoredRegExpError);
-      }
-
-      delete excessivesSet[ignoredRegExp];
-
-      if (!ignoredRegExp) {
-        const [
-          correctRegExp,
-          correctRegExpError,
-        ] = matcher.isCorrect(path, rules);
-
-        if (correctRegExpError) {
-          return utils.errors.wrap('lintFs', correctRegExpError);
-        }
-
-        delete excessivesSet[correctRegExp];
-
-        if (correctRegExp) {
-          correct.push(path);
-        } else {
-          incorrect.push(path);
-        }
-      }
+    if (validationError) {
+      return utils.errors.wrap('lintFs', validationError);
     }
 
-    const excessives = Object.keys(excessivesSet);
+    const {
+      correct,
+      excessives,
+      incorrect,
+    } = validated;
+
     const [
       , printError,
     ] = reporter.print(logger, {
