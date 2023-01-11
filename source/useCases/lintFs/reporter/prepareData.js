@@ -16,7 +16,7 @@ const prepareData = ({
         correct,
       ],
       shouldReport: () => {
-        return Boolean(mode === 'verbose' && correct.at(0));
+        return mode === 'verbose' && correct.at(0);
       },
     },
     {
