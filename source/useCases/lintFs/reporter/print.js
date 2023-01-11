@@ -15,9 +15,8 @@ const print = ({
     const [
       , batchError,
     ] = logger.logBatch(...logBatchArguments);
-    if (batchError) {
-      return batchError;
-    }
+
+    return batchError ?? '';
   }
 
   return '';
