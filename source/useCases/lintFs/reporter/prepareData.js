@@ -1,8 +1,8 @@
 const prepareData = ({
   correct,
-  mode,
-  incorrect,
   excessives,
+  incorrect,
+  mode,
 }) => {
   return [
     {

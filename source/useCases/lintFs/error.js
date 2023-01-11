@@ -1,8 +1,8 @@
 import utils from '../../utils/utils.js';
 
 const error = ({
-  incorrect,
   excessives,
+  incorrect,
 }) => {
   const isIncorrect = incorrect.length;
   if (isIncorrect) {

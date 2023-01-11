@@ -60,8 +60,8 @@ const lintFs = ({
     const correct = [];
     const incorrect = [];
     const {
-      mode,
       ignores,
+      mode,
       rules,
     } = initedConfig;
     const excessivesSet = createExcessivesSet({

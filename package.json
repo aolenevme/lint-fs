@@ -14,7 +14,8 @@
     "@stryker-mutator/core": "^6.3.1",
     "c8": "^7.12.0",
     "eslint": "^8.31.0",
-    "eslint-config-canonical": "38.0.2"
+    "eslint-config-canonical": "38.0.2",
+    "eslint-plugin-sort-destructure-keys": "^1.4.0"
   },
   "engines": {
     "node": "18.12.1",

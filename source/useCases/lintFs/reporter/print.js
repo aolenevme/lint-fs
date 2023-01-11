@@ -1,6 +1,6 @@
 const print = ({
-  logBatchArguments,
   logArguments,
+  logBatchArguments,
   logger,
   shouldReport,
 }) => {

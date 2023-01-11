@@ -5,8 +5,8 @@ const testLogger = async ({
   content,
   format,
   method,
-  std,
   result,
+  std,
 }) => {
   assert.deepEqual(
     await logger({

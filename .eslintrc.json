@@ -147,6 +147,7 @@
         "promise/prefer-await-to-then": "error",
         "promise/valid-params": "error",
         "require-await": "error",
+        "sort-destructure-keys/sort-destructure-keys": "error",
         "sort-keys": [
           "error",
           "asc",
@@ -235,5 +236,8 @@
   "parserOptions": {
     "sourceType": "module"
   },
+  "plugins": [
+    "sort-destructure-keys"
+  ],
   "root": true
 }

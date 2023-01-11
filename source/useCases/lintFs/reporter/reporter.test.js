@@ -2,8 +2,8 @@ import assert from 'node:assert/strict';
 import reporter from './reporter.js';
 
 const testReporter = ({
-  logger,
   info,
+  logger,
   result,
 }) => {
   assert.deepEqual(reporter.print(logger, info), result);

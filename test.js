@@ -6,8 +6,8 @@ const exec = util.promisify(childProcess.exec);
 
 const runTests = async () => {
   const {
-    stdout: findStdOut,
     stderr: findStdError,
+    stdout: findStdOut,
   } = await exec('find ./source -name \'*.test.js\'');
 
   if (findStdError) {
