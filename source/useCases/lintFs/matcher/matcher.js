@@ -1,16 +1,14 @@
 import utils from '../../../utils/utils.js';
 
 const matcher = {
-  isCorrect (path, regs) {
+  isCorrect (path, regExps) {
     try {
-      for (const reg of regs) {
-        const ok = reg.test(path);
+      for (const regExp of regExps) {
+        const ok = regExp.test(path);
 
         if (ok) {
-          const stringified = `${reg}`;
-
           return [
-            stringified,
+            `${regExp}`,
           ];
         }
       }
