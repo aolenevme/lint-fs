@@ -31,7 +31,7 @@ const prepareData = ({
         incorrect,
       ],
       shouldReport: () => {
-        return Boolean(incorrect.at(0));
+        return incorrect.at(0);
       },
     },
     {
@@ -46,7 +46,7 @@ const prepareData = ({
         excessives,
       ],
       shouldReport: () => {
-        return Boolean(excessives.at(0));
+        return excessives.at(0);
       },
     },
   ];
