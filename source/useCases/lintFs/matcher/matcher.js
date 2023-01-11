@@ -1,9 +1,5 @@
 import utils from '../../../utils/utils.js';
 
-const {
-  errors,
-} = utils;
-
 const matcher = {
   isCorrect (path, regs) {
     try {
@@ -23,7 +19,7 @@ const matcher = {
         '',
       ];
     } catch (error) {
-      return errors.wrap('isCorrect', error);
+      return utils.errors.wrap('isCorrect', error);
     }
   },
 };

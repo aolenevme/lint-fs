@@ -39,7 +39,7 @@
         "import/max-dependencies": [
           "error",
           {
-            "max": 4
+            "max": 5
           }
         ],
         "import/named": "error",
