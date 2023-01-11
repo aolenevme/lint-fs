@@ -90,7 +90,10 @@
           "error",
           {"max": 100}
         ],
-        "max-lines-per-function": "error",
+        "max-lines-per-function": [
+          "error",
+          80
+        ],
         "max-nested-callbacks": [
           "error",
           1
@@ -99,7 +102,10 @@
           "error",
           2
         ],
-        "max-statements": "error",
+        "max-statements": [
+          "error",
+          18
+        ],
         "multiline-comment-style": "error",
         "multiline-ternary": [
           "error",
