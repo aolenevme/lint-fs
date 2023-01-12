@@ -1,3 +1,15 @@
+const getCorrect = ({
+  correct,
+  mode,
+}) => {
+  switch (mode) {
+  case 'verbose':
+    return correct;
+  default:
+    return [];
+  }
+};
+
 const prepareData = ({
   correct,
   excessives,
@@ -16,7 +28,10 @@ const prepareData = ({
         correct,
       ],
       shouldReport: () => {
-        return mode === 'verbose' && correct.at(0);
+        return getCorrect({
+          correct,
+          mode,
+        }).at(0);
       },
     },
     {
