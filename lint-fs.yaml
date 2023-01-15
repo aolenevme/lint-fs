@@ -1,11 +1,11 @@
 # Type Annotations
 #
-# ignores?: RegEx[];
+# ignores: RegExp[];
 # mode: 'silent' | 'verbose';
-# rules?: RegEx[];
+# rules: RegExp[];
 ignores:
-  - ^./node_modules/
-  - ^./.git/
+ - ^./node_modules/
+ - ^./.git/
 mode: silent
 rules:
   - ^./.github/FUNDING.yml$
