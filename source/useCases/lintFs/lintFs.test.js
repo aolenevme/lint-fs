@@ -10,15 +10,21 @@ const testLintFs = async ({
   reporter,
   result,
 }) => {
-  assert.deepEqual(await lintFs({
-    config,
-    fail,
-    filesystem,
-    logger,
-  }, {
-    matcher,
-    reporter,
-  })(), result);
+  assert.deepEqual(
+    await lintFs(
+      {
+        config,
+        fail,
+        filesystem,
+        logger,
+      },
+      {
+        matcher,
+        reporter,
+      },
+    )(),
+    result,
+  );
 };
 
 const tests = [
@@ -144,7 +150,7 @@ const tests = [
     },
     result: [
       undefined,
-      'lintFs: ignoresError',
+      'lintFs: validate: ignoresError',
     ],
   },
   {
@@ -189,7 +195,7 @@ const tests = [
     },
     result: [
       undefined,
-      'lintFs: rulesError',
+      'lintFs: validate: rulesError',
     ],
   },
   {

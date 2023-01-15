@@ -5,12 +5,15 @@ const testLogger = async ({
   content,
   format,
   method,
-  std,
   result,
+  std,
 }) => {
-  assert.deepEqual(logger({
-    std,
-  })[method](format, content), result);
+  assert.deepEqual(
+    await logger({
+      std,
+    })[method](format, content),
+    result,
+  );
 };
 
 const tests = [
@@ -87,5 +90,5 @@ const tests = [
 ];
 
 for (const test of tests) {
-  testLogger(test);
+  await testLogger(test);
 }

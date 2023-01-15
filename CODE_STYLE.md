@@ -1,6 +1,7 @@
 # CODESTYLE
 
 1. [Golang-like error handling between modules.](https://go.dev/blog/error-handling-and-go)
+
 ```
 execWithResult :: any -> [NonNullable<any>]
 const execWithResult = (...arguments) => ([{}]);

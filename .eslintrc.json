@@ -3,16 +3,250 @@
     "node": true
   },
   "extends": [
-    "canonical",
-    "canonical/module",
-    "canonical/node"
+    "canonical"
   ],
-  "rules": {
-    "import/extensions": [
-      "error",
-      {
-        "js": "always"
+  "overrides": [
+    {
+      "extends": [
+        "canonical/module",
+        "canonical/node"
+      ],
+      "files": [
+        "./**/*.js"
+      ],
+      "rules": {
+        "camelcase": "error",
+        "capitalized-comments": [
+          "error",
+          "always",
+          {
+            "ignorePattern": "c8"
+          }
+        ],
+        "class-methods-use-this": "error",
+        "eslint-comments/no-unused-disable": "error",
+        "eslint-comments/no-unused-enable": "error",
+        "eslint-comments/no-use": "error",
+        "eslint-comments/require-description": "error",
+        "import/exports-last": "error",
+        "import/extensions": [
+          "error",
+          {
+            "js": "always"
+          }
+        ],
+        "import/group-exports": "error",
+        "import/max-dependencies": [
+          "error",
+          {
+            "max": 5
+          }
+        ],
+        "import/named": "error",
+        "import/namespace": [
+          "error",
+          {
+            "allowComputed": true
+          }
+        ],
+        "import/no-anonymous-default-export": "error",
+        "import/no-commonjs": "error",
+        "import/no-deprecated": "error",
+        "import/no-import-module-exports": "error",
+        "import/no-named-export": "error",
+        "import/no-namespace": "error",
+        "import/no-unused-modules": [
+          "error",
+          {
+            "missingExports": true,
+            "unusedExports": true
+          }
+        ],
+        "import/prefer-default-export": "error",
+        "init-declarations": [
+          "error",
+          "always"
+        ],
+        "lines-around-comment": "error",
+        "max-classes-per-file": "error",
+        "max-depth": [
+          "error",
+          3
+        ],
+        "max-len": [
+          "error",
+          {
+            "code": 80,
+            "ignoreComments": false,
+            "ignoreRegExpLiterals": false,
+            "ignoreStrings": true,
+            "ignoreTemplateLiterals": false,
+            "ignoreTrailingComments": false,
+            "ignoreUrls": false,
+            "tabWidth": 2
+          }
+        ],
+        "max-lines": [
+          "error",
+          {"max": 100}
+        ],
+        "max-lines-per-function": [
+          "error",
+          80
+        ],
+        "max-nested-callbacks": [
+          "error",
+          1
+        ],
+        "max-params": [
+          "error",
+          2
+        ],
+        "max-statements": [
+          "error",
+          18
+        ],
+        "multiline-comment-style": "error",
+        "multiline-ternary": [
+          "error",
+          "always"
+        ],
+        "new-cap": "error",
+        "newline-per-chained-call": "error",
+        "no-constant-condition": "error",
+        "no-continue": "error",
+        "no-duplicate-imports": "error",
+        "no-else-return": "error",
+        "no-empty-function": "error",
+        "no-invalid-this": "error",
+        "no-magic-numbers": [
+          "error",
+          {
+            "detectObjects": true,
+            "ignore": [
+              0,
+              1
+            ]
+          }
+        ],
+        "no-mixed-operators": "error",
+        "no-plusplus": "error",
+        "no-restricted-syntax": [
+          "error",
+          "NewExpression[callee.name='Map']",
+          "NewExpression[callee.name='Set']",
+          "NewExpression[callee.name='WeakMap']",
+          "NewExpression[callee.name='WeakSet']",
+          "NewExpression[callee.name='Date']"
+        ],
+        "no-return-await": "error",
+        "no-ternary": "error",
+        "no-underscore-dangle": "error",
+        "no-unreachable": "error",
+        "no-unused-private-class-members": "error",
+        "no-warning-comments": "error",
+        "node/no-missing-import": "error",
+        "prefer-destructuring": [
+          "error",
+          {
+            "array": true,
+            "object": true
+          }
+        ],
+        "prefer-object-has-own": "error",
+        "promise/avoid-new": "error",
+        "promise/no-new-statics": "error",
+        "promise/no-promise-in-callback": "error",
+        "promise/prefer-await-to-callbacks": "error",
+        "promise/prefer-await-to-then": "error",
+        "promise/valid-params": "error",
+        "require-await": "error",
+        "sort-destructure-keys/sort-destructure-keys": "error",
+        "sort-keys": [
+          "error",
+          "asc",
+          {
+            "caseSensitive": true,
+            "minKeys": 2,
+            "natural": true
+          }
+        ],
+        "unicorn/consistent-destructuring": "error",
+        "unicorn/explicit-length-check": "error",
+        "unicorn/no-array-callback-reference": "error",
+        "unicorn/no-array-push-push": "error",
+        "unicorn/no-console-spaces": "error",
+        "unicorn/no-keyword-prefix": [
+          "error",
+          {
+            "checkProperties": true,
+            "onlyCamelCase": true
+          }
+        ],
+        "unicorn/no-null": "error",
+        "unicorn/no-process-exit": "error",
+        "unicorn/no-unreadable-array-destructuring": "error",
+        "unicorn/no-useless-spread": "error",
+        "unicorn/no-useless-undefined": "error",
+        "unicorn/prefer-add-event-listener": "error",
+        "unicorn/prefer-at": "error",
+        "unicorn/prefer-code-point": "error",
+        "unicorn/prefer-negative-index": "error",
+        "unicorn/prefer-prototype-methods": "error",
+        "unicorn/prefer-switch": [
+          "error",
+          {
+            "emptyDefaultCase": "no-default-case",
+            "minimumCases": 2
+          }
+        ],
+        "unicorn/prefer-top-level-await": "error",
+        "wrap-regex": "error"
       }
-    ]
-  }
+    },
+    {
+      "files": [
+        "./**/*.test.js",
+        "./source/source.js",
+        "./test.js"
+      ],
+      "rules": {
+        "import/no-unused-modules": "off"
+      }
+    },
+    {
+      "files": [
+        "./**/*.test.js"
+      ],
+      "rules": {
+        "max-lines": [
+          "error",
+          {"max": 400}
+        ]
+      }
+    },
+    {
+      "extends": [
+        "canonical/json"
+      ],
+      "files": "*.json"
+    },
+    {
+      "extends": [
+        "canonical/yaml"
+      ],
+      "files": "*.yaml",
+      "rules": {
+        "yml/key-name-casing": "error",
+        "yml/plain-scalar": "error"
+      }
+    }
+  ],
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "plugins": [
+    "sort-destructure-keys"
+  ],
+  "root": true
 }

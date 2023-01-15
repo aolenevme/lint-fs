@@ -1,20 +1,14 @@
 import utils from '../../../utils/utils.js';
 
-const {
-  errors,
-} = utils;
-
 const matcher = {
-  isCorrect (path, regs) {
+  isCorrect (path, regExps) {
     try {
-      for (const reg of regs) {
-        const ok = reg.test(path);
+      for (const regExp of regExps) {
+        const ok = regExp.test(path);
 
         if (ok) {
-          const stringified = `${reg}`;
-
           return [
-            stringified,
+            `${regExp}`,
           ];
         }
       }
@@ -23,7 +17,7 @@ const matcher = {
         '',
       ];
     } catch (error) {
-      return errors.wrap('isCorrect', error);
+      return utils.errors.wrap('isCorrect', error);
     }
   },
 };

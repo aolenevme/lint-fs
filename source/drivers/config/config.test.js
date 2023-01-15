@@ -7,10 +7,13 @@ const testConfig = async ({
   result,
   yaml,
 }) => {
-  assert.deepEqual(await config({
-    fs,
-    yaml,
-  }).read(options), result);
+  assert.deepEqual(
+    await config({
+      fs,
+      yaml,
+    }).read(options),
+    result,
+  );
 };
 
 const tests = [
@@ -56,7 +59,9 @@ const tests = [
   },
   {
     fs: {
-      readFile () {},
+      readFile () {
+        return 'file';
+      },
     },
     options: {},
     result: [
@@ -76,7 +81,9 @@ const tests = [
   },
   {
     fs: {
-      readFile () {},
+      readFile () {
+        return 'file';
+      },
     },
     options: {},
     result: [
@@ -89,21 +96,21 @@ const tests = [
     yaml: {
       load () {
         return {
-          ignores: null,
           mode: 'verbose',
-          rules: null,
         };
       },
     },
   },
   {
     fs: {
-      readFile () {},
+      readFile () {
+        return 'file';
+      },
     },
     options: {},
     result: [
       undefined,
-      'read: createRegExps: Invalid regular expression: /[/: Unterminated character class',
+      'read: parse: createRegExps: Invalid regular expression: /[/: Unterminated character class',
     ],
     yaml: {
       load () {
@@ -118,12 +125,14 @@ const tests = [
   },
   {
     fs: {
-      readFile () {},
+      readFile () {
+        return 'file';
+      },
     },
     options: {},
     result: [
       undefined,
-      'read: createRegExps: Invalid regular expression: /]/: Lone quantifier brackets',
+      'read: parse: createRegExps: Invalid regular expression: /]/: Lone quantifier brackets',
     ],
     yaml: {
       load () {
@@ -138,7 +147,9 @@ const tests = [
   },
   {
     fs: {
-      readFile () {},
+      readFile () {
+        return 'file';
+      },
     },
     options: {},
     result: [
@@ -160,7 +171,9 @@ const tests = [
   },
   {
     fs: {
-      readFile () {},
+      readFile () {
+        return 'file';
+      },
     },
     options: {},
     result: [
@@ -189,11 +202,11 @@ const tests = [
     },
     result: [
       undefined,
-      'read: load: file',
+      'read: parse: load: file',
     ],
   },
 ];
 
 for (const test of tests) {
-  testConfig(test);
+  await testConfig(test);
 }

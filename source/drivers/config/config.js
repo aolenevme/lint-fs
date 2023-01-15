@@ -1,44 +1,45 @@
 import utils from '../../utils/utils.js';
-import helpers from './helpers.js';
+import parse from './parse.js';
 
-const config = ({
-  fs,
-  yaml,
-}) => {
+const isModeValid = (mode) => {
+  const modes = [
+    'silent',
+    'verbose',
+  ];
+  const isValid = modes.includes(mode);
+
+  return isValid;
+};
+
+const config = (dependencies) => {
   return {
     read: async (options) => {
       const [
-        loadedConfig,
-        loadedConfigError,
-      ] = await helpers.load({
-        fs,
-        yaml,
-      }, options);
-
-      if (loadedConfigError) {
-        return utils.errors.wrap('read', loadedConfigError);
+        parsedConfig,
+        parseError,
+      ] = await parse({
+        dependencies,
+        options,
+      });
+      if (parseError) {
+        return utils.errors.wrap(
+          'read',
+          parseError,
+        );
       }
 
-      const [
-        ignores,
-        ignoresError,
-      ] = helpers.createRegExps(loadedConfig.ignores);
-      if (ignoresError) {
-        return utils.errors.wrap('read', ignoresError);
-      }
+      const {
+        ignoreRegExps: ignores,
+        mode,
+        rulesRegExps: rules,
+      } = parsedConfig;
 
-      const [
-        rules,
-        rulesError,
-      ] = helpers.createRegExps(loadedConfig.rules);
-      if (rulesError) {
-        return utils.errors.wrap('read', rulesError);
-      }
-
-      const mode = loadedConfig.mode;
-      const isValid = helpers.isModeValid(loadedConfig.mode);
+      const isValid = isModeValid(mode);
       if (!isValid) {
-        return utils.errors.wrap('read', 'the valid mode configuration is \'silent\' or \'verbose\'');
+        return utils.errors.wrap(
+          'read',
+          'the valid mode configuration is \'silent\' or \'verbose\'',
+        );
       }
 
       return [
