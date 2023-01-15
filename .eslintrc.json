@@ -54,6 +54,7 @@
         "import/no-deprecated": "error",
         "import/no-import-module-exports": "error",
         "import/no-named-export": "error",
+        "no-restricted-syntax": ["error", "NewExpression"],
         "import/no-namespace": "error",
         "import/no-unused-modules": [
           "error",
