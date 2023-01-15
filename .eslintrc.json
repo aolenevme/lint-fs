@@ -131,6 +131,14 @@
         ],
         "no-mixed-operators": "error",
         "no-plusplus": "error",
+        "no-restricted-syntax": [
+          "error",
+          "NewExpression[callee.name='Map']",
+          "NewExpression[callee.name='Set']",
+          "NewExpression[callee.name='WeakMap']",
+          "NewExpression[callee.name='WeakSet']",
+          "NewExpression[callee.name='Date']"
+        ],
         "no-return-await": "error",
         "no-ternary": "error",
         "no-underscore-dangle": "error",
