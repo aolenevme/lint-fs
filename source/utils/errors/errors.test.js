@@ -2,8 +2,8 @@ import assert from 'node:assert/strict';
 import errors from './errors.js';
 
 const testErrorsWrap = ({
-  previous,
   next,
+  previous,
   result,
 }) => {
   assert.deepEqual(errors.wrap(previous, next), result);

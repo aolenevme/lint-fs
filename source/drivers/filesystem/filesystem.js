@@ -1,8 +1,32 @@
 import utils from '../../utils/utils.js';
 
-const {
-  errors,
-} = utils;
+const traverse = async ({
+  fs,
+  root,
+}) => {
+  const paths = [];
+  const candidates = [
+    root,
+  ];
+
+  for (const candidate of candidates) {
+    const isDirectory = (await fs.stat(candidate)).isDirectory();
+
+    if (isDirectory) {
+      const files = await fs.readdir(candidate);
+
+      const nextCandidates = files.map((file) => {
+        return `${candidate}/${file}`;
+      });
+
+      candidates.push(...nextCandidates);
+    } else {
+      paths.push(candidate);
+    }
+  }
+
+  return paths;
+};
 
 const filesystem = ({
   fs,
@@ -10,36 +34,16 @@ const filesystem = ({
   return {
     paths: async (root) => {
       try {
-        const paths = [];
-        const candidates = [
+        const paths = await traverse({
+          fs,
           root,
-        ];
-
-        for (let index = 0; index < candidates.length; index++) {
-          const candidate = candidates[index];
-
-          const isDirectory = (await fs.stat(candidate)).isDirectory();
-
-          if (!isDirectory) {
-            paths.push(candidate);
-
-            continue;
-          }
-
-          const files = await fs.readdir(candidate);
-
-          const nextCandidates = files.map((file) => {
-            return `${candidate}/${file}`;
-          });
-
-          candidates.push(...nextCandidates);
-        }
+        });
 
         return [
           paths,
         ];
       } catch (error) {
-        return errors.wrap('paths', error.message);
+        return utils.errors.wrap('paths', error.message);
       }
     },
   };

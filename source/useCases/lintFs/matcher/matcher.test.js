@@ -31,11 +31,11 @@ const tests = [
   {
     path: 'node_modules/browserslist',
     regs: [
-      null,
+      undefined,
     ],
     result: [
       undefined,
-      'isCorrect: TypeError: Cannot read properties of null (reading \'test\')',
+      'isCorrect: TypeError: Cannot read properties of undefined (reading \'test\')',
     ],
   },
 ];

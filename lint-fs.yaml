@@ -1,15 +1,12 @@
 # Type Annotations
 #
-# ignores?: RegEx[];
+# ignores: RegExp[];
 # mode: 'silent' | 'verbose';
-# rules?: RegEx[];
-
+# rules: RegExp[];
 ignores:
   - ^./node_modules/
   - ^./.git/
-
 mode: silent
-
 rules:
   - ^./.github/FUNDING.yml$
   - ^./.github/ISSUE_TEMPLATE/bug_report.md$
@@ -27,6 +24,6 @@ rules:
   - ^./lint-fs.yaml$
   - ^./package-lock.json$
   - ^./package.json$
-  - ^./run-tests.js$
-  - ^./stryker.conf.json$
-  - ^.(/[a-z]+((\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?)*/([a-z]+((\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?)/(\6(.test)?|helpers).js$
+  - ^./test.js$
+  - ^./stryker.json$
+  - ^.(/[a-z]+((\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?)*/([a-z]+((\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?)/(?:(?=\6)(\6(.test)?)|([a-z]+((\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?)).js$

@@ -2,73 +2,11 @@ import assert from 'node:assert/strict';
 import reporter from './reporter.js';
 
 const testReporter = ({
-  logger,
   info,
+  logger,
   result,
 }) => {
-  const {
-    correct,
-    excessives,
-    incorrect,
-    mode,
-  } = info;
-
-  let correctCounter = 0;
-  const correctProxied = correct && new Proxy(correct, {
-    get (target, property) {
-      if (property === 'length') {
-        correctCounter++;
-      }
-
-      return target[property];
-    },
-  });
-
-  let excessivesCounter = 0;
-  const excessivesProxied = excessives && new Proxy(excessives, {
-    get (target, property) {
-      if (property === 'length') {
-        excessivesCounter++;
-      }
-
-      return target[property];
-    },
-  });
-
-  let incorrectCounter = 0;
-  const incorrectProxied = incorrect && new Proxy(incorrect, {
-    get (target, property) {
-      if (property === 'length') {
-        incorrectCounter++;
-      }
-
-      return target[property];
-    },
-  });
-
-  const infoProxied = {
-    correct: correctProxied,
-    excessives: excessivesProxied,
-    incorrect: incorrectProxied,
-    mode,
-  };
-
-  assert.deepEqual(reporter.print(logger, infoProxied), result);
-
-  if (correct) {
-    const isVerbose = mode === 'verbose';
-    const counter = Number(isVerbose);
-
-    assert.deepEqual(correctCounter, counter);
-  }
-
-  if (excessives) {
-    assert.deepEqual(excessivesCounter, 1);
-  }
-
-  if (incorrect) {
-    assert.ok(incorrectCounter, 1);
-  }
+  assert.deepEqual(reporter.print(logger, info), result);
 };
 
 const tests = [

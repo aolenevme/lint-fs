@@ -6,9 +6,12 @@ const testFilesystem = async ({
   result,
   root,
 }) => {
-  assert.deepEqual(await filesystem({
-    fs,
-  }).paths(root), result);
+  assert.deepEqual(
+    await filesystem({
+      fs,
+    }).paths(root),
+    result,
+  );
 };
 
 const tests = [
@@ -53,6 +56,5 @@ const tests = [
 ];
 
 for (const test of tests) {
-  testFilesystem(test);
+  await testFilesystem(test);
 }
-

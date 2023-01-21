@@ -6,7 +6,8 @@ const testFail = ({
   result,
 }) => {
   const tracker = new assert.CallTracker();
-  const callsDeepEqual = tracker.calls(assert.deepEqual, 1);
+  const deepEqualCalls = 1;
+  const callsDeepEqual = tracker.calls(assert.deepEqual, deepEqualCalls);
 
   try {
     fail(message);
