@@ -1,5 +1,5 @@
-import assert from 'node:assert/strict';
 import utils from './utils.js';
+import assert from 'node:assert/strict';
 
 const testUtils = () => {
   const {

@@ -1,5 +1,5 @@
-import assert from 'node:assert/strict';
 import reporter from './reporter.js';
+import assert from 'node:assert/strict';
 
 const testReporter = ({
   info,

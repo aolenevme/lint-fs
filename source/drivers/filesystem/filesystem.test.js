@@ -1,5 +1,5 @@
-import assert from 'node:assert/strict';
 import filesystem from './filesystem.js';
+import assert from 'node:assert/strict';
 
 const testFilesystem = async ({
   fs,

@@ -1,5 +1,5 @@
-import assert from 'node:assert/strict';
 import fail from './fail.js';
+import assert from 'node:assert/strict';
 
 const testFail = ({
   message,

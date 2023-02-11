@@ -1,5 +1,5 @@
-import assert from 'node:assert/strict';
 import logger from './logger.js';
+import assert from 'node:assert/strict';
 
 const testLogger = async ({
   content,
