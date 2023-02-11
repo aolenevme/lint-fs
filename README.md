@@ -1,8 +1,6 @@
 <div align="center">
 
-![lint-fs logo](https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/325/triangular-ruler_1f4d0.png)
-
-# lint-fs
+# lint-fs 📐
 
 **Lint File System with Regular Expressions!**
 
