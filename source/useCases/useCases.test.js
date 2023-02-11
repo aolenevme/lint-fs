@@ -1,5 +1,5 @@
-import assert from 'node:assert/strict';
 import useCases from './useCases.js';
+import assert from 'node:assert/strict';
 
 const testUseCases = () => {
   const {

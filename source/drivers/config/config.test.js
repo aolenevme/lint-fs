@@ -1,5 +1,5 @@
-import assert from 'node:assert/strict';
 import config from './config.js';
+import assert from 'node:assert/strict';
 
 const testConfig = async ({
   fs,

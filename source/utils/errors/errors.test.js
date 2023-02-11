@@ -1,5 +1,5 @@
-import assert from 'node:assert/strict';
 import errors from './errors.js';
+import assert from 'node:assert/strict';
 
 const testErrorsWrap = ({
   next,

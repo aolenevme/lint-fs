@@ -1,5 +1,5 @@
-import assert from 'node:assert/strict';
 import matcher from './matcher.js';
+import assert from 'node:assert/strict';
 
 const testMatcher = ({
   path,

@@ -1,5 +1,5 @@
-import assert from 'node:assert/strict';
 import lintFs from './lintFs.js';
+import assert from 'node:assert/strict';
 
 const testLintFs = async ({
   config,

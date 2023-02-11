@@ -1,5 +1,5 @@
-import assert from 'node:assert/strict';
 import drivers from './drivers.js';
+import assert from 'node:assert/strict';
 
 const testDrivers = () => {
   const {
