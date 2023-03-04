@@ -25,6 +25,12 @@
     "source/**/*"
   ],
   "homepage": "https://github.com/aolenevme/lint-fs#readme",
+  "keywords": [
+    "lint",
+    "filesystem",
+    "linter",
+    "lint-fs"
+  ],
   "license": "ISC",
   "main": "source/source.js",
   "name": "lint-fs",
@@ -41,5 +47,5 @@
     "test:unit": "npx c8 node ./test.js; rm -rf ./coverage"
   },
   "type": "module",
-  "version": "1.2.8"
+  "version": "1.2.9"
 }
