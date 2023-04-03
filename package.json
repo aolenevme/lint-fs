@@ -11,15 +11,15 @@
   },
   "description": "Lint File System with Regular Expressions! 📐",
   "devDependencies": {
-    "@stryker-mutator/core": "^6.4.1",
+    "@stryker-mutator/core": "^6.4.2",
     "c8": "^7.13.0",
-    "eslint": "^8.34.0",
-    "eslint-config-canonical": "40.0.8",
+    "eslint": "^8.37.0",
+    "eslint-config-canonical": "41.0.1",
     "eslint-plugin-sort-destructure-keys": "^1.5.0"
   },
   "engines": {
-    "node": "18.12.1",
-    "npm": "8.19.2"
+    "node": "18.14.2",
+    "npm": "9.5.0"
   },
   "files": [
     "source/**/*"
@@ -47,5 +47,5 @@
     "test:unit": "npx c8 node ./test.js; rm -rf ./coverage"
   },
   "type": "module",
-  "version": "1.2.9"
+  "version": "1.2.10"
 }
