@@ -11,7 +11,7 @@
   },
   "description": "Lint File System with Regular Expressions! 📐",
   "devDependencies": {
-    "@stryker-mutator/core": "^6.4.2",
+    "@stryker-mutator/core": "^7.0.2",
     "c8": "^7.13.0",
     "eslint": "^8.37.0",
     "eslint-config-canonical": "41.0.1",
